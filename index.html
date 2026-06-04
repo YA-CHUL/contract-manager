@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_1.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계약관리 시스템 | 중앙대학교광명병원 물류관리팀</title>
+<link href="./index_files/css2" rel="stylesheet">
+<link rel="stylesheet" href="./index_files/all.min.css">
+<style>
+:root {
+  --bg:#f0f2f5; --surface:#fff; --surface2:#f8f9fb; --border:#e5e8ef; --border2:#d0d5df;
+  --text:#111827; --text2:#374151; --text3:#9ca3af;
+  --primary:#1e40af; --primary-light:#eff6ff; --accent:#2563eb;
+  --success:#059669; --success-bg:#ecfdf5; --success-border:#a7f3d0;
+  --warning:#d97706; --warning-bg:#fffbeb; --warning-border:#fcd34d;
+  --danger:#dc2626; --danger-bg:#fef2f2; --danger-border:#fca5a5;
+  --purple:#7c3aed; --purple-bg:#f5f3ff;
+  --orange:#ea580c; --orange-bg:#fff7ed;
+  --teal:#0d9488; --teal-bg:#f0fdfa;
+  --indigo:#4f46e5; --indigo-bg:#eef2ff;
+  --pink:#db2777; --pink-bg:#fdf2f8;
+  --sidebar-w:220px; --radius:8px; --radius-lg:12px;
+  --shadow:0 1px 3px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:var(--primary);color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;}
+.sidebar-logo{padding:20px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.12);}
+.sidebar-logo .hosp{font-size:10px;opacity:.65;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;}
+.sidebar-logo .title{font-size:15px;font-weight:700;letter-spacing:-.02em;}
+.sidebar-logo .sub{font-size:11px;opacity:.6;margin-top:2px;}
+.sidebar-nav{flex:1;padding:12px 0;overflow-y:auto;}
+.nav-section{padding:8px 16px 4px;font-size:10px;font-weight:600;letter-spacing:.08em;opacity:.45;text-transform:uppercase;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;font-size:13px;font-weight:500;opacity:.72;transition:all .15s;border-left:3px solid transparent;}
+.nav-item:hover{opacity:1;background:rgba(255,255,255,0.08);}
+.nav-item.active{opacity:1;background:rgba(255,255,255,0.15);border-left-color:#fff;}
+.nav-item i{width:18px;text-align:center;font-size:14px;}
+.sidebar-footer{padding:14px 20px;border-top:1px solid rgba(255,255,255,0.1);font-size:11px;opacity:.5;}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{height:56px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;}
+.topbar-left{display:flex;flex-direction:column;}
+.topbar-title{font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
+.topbar-sub{font-size:12px;color:var(--text3);margin-top:1px;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.topbar-date{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:5px;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;font-family:inherit;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:#1d4ed8;}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+.btn-secondary{background:var(--surface);color:var(--text2);border:1px solid var(--border2);}
+.btn-secondary:hover{background:var(--surface2);}
+.btn-sm{padding:5px 10px;font-size:12px;}
+.content{padding:24px 28px;flex:1;}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px;}
+.kpi-card{background:var(--surface);border-radius:var(--radius-lg);padding:16px;box-shadow:var(--shadow);border:1px solid var(--border);position:relative;}
+.kpi-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.kpi-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.kpi-trend{font-size:11px;font-weight:600;display:flex;align-items:center;gap:2px;}
+.kpi-trend.up{color:var(--success);}
+.kpi-trend.down{color:var(--danger);}
+.kpi-trend.neutral{color:var(--text3);}
+.kpi-label{font-size:11px;color:var(--text3);font-weight:500;margin-bottom:4px;}
+.kpi-value{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1;}
+.kpi-unit{font-size:13px;color:var(--text3);margin-left:2px;font-weight:400;}
+.kpi-bottom{font-size:11px;color:var(--text3);margin-top:6px;}
+
+/* SECTION CARD */
+.section-card{background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:16px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);}
+.section-title{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;color:var(--text);}
+.section-title .icon{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;}
+.section-body{padding:16px 18px;}
+
+/* DASHBOARD GRID */
+.dash-row{display:grid;gap:16px;margin-bottom:16px;}
+.dash-row-3{grid-template-columns:1fr 1fr 1fr;}
+.dash-row-2{grid-template-columns:1fr 1fr;}
+.dash-row-main{grid-template-columns:1fr 320px;}
+
+/* CHART BARS */
+.chart-item{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.chart-item:last-child{margin-bottom:0;}
+.chart-label{font-size:12px;color:var(--text2);width:85px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chart-track{flex:1;height:8px;background:var(--bg);border-radius:4px;overflow:hidden;}
+.chart-fill{height:100%;border-radius:4px;transition:width .5s ease;}
+.chart-meta{font-size:11px;color:var(--text3);width:80px;text-align:right;flex-shrink:0;}
+
+/* EXPIRE TABLE */
+.expire-tabs{display:flex;gap:4px;margin-bottom:14px;}
+.etab{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:var(--surface);color:var(--text3);transition:all .15s;}
+.etab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.etab.t30{}.etab.t30.active{background:var(--danger);border-color:var(--danger);}
+.etab.t60{}.etab.t60.active{background:var(--warning);border-color:var(--warning);}
+.etab.t90{}.etab.t90.active{background:var(--orange);border-color:var(--orange);}
+.etab.tover{}.etab.tover.active{background:#6b7280;border-color:#6b7280;}
+.expire-filter{display:flex;gap:8px;margin-bottom:12px;}
+.expire-filter select,.expire-filter input{padding:6px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;}
+.expire-filter input{min-width:180px;}
+
+/* TABLE */
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{background:var(--surface2);padding:9px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--surface2);}
+tbody td{padding:10px 12px;color:var(--text2);vertical-align:middle;}
+tbody td.bold{color:var(--text);font-weight:500;}
+
+/* STATUS BADGE */
+.sbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700;}
+.sbadge-urgent{background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger-border);}
+.sbadge-warn{background:var(--warning-bg);color:var(--warning);border:1px solid var(--warning-border);}
+.sbadge-notice{background:var(--orange-bg);color:var(--orange);}
+.sbadge-ok{background:var(--success-bg);color:var(--success);border:1px solid var(--success-border);}
+.sbadge-exp{background:#f3f4f6;color:#6b7280;}
+
+/* TYPE BADGE */
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
+.tbadge-물품공급{background:#eff6ff;color:#1d4ed8;}
+.tbadge-유지보수{background:#fffbeb;color:#b45309;}
+.tbadge-장비임차{background:#f5f3ff;color:#6d28d9;}
+.tbadge-비품임차{background:#fdf2f8;color:#be185d;}
+.tbadge-용역{background:#ecfdf5;color:#065f46;}
+.tbadge-라이선스{background:#ecfeff;color:#0e7490;}
+.tbadge-위탁운영{background:#fff7ed;color:#c2410c;}
+
+/* DDAY */
+.dday{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;}
+.dday-urgent{color:var(--danger);}
+.dday-warn{color:var(--warning);}
+.dday-notice{color:var(--orange);}
+.dday-ok{color:var(--success);}
+.dday-exp{color:var(--text3);}
+
+/* ACTION PANEL */
+.action-panel{display:flex;flex-direction:column;gap:10px;}
+.action-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:var(--radius);border:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.action-item:hover{background:var(--surface2);}
+.action-item-left{display:flex;align-items:center;gap:10px;}
+.action-item-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.action-item-title{font-size:13px;font-weight:600;color:var(--text);}
+.action-item-sub{font-size:11px;color:var(--text3);}
+.action-item-right{display:flex;align-items:center;gap:8px;}
+.action-cnt{font-size:15px;font-weight:700;}
+.action-arrow{color:var(--text3);font-size:12px;}
+
+/* TOP10 */
+.top10-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
+.top10-item:last-child{border-bottom:none;}
+.top10-rank{width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.top10-rank.r1{background:#fef3c7;color:#92400e;}
+.top10-rank.r2{background:#f3f4f6;color:#374151;}
+.top10-rank.r3{background:#fef3c7;color:#92400e;}
+.top10-rank.rn{background:var(--surface2);color:var(--text3);}
+.top10-name{flex:1;font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.top10-amt{font-size:12px;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.5);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);border-radius:var(--radius-lg);width:700px;max-width:96vw;max-height:92vh;overflow-y:auto;box-shadow:var(--shadow-md);}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:1;}
+.modal-title{font-size:15px;font-weight:700;}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--text3);padding:4px;line-height:1;}
+.modal-body{padding:24px;}
+.modal-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:12px;font-weight:600;color:var(--text2);}
+.form-label .req{color:var(--danger);margin-left:2px;}
+.form-control{padding:8px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;transition:border .15s;}
+.form-control:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+textarea.form-control{resize:vertical;min-height:68px;}
+.form-section{font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;grid-column:1/-1;padding-bottom:8px;border-bottom:1px solid var(--border);margin-top:8px;}
+
+/* DETAIL */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.detail-label{font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px;}
+.detail-value{font-size:14px;color:var(--text);font-weight:500;}
+.detail-section{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;padding:10px 0 8px;border-bottom:1px solid var(--border);grid-column:1/-1;}
+
+/* MAIL */
+.mail-preview{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;font-size:12px;line-height:1.8;white-space:pre-wrap;max-height:220px;overflow-y:auto;}
+.mail-field{margin-bottom:10px;}
+.mail-field-label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+
+/* FILTERS */
+.filter-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.filter-row input,.filter-row select{padding:7px 11px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;transition:border .15s;}
+.filter-row input:focus,.filter-row select:focus{border-color:var(--accent);}
+.filter-row input[type=search]{min-width:200px;}
+
+/* PAGINATION */
+.pagination{display:flex;align-items:center;gap:5px;padding:12px 18px;border-top:1px solid var(--border);justify-content:flex-end;}
+.page-btn{width:30px;height:30px;border:1px solid var(--border2);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;background:var(--surface);color:var(--text2);font-family:inherit;transition:all .1s;}
+.page-btn:hover{background:var(--surface2);}
+.page-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.page-info{font-size:11px;color:var(--text3);margin-right:4px;}
+
+/* ACTION BTNS */
+.action-btns{display:flex;gap:4px;}
+.empty{text-align:center;padding:40px 20px;color:var(--text3);}
+.empty i{font-size:32px;margin-bottom:10px;display:block;}
+
+/* ALERT ITEMS */
+.alert-list{display:flex;flex-direction:column;gap:8px;}
+.alert-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:var(--radius);border:1px solid;}
+.alert-d30{background:var(--danger-bg);border-color:var(--danger-border);}
+.alert-d60{background:var(--warning-bg);border-color:var(--warning-border);}
+.alert-d90{background:var(--orange-bg);border-color:#fdba74;}
+.alert-info{flex:1;}
+.alert-name{font-weight:600;font-size:13px;color:var(--text);}
+.alert-meta{font-size:11px;color:var(--text3);margin-top:1px;}
+.alert-days{font-size:12px;font-weight:700;flex-shrink:0;}
+.alert-d30 .alert-days{color:var(--danger);}
+.alert-d60 .alert-days{color:var(--warning);}
+.alert-d90 .alert-days{color:var(--orange);}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 20px;border-radius:var(--radius);font-size:13px;z-index:9999;opacity:0;transition:opacity .2s;pointer-events:none;}
+#toast.show{opacity:1;}
+
+/* AMT LEGEND */
+.legend-list{display:flex;flex-direction:column;gap:7px;}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;}
+.legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.legend-name{flex:1;color:var(--text2);}
+.legend-val{font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;}
+.legend-pct{color:var(--text3);font-size:11px;width:40px;text-align:right;}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="hosp">중앙대학교광명병원</div>
+    <div class="title">계약관리 시스템</div>
+    <div class="sub">물류관리팀</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">메뉴</div>
+    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)"><i class="fa-solid fa-gauge-high"></i> 대시보드</div>
+    <div class="nav-item" onclick="showPage(&#39;contracts&#39;)"><i class="fa-solid fa-file-contract"></i> 계약 목록</div>
+    <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
+      <i class="fa-solid fa-bell"></i> 만료 알림
+      <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;"></span>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+  <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px;">
+    <div id="sync-dot" style="width: 7px; height: 7px; border-radius: 50%; background: rgb(220, 38, 38); flex-shrink: 0;"></div>
+    <span id="sync-text" style="font-size:11px;">연결 오류</span>
+  </div>
+  <div>v2.0 | 물류관리팀</div>
+</div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title" id="page-title">대시보드</div>
+      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-date"><i class="fa-regular fa-calendar" style="color:var(--accent)"></i><span id="today-date">2026년 6월 4일 (목)</span></div>
+      <button class="btn btn-secondary btn-sm" onclick="loadContracts()"><i class="fa-solid fa-rotate-right"></i></button>
+      <button class="btn btn-primary" onclick="openAddModal()"><i class="fa-solid fa-plus"></i> 계약 등록</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div id="page-dashboard">
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="dash-row dash-row-3">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-title"><span class="icon" style="background:#eff6ff;color:var(--accent)"><i class="fa-solid fa-chart-bar"></i></span> 계약 유형별 현황</div>
+            <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;contracts&#39;)">전체보기</button>
+          </div>
+          <div class="section-body" id="chart-type"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-title"><span class="icon" style="background:#f0fdfa;color:var(--teal)"><i class="fa-solid fa-building"></i></span> 담당부서별 계약 수</div>
+            <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;contracts&#39;)">전체보기</button>
+          </div>
+          <div class="section-body" id="chart-dept"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-title"><span class="icon" style="background:#f5f3ff;color:var(--purple)"><i class="fa-solid fa-won-sign"></i></span> 계약유형별 계약금액</div>
+          </div>
+          <div class="section-body" id="chart-amount"></div>
+        </div>
+      </div>
+
+      <div class="dash-row dash-row-main">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fa-solid fa-clock"></i></span> 계약 만료 예정 현황</div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <select id="expire-dept-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()">
+                <option value="">전체부서</option>
+              </select>
+              <input type="search" id="expire-search" placeholder="계약명, 업체명 검색..." style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;outline:none;width:180px;" oninput="renderExpireTable()">
+            </div>
+          </div>
+          <div class="section-body" style="padding-bottom:8px;">
+            <div class="expire-tabs" id="expire-tabs">
+              <div class="etab active" data-tab="all" onclick="setExpireTab(&#39;all&#39;)">전체</div>
+              <div class="etab t30" data-tab="d30" onclick="setExpireTab(&#39;d30&#39;)">30일 이내</div>
+              <div class="etab t60" data-tab="d60" onclick="setExpireTab(&#39;d60&#39;)">60일 이내</div>
+              <div class="etab t90" data-tab="d90" onclick="setExpireTab(&#39;d90&#39;)">90일 이내</div>
+              <div class="etab tover" data-tab="over" onclick="setExpireTab(&#39;over&#39;)">90일 초과</div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr>
+                  <th>상태</th><th>계약명</th><th>업체명</th><th>담당부서</th>
+                  <th>계약유형</th><th>계약기간</th><th>계약종료일</th><th>D-Day</th><th>계약금액</th><th>조치</th>
+                </tr></thead>
+                <tbody id="expire-tbody"></tbody>
+              </table>
+              <div id="expire-empty" class="empty" style="display:none;padding:24px;">
+                <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>
+                <p style="font-size:13px;">해당 조건의 만료 예정 계약이 없습니다.</p>
+              </div>
+            </div>
+            <div class="pagination" id="expire-pagination"></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title"><span class="icon" style="background:#fff7ed;color:var(--orange)"><i class="fa-solid fa-triangle-exclamation"></i></span> 조치 필요 계약</div>
+              <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;alerts&#39;)">전체보기</button>
+            </div>
+            <div class="section-body">
+              <div class="action-panel" id="action-panel"></div>
+            </div>
+          </div>
+          <div class="section-card">
+            <div class="section-header">
+              <div class="section-title"><span class="icon" style="background:#fef3c7;color:#92400e"><i class="fa-solid fa-trophy"></i></span> 업체별 계약금액 TOP 10</div>
+            </div>
+            <div class="section-body" id="top10-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CONTRACTS ══ -->
+    <div id="page-contracts" style="display:none">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title"><span class="icon" style="background:var(--primary-light);color:var(--accent)"><i class="fa-solid fa-list"></i></span> 계약 목록</div>
+          <div class="filter-row">
+            <input type="search" id="search-input" placeholder="🔍 업체명, 계약명 검색..." oninput="renderTable()">
+            <select id="filter-type" onchange="renderTable()">
+              <option value="">전체 유형</option>
+              <option>물품공급</option><option>유지보수</option><option>장비임차</option>
+              <option>비품임차</option><option>용역</option><option>라이선스</option><option>위탁운영</option>
+            </select>
+            <select id="filter-status" onchange="renderTable()">
+              <option value="">전체 상태</option>
+              <option value="active">유효</option><option value="expired">만료</option>
+              <option value="d30">30일 이내</option><option value="d60">60일 이내</option><option value="d90">90일 이내</option>
+            </select>
+            <select id="filter-dept" onchange="renderTable()"><option value="">전체 부서</option></select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>No.</th><th>계약유형</th><th>계약명</th><th>업체명</th>
+              <th>담당부서</th><th>계약금액</th><th>시작일</th><th>종료일</th><th>상태</th><th>관리</th>
+            </tr></thead>
+            <tbody id="contract-tbody"></tbody>
+          </table>
+          <div id="empty-state" class="empty" style="display:none">
+            <i class="fa-solid fa-folder-open"></i><p>등록된 계약이 없습니다.</p>
+          </div>
+        </div>
+        <div class="pagination" id="pagination-wrap"></div>
+      </div>
+    </div>
+
+    <!-- ══ ALERTS ══ -->
+    <div id="page-alerts" style="display:none">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fa-solid fa-bell"></i></span> 만료 알림 현황</div>
+        </div>
+        <div class="section-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px;">
+            <div style="background:var(--danger-bg);border:1px solid var(--danger-border);border-radius:var(--radius);padding:14px;text-align:center;">
+              <div style="font-size:26px;font-weight:700;color:var(--danger)" id="alert-cnt-30">0</div>
+              <div style="font-size:12px;color:#991b1b;margin-top:3px;">30일 이내 만료</div>
+            </div>
+            <div style="background:var(--warning-bg);border:1px solid var(--warning-border);border-radius:var(--radius);padding:14px;text-align:center;">
+              <div style="font-size:26px;font-weight:700;color:var(--warning)" id="alert-cnt-60">0</div>
+              <div style="font-size:12px;color:#92400e;margin-top:3px;">31~60일 만료</div>
+            </div>
+            <div style="background:var(--orange-bg);border:1px solid #fdba74;border-radius:var(--radius);padding:14px;text-align:center;">
+              <div style="font-size:26px;font-weight:700;color:var(--orange)" id="alert-cnt-90">0</div>
+              <div style="font-size:12px;color:#9a3412;margin-top:3px;">61~90일 만료</div>
+            </div>
+          </div>
+          <div class="alert-list" id="alert-list"></div>
+          <div id="alert-empty" class="empty" style="display:none;">
+            <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>
+            <p>90일 이내 만료 예정 계약이 없습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FORM MODAL -->
+<div class="modal-overlay" id="modal-form">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">계약 등록</div>
+      <button class="modal-close" onclick="closeModal(&#39;modal-form&#39;)">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-section">기본 정보</div>
+        <div class="form-group">
+          <label class="form-label">계약 유형 <span class="req">*</span></label>
+          <select class="form-control" id="f-type">
+            <option value="">선택</option>
+            <option>물품공급</option><option>유지보수</option><option>장비임차</option>
+            <option>비품임차</option><option>용역</option><option>라이선스</option><option>위탁운영</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">담당부서 <span class="req">*</span></label>
+          <input class="form-control" id="f-dept" placeholder="예: 산부인과">
+        </div>
+        <div class="form-group">
+          <label class="form-label">계약담당자 <span class="req">*</span></label>
+          <input class="form-control" id="f-manager" placeholder="예: 홍길동 (물류관리팀)">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">계약명 <span class="req">*</span></label>
+          <input class="form-control" id="f-name" placeholder="예: MRI 장비 유지보수 계약">
+        </div>
+        <div class="form-section">업체 정보</div>
+        <div class="form-group">
+          <label class="form-label">업체명 <span class="req">*</span></label>
+          <input class="form-control" id="f-company">
+        </div>
+        <div class="form-group">
+          <label class="form-label">업체 담당자명</label>
+          <input class="form-control" id="f-contact-name" placeholder="예: 홍길동">
+        </div>
+        <div class="form-group">
+          <label class="form-label">담당자 연락처</label>
+          <input class="form-control" id="f-contact-tel" placeholder="예: 010-1234-5678">
+        </div>
+        <div class="form-group">
+          <label class="form-label">담당자 이메일</label>
+          <input class="form-control" id="f-contact-email" type="email">
+        </div>
+        <div class="form-section">계약 조건</div>
+        <div class="form-group">
+          <label class="form-label">계약금액 (원) <span class="req">*</span></label>
+          <input class="form-control" id="f-amount" type="number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">계약 방법</label>
+          <select class="form-control" id="f-method">
+            <option value="">선택</option>
+            <option>일반경쟁</option><option>제한경쟁</option><option>지명경쟁</option><option>수의계약</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">계약시작일 <span class="req">*</span></label>
+          <input class="form-control" id="f-start" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">계약종료일 <span class="req">*</span></label>
+          <input class="form-control" id="f-end" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">재계약 여부</label>
+          <select class="form-control" id="f-renew">
+            <option value="">선택</option>
+            <option>해당없음</option><option>재계약 예정</option><option>재계약 완료</option><option>재계약 불가</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">이 외 계약내용</label>
+          <textarea class="form-control" id="f-extra" placeholder="기타 계약 조건, 특약사항 등"></textarea>
+        </div>
+        <div class="form-section">비고</div>
+        <div class="form-group">
+          <label class="form-label">관련 문서번호</label>
+          <input class="form-control" id="f-docno" placeholder="예: 구매-2025-0123">
+        </div>
+        <div class="form-group">
+          <label class="form-label">알림 수신 이메일 <span style="color:var(--text3);font-weight:400">(쉼표 구분)</span></label>
+          <input class="form-control" id="f-notify-emails" placeholder="예: dept@caumc.or.kr">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">비고</label>
+          <textarea class="form-control" id="f-note"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal(&#39;modal-form&#39;)">취소</button>
+      <button class="btn btn-primary" id="form-save-btn" onclick="saveContract()"><i class="fa-solid fa-floppy-disk"></i> 저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="modal-detail">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">계약 상세 정보</div>
+      <button class="modal-close" onclick="closeModal(&#39;modal-detail&#39;)">✕</button>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal(&#39;modal-detail&#39;)">닫기</button>
+      <button class="btn btn-secondary" id="detail-mail-btn"><i class="fa-solid fa-envelope"></i> 알림 메일</button>
+      <button class="btn btn-primary" id="detail-edit-btn"><i class="fa-solid fa-pen"></i> 수정</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIL MODAL -->
+<div class="modal-overlay" id="modal-mail">
+  <div class="modal" style="width:540px">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fa-solid fa-envelope" style="color:var(--accent)"></i> 계약 만료 알림 메일</div>
+      <button class="modal-close" onclick="closeModal(&#39;modal-mail&#39;)">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="mail-field"><div class="mail-field-label">수신</div><div id="mail-to" class="form-control" style="background:var(--surface2);min-height:32px;"></div></div>
+      <div class="mail-field"><div class="mail-field-label">제목</div><div id="mail-subject" class="form-control" style="background:var(--surface2);"></div></div>
+      <div class="mail-field"><div class="mail-field-label">본문 미리보기</div><div id="mail-body-preview" class="mail-preview"></div></div>
+      <div style="margin-top:8px;font-size:11px;color:var(--text3);"><i class="fa-solid fa-circle-info"></i> Outlook 또는 기본 메일 앱이 열리며 수신자·제목·본문이 자동 입력됩니다.</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal(&#39;modal-mail&#39;)">닫기</button>
+      <button class="btn btn-primary" id="mail-open-btn"><i class="fa-solid fa-external-link-alt"></i> 메일 앱 열기</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="">로드 실패: 읽기 실패: 400</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────
+const SHEET_ID = '1j9R3AQE2Ree0LVNgoBq5216pNwYVpiCjWT_uStOx4_I';
+const API_KEY  = 'AIzaSyCriLQ6p2jQfX5IZj229Y4oOCUBxVemnAE';
+const SHEET_NAME = '계약목록';
+const COLS = ['id','createdAt','type','dept','manager','name','company',
+  'contactName','contactTel','contactEmail','amount','method','start','end',
+  'renew','extra','docno','notifyEmails','note'];
+
+// ── DATA ─────────────────────────────────────────────────────
+let contracts = [];
+let editingId = null;
+let currentPage = 1;
+let expirePage = 1;
+const PAGE_SIZE = 12;
+let expireTab = 'all';
+
+const TYPE_COLORS = {
+  '물품공급':'#2563eb','유지보수':'#b45309','장비임차':'#6d28d9',
+  '비품임차':'#be185d','용역':'#065f46','라이선스':'#0e7490','위탁운영':'#c2410c'
+};
+
+function newId() { return 'c_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); }
+
+// ── SHEETS API ────────────────────────────────────────────────
+const BASE = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}`;
+
+async function sheetsGet(range) {
+  const res = await fetch(`${BASE}/values/${encodeURIComponent(range)}?key=${API_KEY}`);
+  if (!res.ok) throw new Error('읽기 실패: ' + res.status);
+  return res.json();
+}
+
+async function sheetsAppend(values) {
+  const res = await fetch(
+    `${BASE}/values/${encodeURIComponent(SHEET_NAME)}:append?valueInputOption=RAW&key=${API_KEY}`,
+    { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ values }) }
+  );
+  if (!res.ok) throw new Error('추가 실패: ' + res.status);
+  return res.json();
+}
+
+async function sheetsBatchUpdate(data) {
+  const res = await fetch(
+    `${BASE}/values:batchUpdate?key=${API_KEY}`,
+    { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ valueInputOption:'RAW', data }) }
+  );
+  if (!res.ok) throw new Error('수정 실패: ' + res.status);
+  return res.json();
+}
+
+async function loadContracts() {
+  setSyncUI('loading');
+  try {
+    const data = await sheetsGet(SHEET_NAME);
+    const rows = data.values || [];
+    if (rows.length === 0) {
+      await sheetsAppend([['ID','등록일시','계약유형','담당부서','계약담당자','계약명','업체명',
+        '담당자명','담당자연락처','담당자이메일','계약금액','계약방법','계약시작일','계약종료일',
+        '재계약여부','이외계약내용','관련문서번호','알림이메일','비고']]);
+      contracts = [];
+    } else {
+      contracts = rows.slice(1).filter(r => r[0]).map(r => {
+        const obj = {};
+        COLS.forEach((k, i) => { obj[k] = r[i] || ''; });
+        return obj;
+      });
+    }
+    setSyncUI('ok');
+    renderDashboard(); renderTable(); renderAlerts();
+    showToast('데이터 로드 완료 (' + contracts.length + '건)');
+  } catch(e) {
+    setSyncUI('error');
+    showToast('로드 실패: ' + e.message);
+  }
+}
+
+async function saveAll() {
+  const rows = [['ID','등록일시','계약유형','담당부서','계약담당자','계약명','업체명',
+    '담당자명','담당자연락처','담당자이메일','계약금액','계약방법','계약시작일','계약종료일',
+    '재계약여부','이외계약내용','관련문서번호','알림이메일','비고']];
+  contracts.forEach(c => { rows.push(COLS.map(k => c[k] || '')); });
+  await sheetsBatchUpdate([{ range: SHEET_NAME + '!A1', values: rows }]);
+}
+
+function setSyncUI(state) {
+  const dot = document.getElementById('sync-dot');
+  const txt = document.getElementById('sync-text');
+  if (!dot) return;
+  dot.style.background = state==='ok'?'#059669':state==='error'?'#dc2626':'#d97706';
+  txt.textContent = state==='ok'?'연결됨':state==='error'?'연결 오류':'동기화 중...';
+}
+
+// ── DATE ──────────────────────────────────────────────────────
+function today() { return new Date(new Date().toDateString()); }
+function daysUntil(s) { if(!s) return null; return Math.ceil((new Date(s)-today())/86400000); }
+function fmtDate(s) { if(!s) return '-'; return String(s).replace(/-/g,'.'); }
+function fmtAmt(n) { if(!n&&n!==0) return '-'; const v=Number(n); if(v>=1e8) return (v/1e8).toFixed(1)+'억 원'; if(v>=1e4) return (v/1e4).toFixed(0)+'만 원'; return v.toLocaleString('ko-KR')+'원'; }
+function fmtAmtFull(n) { if(!n) return '-'; return Number(n).toLocaleString('ko-KR')+'원'; }
+
+function getStatus(c) {
+  const d=daysUntil(c.end);
+  if(d===null) return 'unknown';
+  if(d<0) return 'expired';
+  if(d<=30) return 'd30';
+  if(d<=60) return 'd60';
+  if(d<=90) return 'd90';
+  return 'active';
+}
+
+function statusBadgeHTML(c) {
+  const st=getStatus(c); const d=daysUntil(c.end);
+  if(st==='expired') return '<span class="sbadge sbadge-exp">만료</span>';
+  if(st==='d30') return `<span class="sbadge sbadge-urgent">긴급</span>`;
+  if(st==='d60') return `<span class="sbadge sbadge-warn">주의</span>`;
+  if(st==='d90') return `<span class="sbadge sbadge-notice">예정</span>`;
+  return '<span class="sbadge sbadge-ok">유효</span>';
+}
+
+function ddayHTML(c) {
+  const st=getStatus(c); const d=daysUntil(c.end);
+  if(st==='expired') return `<span class="dday dday-exp">만료</span>`;
+  const cls={d30:'dday-urgent',d60:'dday-warn',d90:'dday-notice',active:'dday-ok'}[st]||'dday-ok';
+  return `<span class="dday ${cls}">D-${d}</span>`;
+}
+
+function typeBadgeHTML(type) {
+  return `<span class="tbadge tbadge-${type}">${type}</span>`;
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────
+const pageConfig = {
+  dashboard:{title:'대시보드',sub:'계약 현황을 한눈에 확인하세요.'},
+  contracts:{title:'계약 목록',sub:'전체 계약을 검색하고 관리하세요.'},
+  alerts:{title:'만료 알림',sub:'만료 예정 계약을 확인하고 조치하세요.'},
+};
+
+function showPage(name) {
+  ['dashboard','contracts','alerts'].forEach(p=>{
+    document.getElementById('page-'+p).style.display=p===name?'':'none';
+  });
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-item')[{dashboard:0,contracts:1,alerts:2}[name]]?.classList.add('active');
+  document.getElementById('page-title').textContent=pageConfig[name].title;
+  document.getElementById('page-sub').textContent=pageConfig[name].sub;
+  if(name==='dashboard') renderDashboard();
+  if(name==='contracts'){currentPage=1;renderTable();}
+  if(name==='alerts') renderAlerts();
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────
+function renderDashboard() {
+  renderKPI();
+  renderCharts();
+  renderExpireTable();
+  renderActionPanel();
+  renderTop10();
+}
+
+function renderKPI() {
+  const total=contracts.length;
+  const active=contracts.filter(c=>['active','d30','d60','d90'].includes(getStatus(c))).length;
+  const d30=contracts.filter(c=>getStatus(c)==='d30').length;
+  const d60=contracts.filter(c=>['d30','d60'].includes(getStatus(c))).length;
+  const d90=contracts.filter(c=>['d30','d60','d90'].includes(getStatus(c))).length;
+  const amount=contracts.reduce((s,c)=>s+(Number(c.amount)||0),0);
+
+  // 전월 대비 (간단히 createdAt 기준 이번달 등록 건수)
+  const thisMonth=new Date(); thisMonth.setDate(1); thisMonth.setHours(0,0,0,0);
+  const newThisMonth=contracts.filter(c=>new Date(c.createdAt)>=thisMonth).length;
+
+  const kpis=[
+    {label:'전체 계약',value:total,unit:'건',icon:'fa-file-contract',bg:'#eff6ff',iconColor:'#2563eb',trend:`+${newThisMonth}건`,trendDir:newThisMonth>0?'up':'neutral',trendLabel:'이번달 신규'},
+    {label:'유효 계약',value:active,unit:'건',icon:'fa-circle-check',bg:'#ecfdf5',iconColor:'#059669',trend:`${Math.round(active/Math.max(total,1)*100)}%`,trendDir:'up',trendLabel:'전체 대비'},
+    {label:'30일 내 만료',value:d30,unit:'건',icon:'fa-triangle-exclamation',bg:'#fef2f2',iconColor:'#dc2626',trend:d30>0?'긴급':'양호',trendDir:d30>0?'down':'neutral',trendLabel:'즉시 조치 필요'},
+    {label:'60일 내 만료',value:d60,unit:'건',icon:'fa-clock',bg:'#fffbeb',iconColor:'#d97706',trend:d60>0?'주의':'양호',trendDir:d60>0?'down':'neutral',trendLabel:'확인 필요'},
+    {label:'90일 내 만료',value:d90,unit:'건',icon:'fa-hourglass-half',bg:'#fff7ed',iconColor:'#ea580c',trend:'',trendDir:'neutral',trendLabel:'검토 권장'},
+    {label:'총 계약금액',value:amount>=1e8?(amount/1e8).toFixed(1)+'억':Math.round(amount/1e4)+'만',unit:'원',icon:'fa-won-sign',bg:'#f5f3ff',iconColor:'#7c3aed',trend:'',trendDir:'neutral',trendLabel:'전체 합계'},
+  ];
+
+  document.getElementById('kpi-grid').innerHTML=kpis.map(k=>`
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:${k.bg};color:${k.iconColor}"><i class="fa-solid ${k.icon}"></i></div>
+        ${k.trend?`<div class="kpi-trend ${k.trendDir}">${k.trendDir==='up'?'▲':k.trendDir==='down'?'▼':''}${k.trend}</div>`:''}
+      </div>
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}<span class="kpi-unit">${k.unit}</span></div>
+      <div class="kpi-bottom">${k.trendLabel}</div>
+    </div>`).join('');
+}
+
+function renderCharts() {
+  const types=['물품공급','유지보수','장비임차','비품임차','용역','라이선스','위탁운영'];
+  const total=Math.max(contracts.length,1);
+  const totalAmt=Math.max(contracts.reduce((s,c)=>s+(Number(c.amount)||0),0),1);
+
+  // type count chart
+  const tc=types.map(t=>contracts.filter(c=>c.type===t).length);
+  const maxT=Math.max(...tc,1);
+  document.getElementById('chart-type').innerHTML=types.map((t,i)=>`
+    <div class="chart-item">
+      <div class="chart-label">${t}</div>
+      <div class="chart-track"><div class="chart-fill" style="width:${(tc[i]/maxT*100).toFixed(0)}%;background:${TYPE_COLORS[t]}"></div></div>
+      <div class="chart-meta">${tc[i]}건 (${(tc[i]/total*100).toFixed(1)}%)</div>
+    </div>`).join('')+`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${contracts.length}건</div>`;
+
+  // dept chart
+  const dm={};
+  contracts.forEach(c=>{if(c.dept)dm[c.dept]=(dm[c.dept]||0)+1;});
+  const de=Object.entries(dm).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxD=Math.max(...de.map(e=>e[1]),1);
+  document.getElementById('chart-dept').innerHTML=(de.length?de.map(([d,cnt])=>`
+    <div class="chart-item">
+      <div class="chart-label">${d}</div>
+      <div class="chart-track"><div class="chart-fill" style="width:${(cnt/maxD*100).toFixed(0)}%;background:#0d9488"></div></div>
+      <div class="chart-meta">${cnt}건</div>
+    </div>`).join(''):'<div class="empty" style="padding:20px"><p>데이터 없음</p></div>')+
+    `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${contracts.length}건</div>`;
+
+  // amount chart
+  const ta=types.map(t=>contracts.filter(c=>c.type===t).reduce((s,c)=>s+(Number(c.amount)||0),0));
+  const maxA=Math.max(...ta,1);
+  const totalAmtSum=ta.reduce((s,v)=>s+v,0);
+  document.getElementById('chart-amount').innerHTML=types.map((t,i)=>`
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${TYPE_COLORS[t]}"></div>
+      <div class="legend-name">${t}</div>
+      <div class="legend-val">${fmtAmt(ta[i])}</div>
+      <div class="legend-pct">${totalAmtSum>0?(ta[i]/totalAmtSum*100).toFixed(1)+'%':'-'}</div>
+    </div>`).join('')+
+    `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;">
+      <span>합계</span><span style="font-family:'JetBrains Mono',monospace;">${fmtAmt(totalAmtSum)} 원</span>
+    </div>`;
+}
+
+// ── EXPIRE TABLE ──────────────────────────────────────────────
+function setExpireTab(tab) {
+  expireTab=tab; expirePage=1;
+  document.querySelectorAll('.etab').forEach(el=>{
+    el.classList.toggle('active', el.dataset.tab===tab);
+  });
+  renderExpireTable();
+}
+
+function getExpireFiltered() {
+  const dept=document.getElementById('expire-dept-filter')?.value||'';
+  const q=(document.getElementById('expire-search')?.value||'').toLowerCase();
+
+  // dept options
+  const depts=[...new Set(contracts.map(c=>c.dept).filter(Boolean))].sort();
+  const sel=document.getElementById('expire-dept-filter');
+  if(sel){const cur=sel.value;sel.innerHTML='<option value="">전체부서</option>'+depts.map(d=>`<option${d===cur?' selected':''}>${d}</option>`).join('');}
+
+  return contracts.filter(c=>{
+    if(dept&&c.dept!==dept) return false;
+    if(q&&!c.name.toLowerCase().includes(q)&&!c.company.toLowerCase().includes(q)) return false;
+    const st=getStatus(c);
+    const d=daysUntil(c.end);
+    if(expireTab==='all') return true;
+    if(expireTab==='d30') return st==='d30';
+    if(expireTab==='d60') return ['d30','d60'].includes(st);
+    if(expireTab==='d90') return ['d30','d60','d90'].includes(st);
+    if(expireTab==='over') return d!==null&&d>90;
+    return true;
+  }).sort((a,b)=>daysUntil(a.end)-daysUntil(b.end));
+}
+
+function renderExpireTable() {
+  const filtered=getExpireFiltered();
+  const totalPages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE));
+  if(expirePage>totalPages) expirePage=totalPages;
+  const paged=filtered.slice((expirePage-1)*PAGE_SIZE,expirePage*PAGE_SIZE);
+  const tbody=document.getElementById('expire-tbody');
+  const empty=document.getElementById('expire-empty');
+  if(!paged.length){tbody.innerHTML='';empty.style.display='';return;}
+  empty.style.display='none';
+  tbody.innerHTML=paged.map(c=>`<tr>
+    <td>${statusBadgeHTML(c)}</td>
+    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
+    <td>${c.company}</td>
+    <td>${c.dept}</td>
+    <td>${typeBadgeHTML(c.type)}</td>
+    <td style="font-size:12px;color:var(--text3)">${fmtDate(c.start)} ~ ${fmtDate(c.end)}</td>
+    <td style="font-size:12px">${fmtDate(c.end)}</td>
+    <td>${ddayHTML(c)}</td>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${fmtAmt(c.amount)}</td>
+    <td><button class="btn btn-secondary btn-sm" onclick="openMailModal('${c.id}')"><i class="fa-solid fa-bell"></i> 알림</button></td>
+  </tr>`).join('');
+
+  const pg=document.getElementById('expire-pagination');
+  if(totalPages<=1){pg.innerHTML='';return;}
+  let html=`<span class="page-info">${filtered.length}건 중 ${(expirePage-1)*PAGE_SIZE+1}~${Math.min(expirePage*PAGE_SIZE,filtered.length)}</span>`;
+  html+=`<button class="page-btn" onclick="goExpirePage(${expirePage-1})" ${expirePage===1?'disabled':''}>‹</button>`;
+  for(let p=Math.max(1,expirePage-2);p<=Math.min(totalPages,expirePage+2);p++)
+    html+=`<button class="page-btn${p===expirePage?' active':''}" onclick="goExpirePage(${p})">${p}</button>`;
+  html+=`<button class="page-btn" onclick="goExpirePage(${expirePage+1})" ${expirePage===totalPages?'disabled':''}>›</button>`;
+  pg.innerHTML=html;
+}
+
+function goExpirePage(p){expirePage=p;renderExpireTable();}
+
+// ── ACTION PANEL ──────────────────────────────────────────────
+function renderActionPanel() {
+  const urgent=contracts.filter(c=>getStatus(c)==='d30').length;
+  const noAmt=contracts.filter(c=>!c.amount||Number(c.amount)===0).length;
+  const noManager=contracts.filter(c=>!c.manager).length;
+  const expiredRecent=contracts.filter(c=>{ const d=daysUntil(c.end); return d!==null&&d<0&&d>=-30; }).length;
+
+  const items=[
+    {icon:'fa-triangle-exclamation',iconBg:'#fef2f2',iconColor:'#dc2626',title:'만료 임박 계약 (30일 이내)',sub:'즉시 갱신 또는 조치 필요',cnt:urgent,cntColor:'var(--danger)',tab:'d30'},
+    {icon:'fa-circle-dollar-to-slot',iconBg:'#fffbeb',iconColor:'#d97706',title:'계약금액 미입력',sub:'금액 확인 후 입력 필요',cnt:noAmt,cntColor:'var(--warning)',tab:null},
+    {icon:'fa-user-slash',iconBg:'#f5f3ff',iconColor:'#7c3aed',title:'담당자 미지정',sub:'계약담당자 입력 필요',cnt:noManager,cntColor:'var(--purple)',tab:null},
+    {icon:'fa-file-circle-xmark',iconBg:'#ecfdf5',iconColor:'#059669',title:'최근 만료된 계약 (30일)',sub:'후속 처리 확인 필요',cnt:expiredRecent,cntColor:'var(--success)',tab:null},
+  ];
+
+  document.getElementById('action-panel').innerHTML=items.map(it=>`
+    <div class="action-item" onclick="${it.tab?`setExpireTab('${it.tab}');showPage('dashboard')`:'showPage(\'contracts\')'}">
+      <div class="action-item-left">
+        <div class="action-item-icon" style="background:${it.iconBg};color:${it.iconColor}"><i class="fa-solid ${it.icon}"></i></div>
+        <div>
+          <div class="action-item-title">${it.title}</div>
+          <div class="action-item-sub">${it.sub}</div>
+        </div>
+      </div>
+      <div class="action-item-right">
+        <span class="action-cnt" style="color:${it.cntColor}">${it.cnt}건</span>
+        <span class="action-arrow">›</span>
+      </div>
+    </div>`).join('');
+
+  const alertCnt=contracts.filter(c=>['d30','d60','d90'].includes(getStatus(c))).length;
+  document.getElementById('alert-badge').textContent=alertCnt||'';
+}
+
+// ── TOP 10 ────────────────────────────────────────────────────
+function renderTop10() {
+  const cm={};
+  contracts.forEach(c=>{if(c.company)cm[c.company]=(cm[c.company]||0)+(Number(c.amount)||0);});
+  const top=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const rankClass=['r1','r2','r3'];
+  document.getElementById('top10-list').innerHTML=top.length?top.map(([co,amt],i)=>`
+    <div class="top10-item">
+      <div class="top10-rank ${rankClass[i]||'rn'}">${i+1}</div>
+      <div class="top10-name">${co}</div>
+      <div class="top10-amt">${fmtAmt(amt)}</div>
+    </div>`).join(''):'<div class="empty" style="padding:16px"><p>데이터 없음</p></div>';
+}
+
+// ── CONTRACT TABLE ────────────────────────────────────────────
+function getFiltered() {
+  const q=(document.getElementById('search-input')?.value||'').toLowerCase();
+  const ft=document.getElementById('filter-type')?.value||'';
+  const fs=document.getElementById('filter-status')?.value||'';
+  const fd=document.getElementById('filter-dept')?.value||'';
+  return contracts.filter(c=>{
+    if(q&&!c.name.toLowerCase().includes(q)&&!c.company.toLowerCase().includes(q)) return false;
+    if(ft&&c.type!==ft) return false;
+    if(fd&&c.dept!==fd) return false;
+    if(fs){const st=getStatus(c);
+      if(fs==='active'&&st!=='active') return false;
+      if(fs==='expired'&&st!=='expired') return false;
+      if(fs==='d30'&&st!=='d30') return false;
+      if(fs==='d60'&&!['d30','d60'].includes(st)) return false;
+      if(fs==='d90'&&!['d30','d60','d90'].includes(st)) return false;
+    }
+    return true;
+  });
+}
+
+function renderTable() {
+  const depts=[...new Set(contracts.map(c=>c.dept).filter(Boolean))].sort();
+  const deptSel=document.getElementById('filter-dept');
+  const cur=deptSel.value;
+  deptSel.innerHTML='<option value="">전체 부서</option>'+depts.map(d=>`<option${d===cur?' selected':''}>${d}</option>`).join('');
+
+  const filtered=getFiltered();
+  const totalPages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE));
+  if(currentPage>totalPages) currentPage=totalPages;
+  const paged=filtered.slice((currentPage-1)*PAGE_SIZE,currentPage*PAGE_SIZE);
+  const tbody=document.getElementById('contract-tbody');
+  const empty=document.getElementById('empty-state');
+  if(!paged.length){tbody.innerHTML='';empty.style.display='';return;}
+  empty.style.display='none';
+  tbody.innerHTML=paged.map((c,i)=>`<tr>
+    <td style="color:var(--text3);font-size:12px">${(currentPage-1)*PAGE_SIZE+i+1}</td>
+    <td>${typeBadgeHTML(c.type)}</td>
+    <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
+    <td>${c.company}</td>
+    <td>${c.dept}</td>
+    <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${fmtAmt(c.amount)}</td>
+    <td style="font-size:12px">${fmtDate(c.start)}</td>
+    <td style="font-size:12px">${fmtDate(c.end)}</td>
+    <td>${statusBadgeHTML(c)}</td>
+    <td><div class="action-btns">
+      <button class="btn btn-secondary btn-sm" onclick="openDetail('${c.id}')" title="상세"><i class="fa-solid fa-eye"></i></button>
+      <button class="btn btn-secondary btn-sm" onclick="openEditModal('${c.id}')" title="수정"><i class="fa-solid fa-pen"></i></button>
+      <button class="btn btn-secondary btn-sm" onclick="openMailModal('${c.id}')" title="알림"><i class="fa-solid fa-envelope"></i></button>
+      <button class="btn btn-secondary btn-sm" onclick="deleteContract('${c.id}')" title="삭제" style="color:var(--danger)"><i class="fa-solid fa-trash"></i></button>
+    </div></td>
+  </tr>`).join('');
+
+  const pg=document.getElementById('pagination-wrap');
+  if(totalPages<=1){pg.innerHTML='';return;}
+  let html=`<span class="page-info">${filtered.length}건 중 ${(currentPage-1)*PAGE_SIZE+1}~${Math.min(currentPage*PAGE_SIZE,filtered.length)}</span>`;
+  html+=`<button class="page-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+  for(let p=Math.max(1,currentPage-2);p<=Math.min(totalPages,currentPage+2);p++)
+    html+=`<button class="page-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+  html+=`<button class="page-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>›</button>`;
+  pg.innerHTML=html;
+}
+
+function goPage(p){currentPage=p;renderTable();}
+
+// ── ALERTS ────────────────────────────────────────────────────
+function renderAlerts() {
+  const near=contracts.filter(c=>['d30','d60','d90'].includes(getStatus(c))).sort((a,b)=>daysUntil(a.end)-daysUntil(b.end));
+  document.getElementById('alert-cnt-30').textContent=near.filter(c=>getStatus(c)==='d30').length;
+  document.getElementById('alert-cnt-60').textContent=near.filter(c=>getStatus(c)==='d60').length;
+  document.getElementById('alert-cnt-90').textContent=near.filter(c=>getStatus(c)==='d90').length;
+  const list=document.getElementById('alert-list');
+  const emp=document.getElementById('alert-empty');
+  if(!near.length){list.innerHTML='';emp.style.display='';return;}
+  emp.style.display='none';
+  list.innerHTML=near.map(c=>{
+    const st=getStatus(c); const d=daysUntil(c.end);
+    const cls={d30:'alert-d30',d60:'alert-d60',d90:'alert-d90'}[st];
+    const icon=st==='d30'?'🔴':st==='d60'?'🟡':'🟠';
+    return `<div class="alert-item ${cls}">
+      <div style="font-size:16px">${icon}</div>
+      <div class="alert-info">
+        <div class="alert-name">${c.name}</div>
+        <div class="alert-meta">${c.company} | ${c.dept} | 종료: ${fmtDate(c.end)}</div>
+      </div>
+      <div class="alert-days">D-${d}</div>
+      <button class="btn btn-secondary btn-sm" onclick="openMailModal('${c.id}')"><i class="fa-solid fa-envelope"></i> 알림</button>
+    </div>`;
+  }).join('');
+}
+
+// ── MODAL ─────────────────────────────────────────────────────
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+function clearForm(){
+  ['f-type','f-dept','f-manager','f-name','f-company','f-contact-name','f-contact-tel','f-contact-email',
+   'f-amount','f-method','f-start','f-end','f-renew','f-extra','f-docno','f-notify-emails','f-note']
+  .forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+function openAddModal(){
+  editingId=null; clearForm();
+  document.getElementById('modal-title').textContent='계약 등록';
+  document.getElementById('form-save-btn').innerHTML='<i class="fa-solid fa-floppy-disk"></i> 저장';
+  openModal('modal-form');
+}
+
+function openEditModal(id){
+  const c=contracts.find(x=>x.id===id); if(!c) return;
+  editingId=id; closeModal('modal-detail');
+  document.getElementById('modal-title').textContent='계약 수정';
+  document.getElementById('form-save-btn').innerHTML='<i class="fa-solid fa-floppy-disk"></i> 수정 저장';
+  ['type','dept','manager','name','company','contactName','contactTel','contactEmail','amount','method','start','end','renew','extra','docno','notifyEmails','note']
+  .forEach(k=>{const el=document.getElementById('f-'+k.replace(/([A-Z])/g,'-$1').toLowerCase());if(el)el.value=c[k]||'';});
+  openModal('modal-form');
+}
+
+async function saveContract(){
+  const g=id=>document.getElementById(id)?.value.trim()||'';
+  const vals={
+    type:g('f-type'),dept:g('f-dept'),manager:g('f-manager'),name:g('f-name'),
+    company:g('f-company'),contactName:g('f-contact-name'),contactTel:g('f-contact-tel'),contactEmail:g('f-contact-email'),
+    amount:g('f-amount'),method:g('f-method'),
+    start:document.getElementById('f-start').value,end:document.getElementById('f-end').value,
+    renew:g('f-renew'),extra:g('f-extra'),docno:g('f-docno'),notifyEmails:g('f-notify-emails'),note:g('f-note'),
+  };
+  if(!vals.type||!vals.dept||!vals.name||!vals.company||!vals.start||!vals.end){
+    showToast('필수 항목을 모두 입력하세요.');return;
+  }
+  const btn = document.getElementById('form-save-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 저장 중...';
+  try {
+    if(editingId){
+      const idx=contracts.findIndex(c=>c.id===editingId);
+      if(idx>-1)contracts[idx]={...contracts[idx],...vals};
+      await saveAll();
+    } else {
+      const newC = {id:newId(),createdAt:new Date().toISOString(),...vals};
+      contracts.push(newC);
+      await sheetsAppend([COLS.map(k=>newC[k]||'')]);
+    }
+    closeModal('modal-form');
+    renderDashboard(); renderTable(); renderAlerts();
+    showToast(editingId?'수정되었습니다.':'등록되었습니다.');
+  } catch(e) {
+    showToast('저장 실패: ' + e.message);
+  }
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> ' + (editingId?'수정 저장':'저장');
+}
+
+async function deleteContract(id){
+  if(!confirm('이 계약을 삭제하시겠습니까?')) return;
+  contracts=contracts.filter(c=>c.id!==id);
+  try {
+    await saveAll();
+    renderTable(); renderDashboard(); renderAlerts();
+    showToast('삭제되었습니다.');
+  } catch(e) {
+    showToast('삭제 실패: ' + e.message);
+  }
+}
+
+// ── DETAIL ────────────────────────────────────────────────────
+function openDetail(id){
+  const c=contracts.find(x=>x.id===id); if(!c) return;
+  const d=daysUntil(c.end);
+  document.getElementById('detail-body').innerHTML=`
+    <div class="detail-grid">
+      <div class="detail-section">기본 정보</div>
+      <div><div class="detail-label">계약 유형</div><div class="detail-value">${typeBadgeHTML(c.type)}</div></div>
+      <div><div class="detail-label">담당부서</div><div class="detail-value">${c.dept}</div></div>
+      <div><div class="detail-label">계약담당자</div><div class="detail-value">${c.manager||'-'}</div></div>
+      <div style="grid-column:1/-1"><div class="detail-label">계약명</div><div class="detail-value">${c.name}</div></div>
+      <div class="detail-section">업체 정보</div>
+      <div><div class="detail-label">업체명</div><div class="detail-value">${c.company}</div></div>
+      <div><div class="detail-label">담당자명</div><div class="detail-value">${c.contactName||'-'}</div></div>
+      <div><div class="detail-label">담당자 연락처</div><div class="detail-value">${c.contactTel||'-'}</div></div>
+      <div><div class="detail-label">담당자 이메일</div><div class="detail-value">${c.contactEmail||'-'}</div></div>
+      <div class="detail-section">계약 조건</div>
+      <div><div class="detail-label">계약금액</div><div class="detail-value">${fmtAmtFull(c.amount)}</div></div>
+      <div><div class="detail-label">계약 방법</div><div class="detail-value">${c.method||'-'}</div></div>
+      <div><div class="detail-label">계약시작일</div><div class="detail-value">${fmtDate(c.start)}</div></div>
+      <div><div class="detail-label">계약종료일</div><div class="detail-value">${fmtDate(c.end)} ${d!==null&&d>=0?`<span style="color:${d<=30?'var(--danger)':d<=60?'var(--warning)':'#c2410c'};font-size:12px">(D-${d})</span>`:d<0?'<span style="color:var(--text3);font-size:12px">(만료)</span>':''}</div></div>
+      <div><div class="detail-label">상태</div><div class="detail-value">${statusBadgeHTML(c)}</div></div>
+      <div><div class="detail-label">재계약 여부</div><div class="detail-value">${c.renew||'-'}</div></div>
+      ${c.extra?`<div style="grid-column:1/-1"><div class="detail-label">이 외 계약내용</div><div class="detail-value" style="white-space:pre-wrap">${c.extra}</div></div>`:''}
+      <div class="detail-section">비고</div>
+      <div><div class="detail-label">관련 문서번호</div><div class="detail-value">${c.docno||'-'}</div></div>
+      <div><div class="detail-label">알림 수신 이메일</div><div class="detail-value" style="font-size:12px">${c.notifyEmails||'-'}</div></div>
+      ${c.note?`<div style="grid-column:1/-1"><div class="detail-label">비고</div><div class="detail-value" style="white-space:pre-wrap">${c.note}</div></div>`:''}
+    </div>`;
+  document.getElementById('detail-edit-btn').onclick=()=>openEditModal(id);
+  document.getElementById('detail-mail-btn').onclick=()=>{closeModal('modal-detail');openMailModal(id);};
+  openModal('modal-detail');
+}
+
+// ── MAIL ──────────────────────────────────────────────────────
+function openMailModal(id){
+  const c=contracts.find(x=>x.id===id); if(!c) return;
+  const d=daysUntil(c.end);
+  const dStr=d!==null&&d>=0?`D-${d}`:'만료';
+  const to=[c.notifyEmails,'logistics@caumc.or.kr'].filter(Boolean).join(', ');
+  const subject=`[계약 만료 알림] ${c.name} - 종료일 ${fmtDate(c.end)} (${dStr})`;
+  const body=`안녕하세요, 물류관리팀입니다.\n\n아래 계약의 종료일이 임박하여 안내 드립니다.\n\n■ 계약명: ${c.name}\n■ 계약 유형: ${c.type}\n■ 업체명: ${c.company}\n  - 담당자: ${c.contactName||'-'} / ${c.contactTel||'-'}\n■ 담당부서: ${c.dept}\n■ 계약담당자: ${c.manager||'-'}\n■ 계약기간: ${fmtDate(c.start)} ~ ${fmtDate(c.end)}\n■ 잔여일수: ${dStr}\n■ 계약금액: ${fmtAmtFull(c.amount)}\n\n계약 갱신 또는 재입찰 등 후속 조치를 검토해 주시기 바랍니다.\n관련 문의는 물류관리팀으로 연락 부탁드립니다.\n\n감사합니다.\n중앙대학교광명병원 물류관리팀 드림`;
+  document.getElementById('mail-to').textContent=to;
+  document.getElementById('mail-subject').textContent=subject;
+  document.getElementById('mail-body-preview').textContent=body;
+  document.getElementById('mail-open-btn').onclick=()=>{
+    window.location.href=`mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+  openModal('modal-mail');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ── SAMPLE DATA ───────────────────────────────────────────────
+// 샘플 데이터 없음 - Google Sheets에서 로드
+
+// ── INIT ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  const d=new Date();
+  document.getElementById('today-date').textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+  document.querySelectorAll('.modal-overlay').forEach(el=>{
+    el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});
+  });
+  loadContracts();
+});
+</script>
+
+
+</body></html>
