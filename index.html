@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_8.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_9.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,13 +124,13 @@ tbody td.bold{color:var(--text);font-weight:500;}
 
 /* TYPE BADGE */
 .tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
-.tbadge-물품공급{background:#eff6ff;color:#1d4ed8;}
-.tbadge-유지보수{background:#fffbeb;color:#b45309;}
-.tbadge-장비임차{background:#f5f3ff;color:#6d28d9;}
-.tbadge-비품임차{background:#fdf2f8;color:#be185d;}
-.tbadge-용역{background:#ecfdf5;color:#065f46;}
-.tbadge-라이선스{background:#ecfeff;color:#0e7490;}
-.tbadge-위탁운영{background:#fff7ed;color:#c2410c;}
+.tbadge-공급계약{background:#eff6ff;color:#1d4ed8;}
+.tbadge-임차계약{background:#f5f3ff;color:#6d28d9;}
+.tbadge-용역계약{background:#ecfdf5;color:#065f46;}
+.tbadge-유지보수계약{background:#fffbeb;color:#b45309;}
+.tbadge-라이선스계약{background:#ecfeff;color:#0e7490;}
+.tbadge-기타{background:#f3f4f6;color:#6b7280;}
+.tbadge-target{background:#fdf2f8;color:#be185d;}
 
 /* DDAY */
 .dday{font-size:12px;font-weight:700;}
@@ -282,7 +282,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard">
+    <div id="page-dashboard" style="">
       <div class="kpi-grid" id="kpi-grid">
     <div class="kpi-card">
       <div class="kpi-card-header">
@@ -346,38 +346,33 @@ textarea.form-control{resize:vertical;min-height:68px;}
           </div>
           <div class="section-body" id="chart-type">
     <div class="chart-item">
-      <div class="chart-label">물품공급</div>
+      <div class="chart-label">공급계약</div>
       <div class="chart-track"><div class="chart-fill" style="width:0%;background:#2563eb"></div></div>
       <div class="chart-meta">0건 (0.0%)</div>
     </div>
     <div class="chart-item">
-      <div class="chart-label">유지보수</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#b45309"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
-    </div>
-    <div class="chart-item">
-      <div class="chart-label">장비임차</div>
+      <div class="chart-label">임차계약</div>
       <div class="chart-track"><div class="chart-fill" style="width:100%;background:#6d28d9"></div></div>
       <div class="chart-meta">1건 (100.0%)</div>
     </div>
     <div class="chart-item">
-      <div class="chart-label">비품임차</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#be185d"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
-    </div>
-    <div class="chart-item">
-      <div class="chart-label">용역</div>
+      <div class="chart-label">용역계약</div>
       <div class="chart-track"><div class="chart-fill" style="width:0%;background:#065f46"></div></div>
       <div class="chart-meta">0건 (0.0%)</div>
     </div>
     <div class="chart-item">
-      <div class="chart-label">라이선스</div>
+      <div class="chart-label">유지보수계약</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#b45309"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">라이선스계약</div>
       <div class="chart-track"><div class="chart-fill" style="width:0%;background:#0e7490"></div></div>
       <div class="chart-meta">0건 (0.0%)</div>
     </div>
     <div class="chart-item">
-      <div class="chart-label">위탁운영</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#c2410c"></div></div>
+      <div class="chart-label">기타</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#6b7280"></div></div>
       <div class="chart-meta">0건 (0.0%)</div>
     </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 1건</div></div>
         </div>
@@ -400,43 +395,37 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div class="section-body" id="chart-amount">
     <div class="legend-item">
       <div class="legend-dot" style="background:#2563eb"></div>
-      <div class="legend-name">물품공급</div>
-      <div class="legend-val" style="font-family:inherit">0원</div>
-      <div class="legend-pct">0.0%</div>
-    </div>
-    <div class="legend-item">
-      <div class="legend-dot" style="background:#b45309"></div>
-      <div class="legend-name">유지보수</div>
+      <div class="legend-name">공급계약</div>
       <div class="legend-val" style="font-family:inherit">0원</div>
       <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#6d28d9"></div>
-      <div class="legend-name">장비임차</div>
+      <div class="legend-name">임차계약</div>
       <div class="legend-val" style="font-family:inherit">3,300만 원</div>
       <div class="legend-pct">100.0%</div>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:#be185d"></div>
-      <div class="legend-name">비품임차</div>
+      <div class="legend-dot" style="background:#065f46"></div>
+      <div class="legend-name">용역계약</div>
       <div class="legend-val" style="font-family:inherit">0원</div>
       <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:#065f46"></div>
-      <div class="legend-name">용역</div>
+      <div class="legend-dot" style="background:#b45309"></div>
+      <div class="legend-name">유지보수계약</div>
       <div class="legend-val" style="font-family:inherit">0원</div>
       <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#0e7490"></div>
-      <div class="legend-name">라이선스</div>
+      <div class="legend-name">라이선스계약</div>
       <div class="legend-val" style="font-family:inherit">0원</div>
       <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:#c2410c"></div>
-      <div class="legend-name">위탁운영</div>
+      <div class="legend-dot" style="background:#6b7280"></div>
+      <div class="legend-name">기타</div>
       <div class="legend-val" style="font-family:inherit">0원</div>
       <div class="legend-pct">0.0%</div>
     </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;">
@@ -470,10 +459,10 @@ textarea.form-control{resize:vertical;min-height:68px;}
                 </tr></thead>
                 <tbody id="expire-tbody"><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상 치료계획 소프트웨어 RUS™ 구매·운영">의료영상 치료계획 소프트웨어 RUS™ 구매·운영</td>
+    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
     <td>㈜휴톰</td>
     <td>외과</td>
-    <td><span class="tbadge tbadge-장비임차">장비임차</span></td>
+    <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2026.03.01 ~ 2030.02.28</td>
     <td style="font-size:12px">2030.02.28</td>
     <td><span class="dday dday-ok">D-1365</span></td>
@@ -568,7 +557,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ CONTRACTS ══ -->
-    <div id="page-contracts" style="display:none">
+    <div id="page-contracts" style="display: none;">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--primary-light);color:var(--accent)">📋</span> 계약 목록</div>
@@ -576,8 +565,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
             <input type="search" id="search-input" placeholder="🔍 업체명, 계약명 검색..." oninput="renderTable()">
             <select id="filter-type" onchange="renderTable()">
               <option value="">전체 유형</option>
-              <option>물품공급</option><option>유지보수</option><option>장비임차</option>
-              <option>비품임차</option><option>용역</option><option>라이선스</option><option>위탁운영</option>
+              <option>공급계약</option><option>임차계약</option><option>용역계약</option>
+              <option>유지보수계약</option><option>라이선스계약</option><option>기타</option>
+            </select>
+            <select id="filter-target" onchange="renderTable()">
+              <option value="">전체 대상</option>
+              <option>의료장비</option><option>의료소모품</option><option>일반소모품</option>
+              <option>공기구비품</option><option>소프트웨어</option><option>의약품</option>
+              <option>차량</option><option>시설</option><option>기타</option>
             </select>
             <select id="filter-status" onchange="renderTable()">
               <option value="">전체 상태</option>
@@ -590,13 +585,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <div class="table-wrap">
           <table>
             <thead><tr>
-              <th>No.</th><th>계약유형</th><th>계약명</th><th>업체명</th>
+              <th>No.</th><th>계약유형</th><th>계약대상</th><th>계약명</th><th>업체명</th>
               <th>담당부서</th><th>계약금액</th><th>시작일</th><th>종료일</th><th>상태</th><th>관리</th>
             </tr></thead>
             <tbody id="contract-tbody"><tr>
     <td style="color:var(--text3);font-size:12px">1</td>
-    <td><span class="tbadge tbadge-장비임차">장비임차</span></td>
-    <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상 치료계획 소프트웨어 RUS™ 구매·운영">의료영상 치료계획 소프트웨어 RUS™ 구매·운영</td>
+    <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">의료장비</span></td>
+    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
     <td>㈜휴톰</td>
     <td>외과</td>
     <td style="font-size:12px">3,300만 원</td>
@@ -656,7 +652,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <div class="modal-overlay" id="modal-form">
   <div class="modal">
     <div class="modal-header">
-      <div class="modal-title" id="modal-title">계약 등록</div>
+      <div class="modal-title" id="modal-title">계약 수정</div>
       <button class="modal-close" onclick="closeModal(&#39;modal-form&#39;)">✕</button>
     </div>
     <div class="modal-body">
@@ -666,8 +662,17 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <label class="form-label">계약 유형 <span class="req">*</span></label>
           <select class="form-control" id="f-type">
             <option value="">선택</option>
-            <option>물품공급</option><option>유지보수</option><option>장비임차</option>
-            <option>비품임차</option><option>용역</option><option>라이선스</option><option>위탁운영</option>
+            <option>공급계약</option><option>임차계약</option><option>용역계약</option>
+            <option>유지보수계약</option><option>라이선스계약</option><option>기타</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">계약 대상 <span class="req">*</span></label>
+          <select class="form-control" id="f-target">
+            <option value="">선택</option>
+            <option>의료장비</option><option>의료소모품</option><option>일반소모품</option>
+            <option>공기구비품</option><option>소프트웨어</option><option>의약품</option>
+            <option>차량</option><option>시설</option><option>기타</option>
           </select>
         </div>
         <div class="form-group">
@@ -747,7 +752,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal(&#39;modal-form&#39;)">취소</button>
-      <button class="btn btn-primary" id="form-save-btn" onclick="saveContract()">💾 저장</button>
+      <button class="btn btn-primary" id="form-save-btn" onclick="saveContract()">💾 수정 저장</button>
     </div>
   </div>
 </div>
@@ -788,7 +793,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
 </div>
 
-<div id="toast" class="">데이터 로드 완료 (1건)</div>
+<div id="toast" class="">수정되었습니다.</div>
 
 <script>
 // ── CONFIG ────────────────────────────────────────────────────
@@ -805,8 +810,8 @@ const PAGE_SIZE = 12;
 let expireTab = 'all';
 
 const TYPE_COLORS = {
-  '물품공급':'#2563eb','유지보수':'#b45309','장비임차':'#6d28d9',
-  '비품임차':'#be185d','용역':'#065f46','라이선스':'#0e7490','위탁운영':'#c2410c'
+  '공급계약':'#2563eb','임차계약':'#6d28d9','용역계약':'#065f46',
+  '유지보수계약':'#b45309','라이선스계약':'#0e7490','기타':'#6b7280'
 };
 
 function newId() { return 'c_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); }
@@ -825,6 +830,7 @@ function toDB(c) {
   return {
     contract_id: c.id || '',
     type: c.type || '',
+    target: c.target || '',
     dept: c.dept || '',
     manager: c.manager || '',
     name: c.name || '',
@@ -850,6 +856,7 @@ function fromDB(r) {
     dbId: r.id,
     createdAt: r.created_at || '',
     type: r.type || '',
+    target: r.target || '',
     dept: r.dept || '',
     manager: r.manager || '',
     name: r.name || '',
@@ -1035,7 +1042,7 @@ function renderKPI() {
 }
 
 function renderCharts() {
-  const types=['물품공급','유지보수','장비임차','비품임차','용역','라이선스','위탁운영'];
+  const types=['공급계약','임차계약','용역계약','유지보수계약','라이선스계약','기타'];
   const total=Math.max(contracts.length,1);
   const totalAmt=Math.max(contracts.reduce((s,c)=>s+(Number(c.amount)||0),0),1);
 
@@ -1195,11 +1202,13 @@ function renderTop10() {
 function getFiltered() {
   const q=(document.getElementById('search-input')?.value||'').toLowerCase();
   const ft=document.getElementById('filter-type')?.value||'';
+  const ftr=document.getElementById('filter-target')?.value||'';
   const fs=document.getElementById('filter-status')?.value||'';
   const fd=document.getElementById('filter-dept')?.value||'';
   return contracts.filter(c=>{
     if(q&&!c.name.toLowerCase().includes(q)&&!c.company.toLowerCase().includes(q)) return false;
     if(ft&&c.type!==ft) return false;
+    if(ftr&&c.target!==ftr) return false;
     if(fd&&c.dept!==fd) return false;
     if(fs){const st=getStatus(c);
       if(fs==='active'&&st!=='active') return false;
@@ -1229,7 +1238,8 @@ function renderTable() {
   tbody.innerHTML=paged.map((c,i)=>`<tr>
     <td style="color:var(--text3);font-size:12px">${(currentPage-1)*PAGE_SIZE+i+1}</td>
     <td>${typeBadgeHTML(c.type)}</td>
-    <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">${c.target||'-'}</span></td>
+    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
     <td>${c.company}</td>
     <td>${c.dept}</td>
     <td style="font-size:12px">${fmtAmt(c.amount)}</td>
@@ -1287,7 +1297,7 @@ function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 
 function clearForm(){
-  ['f-type','f-dept','f-manager','f-name','f-company','f-contact-name','f-contact-tel','f-contact-email',
+  ['f-type','f-target','f-dept','f-manager','f-name','f-company','f-contact-name','f-contact-tel','f-contact-email',
    'f-amount','f-method','f-start','f-end','f-renew','f-extra','f-docno','f-notify-emails','f-note']
   .forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
 }
@@ -1304,7 +1314,7 @@ function openEditModal(id){
   editingId=id; closeModal('modal-detail');
   document.getElementById('modal-title').textContent='계약 수정';
   document.getElementById('form-save-btn').innerHTML='💾 수정 저장';
-  ['type','dept','manager','name','company','contactName','contactTel','contactEmail','amount','method','start','end','renew','extra','docno','notifyEmails','note']
+  ['type','target','dept','manager','name','company','contactName','contactTel','contactEmail','amount','method','start','end','renew','extra','docno','notifyEmails','note']
   .forEach(k=>{const el=document.getElementById('f-'+k.replace(/([A-Z])/g,'-$1').toLowerCase());if(el)el.value=c[k]||'';});
   openModal('modal-form');
 }
@@ -1312,7 +1322,7 @@ function openEditModal(id){
 async function saveContract(){
   const g=id=>document.getElementById(id)?.value.trim()||'';
   const vals={
-    type:g('f-type'),dept:g('f-dept'),manager:g('f-manager'),name:g('f-name'),
+    type:g('f-type'),target:g('f-target'),dept:g('f-dept'),manager:g('f-manager'),name:g('f-name'),
     company:g('f-company'),contactName:g('f-contact-name'),contactTel:g('f-contact-tel'),contactEmail:g('f-contact-email'),
     amount:g('f-amount'),method:g('f-method'),
     start:document.getElementById('f-start').value,end:document.getElementById('f-end').value,
@@ -1370,6 +1380,7 @@ function openDetail(id){
     <div class="detail-grid">
       <div class="detail-section">기본 정보</div>
       <div><div class="detail-label">계약 유형</div><div class="detail-value">${typeBadgeHTML(c.type)}</div></div>
+      <div><div class="detail-label">계약 대상</div><div class="detail-value">${c.target||'-'}</div></div>
       <div><div class="detail-label">담당부서</div><div class="detail-value">${c.dept}</div></div>
       <div><div class="detail-label">계약담당자</div><div class="detail-value">${c.manager||'-'}</div></div>
       <div style="grid-column:1/-1"><div class="detail-label">계약명</div><div class="detail-value">${c.name}</div></div>
