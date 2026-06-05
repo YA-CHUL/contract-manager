@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_2.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_3.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -133,7 +133,7 @@ tbody td.bold{color:var(--text);font-weight:500;}
 .tbadge-위탁운영{background:#fff7ed;color:#c2410c;}
 
 /* DDAY */
-.dday{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;}
+.dday{font-size:12px;font-weight:700;}
 .dday-urgent{color:var(--danger);}
 .dday-warn{color:var(--warning);}
 .dday-notice{color:var(--orange);}
@@ -282,24 +282,24 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard">
+    <div id="page-dashboard" style="">
       <div class="kpi-grid" id="kpi-grid">
     <div class="kpi-card">
       <div class="kpi-card-header">
         <div class="kpi-icon" style="background:#eff6ff;color:#2563eb"><i class="fa-solid fa-file-contract"></i></div>
-        <div class="kpi-trend neutral">+0건</div>
+        <div class="kpi-trend up">▲+1건</div>
       </div>
       <div class="kpi-label">전체 계약</div>
-      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-value">1<span class="kpi-unit">건</span></div>
       <div class="kpi-bottom">이번달 신규</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-card-header">
         <div class="kpi-icon" style="background:#ecfdf5;color:#059669"><i class="fa-solid fa-circle-check"></i></div>
-        <div class="kpi-trend up">▲0%</div>
+        <div class="kpi-trend up">▲100%</div>
       </div>
       <div class="kpi-label">유효 계약</div>
-      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-value">1<span class="kpi-unit">건</span></div>
       <div class="kpi-bottom">전체 대비</div>
     </div>
     <div class="kpi-card">
@@ -335,7 +335,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         
       </div>
       <div class="kpi-label">총 계약금액</div>
-      <div class="kpi-value">0만<span class="kpi-unit">원</span></div>
+      <div class="kpi-value">3300만<span class="kpi-unit">원</span></div>
       <div class="kpi-bottom">전체 합계</div>
     </div></div>
       <div class="dash-row dash-row-3">
@@ -357,8 +357,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
     <div class="chart-item">
       <div class="chart-label">장비임차</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#6d28d9"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
+      <div class="chart-track"><div class="chart-fill" style="width:100%;background:#6d28d9"></div></div>
+      <div class="chart-meta">1건 (100.0%)</div>
     </div>
     <div class="chart-item">
       <div class="chart-label">비품임차</div>
@@ -379,14 +379,19 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <div class="chart-label">위탁운영</div>
       <div class="chart-track"><div class="chart-fill" style="width:0%;background:#c2410c"></div></div>
       <div class="chart-meta">0건 (0.0%)</div>
-    </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 0건</div></div>
+    </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 1건</div></div>
         </div>
         <div class="section-card">
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:#f0fdfa;color:var(--teal)"><i class="fa-solid fa-building"></i></span> 담당부서별 계약 수</div>
             <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;contracts&#39;)">전체보기</button>
           </div>
-          <div class="section-body" id="chart-dept"><div class="empty" style="padding:20px"><p>데이터 없음</p></div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 0건</div></div>
+          <div class="section-body" id="chart-dept">
+    <div class="chart-item">
+      <div class="chart-label">외과</div>
+      <div class="chart-track"><div class="chart-fill" style="width:100%;background:#0d9488"></div></div>
+      <div class="chart-meta">1건</div>
+    </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 1건</div></div>
         </div>
         <div class="section-card">
           <div class="section-header">
@@ -396,46 +401,46 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div class="legend-item">
       <div class="legend-dot" style="background:#2563eb"></div>
       <div class="legend-name">물품공급</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">0원</div>
+      <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#b45309"></div>
       <div class="legend-name">유지보수</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">0원</div>
+      <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#6d28d9"></div>
       <div class="legend-name">장비임차</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">3300만 원</div>
+      <div class="legend-pct">100.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#be185d"></div>
       <div class="legend-name">비품임차</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">0원</div>
+      <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#065f46"></div>
       <div class="legend-name">용역</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">0원</div>
+      <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#0e7490"></div>
       <div class="legend-name">라이선스</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">0원</div>
+      <div class="legend-pct">0.0%</div>
     </div>
     <div class="legend-item">
       <div class="legend-dot" style="background:#c2410c"></div>
       <div class="legend-name">위탁운영</div>
-      <div class="legend-val">0원</div>
-      <div class="legend-pct">-</div>
+      <div class="legend-val" style="font-family:inherit">0원</div>
+      <div class="legend-pct">0.0%</div>
     </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;">
-      <span>합계</span><span style="font-family:&#39;JetBrains Mono&#39;,monospace;">0원 원</span>
+      <span>합계</span><span>3300만 원</span>
     </div></div>
         </div>
       </div>
@@ -445,7 +450,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fa-solid fa-clock"></i></span> 계약 만료 예정 현황</div>
             <div style="display:flex;gap:8px;align-items:center;">
-              <select id="expire-dept-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()"><option value="">전체부서</option></select>
+              <select id="expire-dept-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()"><option value="">전체부서</option><option>외과</option></select>
               <input type="search" id="expire-search" placeholder="계약명, 업체명 검색..." style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;outline:none;width:180px;" oninput="renderExpireTable()">
             </div>
           </div>
@@ -463,9 +468,20 @@ textarea.form-control{resize:vertical;min-height:68px;}
                   <th>상태</th><th>계약명</th><th>업체명</th><th>담당부서</th>
                   <th>계약유형</th><th>계약기간</th><th>계약종료일</th><th>D-Day</th><th>계약금액</th><th>조치</th>
                 </tr></thead>
-                <tbody id="expire-tbody"></tbody>
+                <tbody id="expire-tbody"><tr>
+    <td><span class="sbadge sbadge-ok">유효</span></td>
+    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상 치료계획 소프트웨어 RUS™ 구매·운영">의료영상 치료계획 소프트웨어 RUS™ 구매·운영</td>
+    <td>㈜휴톰</td>
+    <td>외과</td>
+    <td><span class="tbadge tbadge-장비임차">장비임차</span></td>
+    <td style="font-size:12px;color:var(--text3)">2026.03.01 ~ 2030.02.28</td>
+    <td style="font-size:12px">2030.02.28</td>
+    <td><span class="dday dday-ok">D-1365</span></td>
+    <td style="font-size:12px">3300만 원</td>
+    <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)"><i class="fa-solid fa-bell"></i> 알림</button></td>
+  </tr></tbody>
               </table>
-              <div id="expire-empty" class="empty" style="padding: 24px;">
+              <div id="expire-empty" class="empty" style="display:none;padding:24px;">
                 <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>
                 <p style="font-size:13px;">해당 조건의 만료 예정 계약이 없습니다.</p>
               </div>
@@ -540,14 +556,19 @@ textarea.form-control{resize:vertical;min-height:68px;}
             <div class="section-header">
               <div class="section-title"><span class="icon" style="background:#fef3c7;color:#92400e"><i class="fa-solid fa-trophy"></i></span> 업체별 계약금액 TOP 10</div>
             </div>
-            <div class="section-body" id="top10-list"><div class="empty" style="padding:16px"><p>데이터 없음</p></div></div>
+            <div class="section-body" id="top10-list">
+    <div class="top10-item">
+      <div class="top10-rank r1">1</div>
+      <div class="top10-name">㈜휴톰</div>
+      <div class="top10-amt">3300만 원</div>
+    </div></div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ══ CONTRACTS ══ -->
-    <div id="page-contracts" style="display:none">
+    <div id="page-contracts" style="display: none;">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--primary-light);color:var(--accent)"><i class="fa-solid fa-list"></i></span> 계약 목록</div>
@@ -563,7 +584,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
               <option value="active">유효</option><option value="expired">만료</option>
               <option value="d30">30일 이내</option><option value="d60">60일 이내</option><option value="d90">90일 이내</option>
             </select>
-            <select id="filter-dept" onchange="renderTable()"><option value="">전체 부서</option></select>
+            <select id="filter-dept" onchange="renderTable()"><option value="">전체 부서</option><option>외과</option></select>
           </div>
         </div>
         <div class="table-wrap">
@@ -572,9 +593,25 @@ textarea.form-control{resize:vertical;min-height:68px;}
               <th>No.</th><th>계약유형</th><th>계약명</th><th>업체명</th>
               <th>담당부서</th><th>계약금액</th><th>시작일</th><th>종료일</th><th>상태</th><th>관리</th>
             </tr></thead>
-            <tbody id="contract-tbody"></tbody>
+            <tbody id="contract-tbody"><tr>
+    <td style="color:var(--text3);font-size:12px">1</td>
+    <td><span class="tbadge tbadge-장비임차">장비임차</span></td>
+    <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상 치료계획 소프트웨어 RUS™ 구매·운영">의료영상 치료계획 소프트웨어 RUS™ 구매·운영</td>
+    <td>㈜휴톰</td>
+    <td>외과</td>
+    <td style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px">3300만 원</td>
+    <td style="font-size:12px">2026.03.01</td>
+    <td style="font-size:12px">2030.02.28</td>
+    <td><span class="sbadge sbadge-ok">유효</span></td>
+    <td><div class="action-btns">
+      <button class="btn btn-secondary btn-sm" onclick="openDetail(&#39;c_1780635314390_feq4&#39;)">상세</button>
+      <button class="btn btn-secondary btn-sm" onclick="openEditModal(&#39;c_1780635314390_feq4&#39;)">수정</button>
+      <button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)">알림</button>
+      <button class="btn btn-secondary btn-sm" onclick="deleteContract(&#39;c_1780635314390_feq4&#39;)" style="color:var(--danger)">삭제</button>
+    </div></td>
+  </tr></tbody>
           </table>
-          <div id="empty-state" class="empty" style="">
+          <div id="empty-state" class="empty" style="display:none">
             <i class="fa-solid fa-folder-open"></i><p>등록된 계약이 없습니다.</p>
           </div>
         </div>
@@ -583,7 +620,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ ALERTS ══ -->
-    <div id="page-alerts" style="display:none">
+    <div id="page-alerts" style="display: none;">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fa-solid fa-bell"></i></span> 만료 알림 현황</div>
@@ -751,7 +788,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
 </div>
 
-<div id="toast" class="">데이터 로드 완료 (0건)</div>
+<div id="toast" class="">데이터 로드 완료 (1건)</div>
 
 <script>
 // ── CONFIG ────────────────────────────────────────────────────
@@ -1019,11 +1056,11 @@ function renderCharts() {
     <div class="legend-item">
       <div class="legend-dot" style="background:${TYPE_COLORS[t]}"></div>
       <div class="legend-name">${t}</div>
-      <div class="legend-val">${fmtAmt(ta[i])}</div>
+      <div class="legend-val" style="font-family:inherit">${fmtAmt(ta[i])}</div>
       <div class="legend-pct">${totalAmtSum>0?(ta[i]/totalAmtSum*100).toFixed(1)+'%':'-'}</div>
     </div>`).join('')+
     `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;">
-      <span>합계</span><span style="font-family:'JetBrains Mono',monospace;">${fmtAmt(totalAmtSum)} 원</span>
+      <span>합계</span><span>${fmtAmt(totalAmtSum)}</span>
     </div>`;
 }
 
@@ -1077,7 +1114,7 @@ function renderExpireTable() {
     <td style="font-size:12px;color:var(--text3)">${fmtDate(c.start)} ~ ${fmtDate(c.end)}</td>
     <td style="font-size:12px">${fmtDate(c.end)}</td>
     <td>${ddayHTML(c)}</td>
-    <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${fmtAmt(c.amount)}</td>
+    <td style="font-size:12px">${fmtAmt(c.amount)}</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal('${c.id}')"><i class="fa-solid fa-bell"></i> 알림</button></td>
   </tr>`).join('');
 
@@ -1186,10 +1223,10 @@ function renderTable() {
     <td style="font-size:12px">${fmtDate(c.end)}</td>
     <td>${statusBadgeHTML(c)}</td>
     <td><div class="action-btns">
-      <button class="btn btn-secondary btn-sm" onclick="openDetail('${c.id}')" title="상세"><i class="fa-solid fa-eye"></i></button>
-      <button class="btn btn-secondary btn-sm" onclick="openEditModal('${c.id}')" title="수정"><i class="fa-solid fa-pen"></i></button>
-      <button class="btn btn-secondary btn-sm" onclick="openMailModal('${c.id}')" title="알림"><i class="fa-solid fa-envelope"></i></button>
-      <button class="btn btn-secondary btn-sm" onclick="deleteContract('${c.id}')" title="삭제" style="color:var(--danger)"><i class="fa-solid fa-trash"></i></button>
+      <button class="btn btn-secondary btn-sm" onclick="openDetail('${c.id}')">상세</button>
+      <button class="btn btn-secondary btn-sm" onclick="openEditModal('${c.id}')">수정</button>
+      <button class="btn btn-secondary btn-sm" onclick="openMailModal('${c.id}')">알림</button>
+      <button class="btn btn-secondary btn-sm" onclick="deleteContract('${c.id}')" style="color:var(--danger)">삭제</button>
     </div></td>
   </tr>`).join('');
 
@@ -1350,7 +1387,7 @@ function openMailModal(id){
   const c=contracts.find(x=>x.id===id); if(!c) return;
   const d=daysUntil(c.end);
   const dStr=d!==null&&d>=0?`D-${d}`:'만료';
-  const to=[c.notifyEmails,'logistics@caumc.or.kr'].filter(Boolean).join(', ');
+  const to=c.notifyEmails||'';
   const subject=`[계약 만료 알림] ${c.name} - 종료일 ${fmtDate(c.end)} (${dStr})`;
   const body=`안녕하세요, 물류관리팀입니다.\n\n아래 계약의 종료일이 임박하여 안내 드립니다.\n\n■ 계약명: ${c.name}\n■ 계약 유형: ${c.type}\n■ 업체명: ${c.company}\n  - 담당자: ${c.contactName||'-'} / ${c.contactTel||'-'}\n■ 담당부서: ${c.dept}\n■ 계약담당자: ${c.manager||'-'}\n■ 계약기간: ${fmtDate(c.start)} ~ ${fmtDate(c.end)}\n■ 잔여일수: ${dStr}\n■ 계약금액: ${fmtAmtFull(c.amount)}\n\n계약 갱신 또는 재입찰 등 후속 조치를 검토해 주시기 바랍니다.\n관련 문의는 물류관리팀으로 연락 부탁드립니다.\n\n감사합니다.\n중앙대학교광명병원 물류관리팀 드림`;
   document.getElementById('mail-to').textContent=to;
