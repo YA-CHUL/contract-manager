@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_1.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_2.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -259,8 +259,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </nav>
   <div class="sidebar-footer">
   <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px;">
-    <div id="sync-dot" style="width: 7px; height: 7px; border-radius: 50%; background: rgb(220, 38, 38); flex-shrink: 0;"></div>
-    <span id="sync-text" style="font-size:11px;">연결 오류</span>
+    <div id="sync-dot" style="width: 7px; height: 7px; border-radius: 50%; background: rgb(5, 150, 105); flex-shrink: 0;"></div>
+    <span id="sync-text" style="font-size:11px;">연결됨</span>
   </div>
   <div>v2.0 | 물류관리팀</div>
 </div>
@@ -273,7 +273,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-date"><i class="fa-regular fa-calendar" style="color:var(--accent)"></i><span id="today-date">2026년 6월 4일 (목)</span></div>
+      <div class="topbar-date"><i class="fa-regular fa-calendar" style="color:var(--accent)"></i><span id="today-date">2026년 6월 5일 (금)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()"><i class="fa-solid fa-rotate-right"></i></button>
       <button class="btn btn-primary" onclick="openAddModal()"><i class="fa-solid fa-plus"></i> 계약 등록</button>
     </div>
@@ -283,27 +283,160 @@ textarea.form-control{resize:vertical;min-height:68px;}
 
     <!-- ══ DASHBOARD ══ -->
     <div id="page-dashboard">
-      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="kpi-grid" id="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:#eff6ff;color:#2563eb"><i class="fa-solid fa-file-contract"></i></div>
+        <div class="kpi-trend neutral">+0건</div>
+      </div>
+      <div class="kpi-label">전체 계약</div>
+      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-bottom">이번달 신규</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:#ecfdf5;color:#059669"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="kpi-trend up">▲0%</div>
+      </div>
+      <div class="kpi-label">유효 계약</div>
+      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-bottom">전체 대비</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:#fef2f2;color:#dc2626"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div class="kpi-trend neutral">양호</div>
+      </div>
+      <div class="kpi-label">30일 내 만료</div>
+      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-bottom">즉시 조치 필요</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:#fffbeb;color:#d97706"><i class="fa-solid fa-clock"></i></div>
+        <div class="kpi-trend neutral">양호</div>
+      </div>
+      <div class="kpi-label">60일 내 만료</div>
+      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-bottom">확인 필요</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:#fff7ed;color:#ea580c"><i class="fa-solid fa-hourglass-half"></i></div>
+        
+      </div>
+      <div class="kpi-label">90일 내 만료</div>
+      <div class="kpi-value">0<span class="kpi-unit">건</span></div>
+      <div class="kpi-bottom">검토 권장</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div class="kpi-icon" style="background:#f5f3ff;color:#7c3aed"><i class="fa-solid fa-won-sign"></i></div>
+        
+      </div>
+      <div class="kpi-label">총 계약금액</div>
+      <div class="kpi-value">0만<span class="kpi-unit">원</span></div>
+      <div class="kpi-bottom">전체 합계</div>
+    </div></div>
       <div class="dash-row dash-row-3">
         <div class="section-card">
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:#eff6ff;color:var(--accent)"><i class="fa-solid fa-chart-bar"></i></span> 계약 유형별 현황</div>
             <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;contracts&#39;)">전체보기</button>
           </div>
-          <div class="section-body" id="chart-type"></div>
+          <div class="section-body" id="chart-type">
+    <div class="chart-item">
+      <div class="chart-label">물품공급</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#2563eb"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">유지보수</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#b45309"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">장비임차</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#6d28d9"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">비품임차</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#be185d"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">용역</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#065f46"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">라이선스</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#0e7490"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">위탁운영</div>
+      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#c2410c"></div></div>
+      <div class="chart-meta">0건 (0.0%)</div>
+    </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 0건</div></div>
         </div>
         <div class="section-card">
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:#f0fdfa;color:var(--teal)"><i class="fa-solid fa-building"></i></span> 담당부서별 계약 수</div>
             <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;contracts&#39;)">전체보기</button>
           </div>
-          <div class="section-body" id="chart-dept"></div>
+          <div class="section-body" id="chart-dept"><div class="empty" style="padding:20px"><p>데이터 없음</p></div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 0건</div></div>
         </div>
         <div class="section-card">
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:#f5f3ff;color:var(--purple)"><i class="fa-solid fa-won-sign"></i></span> 계약유형별 계약금액</div>
           </div>
-          <div class="section-body" id="chart-amount"></div>
+          <div class="section-body" id="chart-amount">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#2563eb"></div>
+      <div class="legend-name">물품공급</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#b45309"></div>
+      <div class="legend-name">유지보수</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#6d28d9"></div>
+      <div class="legend-name">장비임차</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#be185d"></div>
+      <div class="legend-name">비품임차</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#065f46"></div>
+      <div class="legend-name">용역</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#0e7490"></div>
+      <div class="legend-name">라이선스</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#c2410c"></div>
+      <div class="legend-name">위탁운영</div>
+      <div class="legend-val">0원</div>
+      <div class="legend-pct">-</div>
+    </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;">
+      <span>합계</span><span style="font-family:&#39;JetBrains Mono&#39;,monospace;">0원 원</span>
+    </div></div>
         </div>
       </div>
 
@@ -312,9 +445,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fa-solid fa-clock"></i></span> 계약 만료 예정 현황</div>
             <div style="display:flex;gap:8px;align-items:center;">
-              <select id="expire-dept-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()">
-                <option value="">전체부서</option>
-              </select>
+              <select id="expire-dept-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()"><option value="">전체부서</option></select>
               <input type="search" id="expire-search" placeholder="계약명, 업체명 검색..." style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;outline:none;width:180px;" oninput="renderExpireTable()">
             </div>
           </div>
@@ -334,7 +465,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
                 </tr></thead>
                 <tbody id="expire-tbody"></tbody>
               </table>
-              <div id="expire-empty" class="empty" style="display:none;padding:24px;">
+              <div id="expire-empty" class="empty" style="padding: 24px;">
                 <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>
                 <p style="font-size:13px;">해당 조건의 만료 예정 계약이 없습니다.</p>
               </div>
@@ -350,14 +481,66 @@ textarea.form-control{resize:vertical;min-height:68px;}
               <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;alerts&#39;)">전체보기</button>
             </div>
             <div class="section-body">
-              <div class="action-panel" id="action-panel"></div>
+              <div class="action-panel" id="action-panel">
+    <div class="action-item" onclick="setExpireTab(&#39;d30&#39;);showPage(&#39;dashboard&#39;)">
+      <div class="action-item-left">
+        <div class="action-item-icon" style="background:#fef2f2;color:#dc2626"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div>
+          <div class="action-item-title">만료 임박 계약 (30일 이내)</div>
+          <div class="action-item-sub">즉시 갱신 또는 조치 필요</div>
+        </div>
+      </div>
+      <div class="action-item-right">
+        <span class="action-cnt" style="color:var(--danger)">0건</span>
+        <span class="action-arrow">›</span>
+      </div>
+    </div>
+    <div class="action-item" onclick="showPage(&#39;contracts&#39;)">
+      <div class="action-item-left">
+        <div class="action-item-icon" style="background:#fffbeb;color:#d97706"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+        <div>
+          <div class="action-item-title">계약금액 미입력</div>
+          <div class="action-item-sub">금액 확인 후 입력 필요</div>
+        </div>
+      </div>
+      <div class="action-item-right">
+        <span class="action-cnt" style="color:var(--warning)">0건</span>
+        <span class="action-arrow">›</span>
+      </div>
+    </div>
+    <div class="action-item" onclick="showPage(&#39;contracts&#39;)">
+      <div class="action-item-left">
+        <div class="action-item-icon" style="background:#f5f3ff;color:#7c3aed"><i class="fa-solid fa-user-slash"></i></div>
+        <div>
+          <div class="action-item-title">담당자 미지정</div>
+          <div class="action-item-sub">계약담당자 입력 필요</div>
+        </div>
+      </div>
+      <div class="action-item-right">
+        <span class="action-cnt" style="color:var(--purple)">0건</span>
+        <span class="action-arrow">›</span>
+      </div>
+    </div>
+    <div class="action-item" onclick="showPage(&#39;contracts&#39;)">
+      <div class="action-item-left">
+        <div class="action-item-icon" style="background:#ecfdf5;color:#059669"><i class="fa-solid fa-file-circle-xmark"></i></div>
+        <div>
+          <div class="action-item-title">최근 만료된 계약 (30일)</div>
+          <div class="action-item-sub">후속 처리 확인 필요</div>
+        </div>
+      </div>
+      <div class="action-item-right">
+        <span class="action-cnt" style="color:var(--success)">0건</span>
+        <span class="action-arrow">›</span>
+      </div>
+    </div></div>
             </div>
           </div>
           <div class="section-card">
             <div class="section-header">
               <div class="section-title"><span class="icon" style="background:#fef3c7;color:#92400e"><i class="fa-solid fa-trophy"></i></span> 업체별 계약금액 TOP 10</div>
             </div>
-            <div class="section-body" id="top10-list"></div>
+            <div class="section-body" id="top10-list"><div class="empty" style="padding:16px"><p>데이터 없음</p></div></div>
           </div>
         </div>
       </div>
@@ -391,7 +574,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
             </tr></thead>
             <tbody id="contract-tbody"></tbody>
           </table>
-          <div id="empty-state" class="empty" style="display:none">
+          <div id="empty-state" class="empty" style="">
             <i class="fa-solid fa-folder-open"></i><p>등록된 계약이 없습니다.</p>
           </div>
         </div>
@@ -421,7 +604,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
             </div>
           </div>
           <div class="alert-list" id="alert-list"></div>
-          <div id="alert-empty" class="empty" style="display:none;">
+          <div id="alert-empty" class="empty" style="">
             <i class="fa-solid fa-circle-check" style="color:var(--success)"></i>
             <p>90일 이내 만료 예정 계약이 없습니다.</p>
           </div>
@@ -568,16 +751,13 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
 </div>
 
-<div id="toast" class="">로드 실패: 읽기 실패: 400</div>
+<div id="toast" class="">데이터 로드 완료 (0건)</div>
 
 <script>
 // ── CONFIG ────────────────────────────────────────────────────
-const SHEET_ID = '1j9R3AQE2Ree0LVNgoBq5216pNwYVpiCjWT_uStOx4_I';
-const API_KEY  = 'AIzaSyCriLQ6p2jQfX5IZj229Y4oOCUBxVemnAE';
-const SHEET_NAME = '계약목록';
-const COLS = ['id','createdAt','type','dept','manager','name','company',
-  'contactName','contactTel','contactEmail','amount','method','start','end',
-  'renew','extra','docno','notifyEmails','note'];
+const SUPABASE_URL = 'https://giwiphlabolvpraaroma.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_2Il7fvNJs8yICc11MqibDw_srTzmiar';
+const TABLE = 'contracts';
 
 // ── DATA ─────────────────────────────────────────────────────
 let contracts = [];
@@ -594,51 +774,71 @@ const TYPE_COLORS = {
 
 function newId() { return 'c_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); }
 
-// ── SHEETS API ────────────────────────────────────────────────
-const BASE = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}`;
+// ── SUPABASE API ──────────────────────────────────────────────
+const SB = `${SUPABASE_URL}/rest/v1/${TABLE}`;
+const HEADERS = {
+  'Content-Type': 'application/json',
+  'apikey': SUPABASE_KEY,
+  'Authorization': `Bearer ${SUPABASE_KEY}`,
+  'Prefer': 'return=representation'
+};
 
-async function sheetsGet(range) {
-  const res = await fetch(`${BASE}/values/${encodeURIComponent(range)}?key=${API_KEY}`);
-  if (!res.ok) throw new Error('읽기 실패: ' + res.status);
-  return res.json();
+// DB 컬럼명 ↔ JS 키 매핑
+function toDB(c) {
+  return {
+    contract_id: c.id || '',
+    type: c.type || '',
+    dept: c.dept || '',
+    manager: c.manager || '',
+    name: c.name || '',
+    company: c.company || '',
+    contact_name: c.contactName || '',
+    contact_tel: c.contactTel || '',
+    contact_email: c.contactEmail || '',
+    amount: Number(c.amount) || 0,
+    method: c.method || '',
+    start_date: c.start || '',
+    end_date: c.end || '',
+    renew: c.renew || '',
+    extra: c.extra || '',
+    docno: c.docno || '',
+    notify_emails: c.notifyEmails || '',
+    note: c.note || '',
+  };
 }
 
-async function sheetsAppend(values) {
-  const res = await fetch(
-    `${BASE}/values/${encodeURIComponent(SHEET_NAME)}:append?valueInputOption=RAW&key=${API_KEY}`,
-    { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ values }) }
-  );
-  if (!res.ok) throw new Error('추가 실패: ' + res.status);
-  return res.json();
-}
-
-async function sheetsBatchUpdate(data) {
-  const res = await fetch(
-    `${BASE}/values:batchUpdate?key=${API_KEY}`,
-    { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ valueInputOption:'RAW', data }) }
-  );
-  if (!res.ok) throw new Error('수정 실패: ' + res.status);
-  return res.json();
+function fromDB(r) {
+  return {
+    id: r.contract_id || String(r.id),
+    dbId: r.id,
+    createdAt: r.created_at || '',
+    type: r.type || '',
+    dept: r.dept || '',
+    manager: r.manager || '',
+    name: r.name || '',
+    company: r.company || '',
+    contactName: r.contact_name || '',
+    contactTel: r.contact_tel || '',
+    contactEmail: r.contact_email || '',
+    amount: r.amount || '',
+    method: r.method || '',
+    start: r.start_date || '',
+    end: r.end_date || '',
+    renew: r.renew || '',
+    extra: r.extra || '',
+    docno: r.docno || '',
+    notifyEmails: r.notify_emails || '',
+    note: r.note || '',
+  };
 }
 
 async function loadContracts() {
   setSyncUI('loading');
   try {
-    const data = await sheetsGet(SHEET_NAME);
-    const rows = data.values || [];
-    if (rows.length === 0) {
-      await sheetsAppend([['ID','등록일시','계약유형','담당부서','계약담당자','계약명','업체명',
-        '담당자명','담당자연락처','담당자이메일','계약금액','계약방법','계약시작일','계약종료일',
-        '재계약여부','이외계약내용','관련문서번호','알림이메일','비고']]);
-      contracts = [];
-    } else {
-      contracts = rows.slice(1).filter(r => r[0]).map(r => {
-        const obj = {};
-        COLS.forEach((k, i) => { obj[k] = r[i] || ''; });
-        return obj;
-      });
-    }
+    const res = await fetch(`${SB}?order=created_at.asc`, { headers: HEADERS });
+    if (!res.ok) throw new Error('로드 실패: ' + res.status);
+    const rows = await res.json();
+    contracts = rows.map(fromDB);
     setSyncUI('ok');
     renderDashboard(); renderTable(); renderAlerts();
     showToast('데이터 로드 완료 (' + contracts.length + '건)');
@@ -648,12 +848,32 @@ async function loadContracts() {
   }
 }
 
-async function saveAll() {
-  const rows = [['ID','등록일시','계약유형','담당부서','계약담당자','계약명','업체명',
-    '담당자명','담당자연락처','담당자이메일','계약금액','계약방법','계약시작일','계약종료일',
-    '재계약여부','이외계약내용','관련문서번호','알림이메일','비고']];
-  contracts.forEach(c => { rows.push(COLS.map(k => c[k] || '')); });
-  await sheetsBatchUpdate([{ range: SHEET_NAME + '!A1', values: rows }]);
+async function insertContract(c) {
+  const res = await fetch(SB, {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify(toDB(c))
+  });
+  if (!res.ok) throw new Error('추가 실패: ' + res.status);
+  return res.json();
+}
+
+async function updateContract(c) {
+  const res = await fetch(`${SB}?id=eq.${c.dbId}`, {
+    method: 'PATCH',
+    headers: HEADERS,
+    body: JSON.stringify(toDB(c))
+  });
+  if (!res.ok) throw new Error('수정 실패: ' + res.status);
+  return res.json();
+}
+
+async function deleteContractDB(dbId) {
+  const res = await fetch(`${SB}?id=eq.${dbId}`, {
+    method: 'DELETE',
+    headers: HEADERS
+  });
+  if (!res.ok) throw new Error('삭제 실패: ' + res.status);
 }
 
 function setSyncUI(state) {
@@ -1056,12 +1276,16 @@ async function saveContract(){
   try {
     if(editingId){
       const idx=contracts.findIndex(c=>c.id===editingId);
-      if(idx>-1)contracts[idx]={...contracts[idx],...vals};
-      await saveAll();
+      if(idx>-1){
+        const updated = {...contracts[idx],...vals};
+        await updateContract(updated);
+        contracts[idx] = updated;
+      }
     } else {
       const newC = {id:newId(),createdAt:new Date().toISOString(),...vals};
+      const rows = await insertContract(newC);
+      if(rows && rows[0]) newC.dbId = rows[0].id;
       contracts.push(newC);
-      await sheetsAppend([COLS.map(k=>newC[k]||'')]);
     }
     closeModal('modal-form');
     renderDashboard(); renderTable(); renderAlerts();
@@ -1075,9 +1299,11 @@ async function saveContract(){
 
 async function deleteContract(id){
   if(!confirm('이 계약을 삭제하시겠습니까?')) return;
-  contracts=contracts.filter(c=>c.id!==id);
+  const c = contracts.find(x=>x.id===id);
+  if(!c) return;
   try {
-    await saveAll();
+    await deleteContractDB(c.dbId);
+    contracts = contracts.filter(x=>x.id!==id);
     renderTable(); renderDashboard(); renderAlerts();
     showToast('삭제되었습니다.');
   } catch(e) {
