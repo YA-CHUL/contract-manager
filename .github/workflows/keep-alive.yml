@@ -1,0 +1,17 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # 매주 월요일 오전 9시 자동 실행
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        run: |
+          curl -s "https://giwiphlabolvpraaroma.supabase.co/rest/v1/contracts?limit=1" \
+          -H "apikey: sb_publishable_2Il7fvNJs8yICc11MqibDw_srTzmiar" \
+          -H "Authorization: Bearer sb_publishable_2Il7fvNJs8yICc11MqibDw_srTzmiar"
+          echo "Ping 완료!"
