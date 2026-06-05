@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_3.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v4_5.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +68,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .kpi-trend.neutral{color:var(--text3);}
 .kpi-label{font-size:11px;color:var(--text3);font-weight:500;margin-bottom:4px;}
 .kpi-value{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1;}
-.kpi-unit{font-size:13px;color:var(--text3);margin-left:2px;font-weight:400;}
+.kpi-unit{font-size:16px;color:var(--text3);margin-left:2px;font-weight:400;}
 .kpi-bottom{font-size:11px;color:var(--text3);margin-top:6px;}
 
 /* SECTION CARD */
@@ -161,7 +161,7 @@ tbody td.bold{color:var(--text);font-weight:500;}
 .top10-rank.r3{background:#fef3c7;color:#92400e;}
 .top10-rank.rn{background:var(--surface2);color:var(--text3);}
 .top10-name{flex:1;font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.top10-amt{font-size:12px;font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+.top10-amt{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;}
 
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.5);z-index:200;align-items:center;justify-content:center;}
@@ -236,7 +236,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
 .legend-item{display:flex;align-items:center;gap:8px;font-size:12px;}
 .legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 .legend-name{flex:1;color:var(--text2);}
-.legend-val{font-weight:600;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:11px;}
+.legend-val{font-weight:600;color:var(--text);font-size:12px;}
 .legend-pct{color:var(--text3);font-size:11px;width:40px;text-align:right;}
 </style>
 </head>
@@ -282,7 +282,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard" style="">
+    <div id="page-dashboard">
       <div class="kpi-grid" id="kpi-grid">
     <div class="kpi-card">
       <div class="kpi-card-header">
@@ -335,7 +335,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         
       </div>
       <div class="kpi-label">총 계약금액</div>
-      <div class="kpi-value">3300만<span class="kpi-unit">원</span></div>
+      <div class="kpi-value">3,300만<span class="kpi-unit">원</span></div>
       <div class="kpi-bottom">전체 합계</div>
     </div></div>
       <div class="dash-row dash-row-3">
@@ -413,7 +413,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div class="legend-item">
       <div class="legend-dot" style="background:#6d28d9"></div>
       <div class="legend-name">장비임차</div>
-      <div class="legend-val" style="font-family:inherit">3300만 원</div>
+      <div class="legend-val" style="font-family:inherit">3,300만 원</div>
       <div class="legend-pct">100.0%</div>
     </div>
     <div class="legend-item">
@@ -440,7 +440,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <div class="legend-val" style="font-family:inherit">0원</div>
       <div class="legend-pct">0.0%</div>
     </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;">
-      <span>합계</span><span>3300만 원</span>
+      <span>합계</span><span>3,300만 원</span>
     </div></div>
         </div>
       </div>
@@ -477,7 +477,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td style="font-size:12px;color:var(--text3)">2026.03.01 ~ 2030.02.28</td>
     <td style="font-size:12px">2030.02.28</td>
     <td><span class="dday dday-ok">D-1365</span></td>
-    <td style="font-size:12px">3300만 원</td>
+    <td style="font-size:12px">3,300만 원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)"><i class="fa-solid fa-bell"></i> 알림</button></td>
   </tr></tbody>
               </table>
@@ -560,7 +560,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div class="top10-item">
       <div class="top10-rank r1">1</div>
       <div class="top10-name">㈜휴톰</div>
-      <div class="top10-amt">3300만 원</div>
+      <div class="top10-amt">3,300만 원</div>
     </div></div>
           </div>
         </div>
@@ -568,7 +568,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ CONTRACTS ══ -->
-    <div id="page-contracts" style="display: none;">
+    <div id="page-contracts" style="display:none">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--primary-light);color:var(--accent)"><i class="fa-solid fa-list"></i></span> 계약 목록</div>
@@ -599,7 +599,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상 치료계획 소프트웨어 RUS™ 구매·운영">의료영상 치료계획 소프트웨어 RUS™ 구매·운영</td>
     <td>㈜휴톰</td>
     <td>외과</td>
-    <td style="font-family:&#39;JetBrains Mono&#39;,monospace;font-size:12px">3300만 원</td>
+    <td style="font-size:12px">3,300만 원</td>
     <td style="font-size:12px">2026.03.01</td>
     <td style="font-size:12px">2030.02.28</td>
     <td><span class="sbadge sbadge-ok">유효</span></td>
@@ -620,7 +620,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ ALERTS ══ -->
-    <div id="page-alerts" style="display: none;">
+    <div id="page-alerts" style="display:none">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)"><i class="fa-solid fa-bell"></i></span> 만료 알림 현황</div>
@@ -925,7 +925,21 @@ function setSyncUI(state) {
 function today() { return new Date(new Date().toDateString()); }
 function daysUntil(s) { if(!s) return null; return Math.ceil((new Date(s)-today())/86400000); }
 function fmtDate(s) { if(!s) return '-'; return String(s).replace(/-/g,'.'); }
-function fmtAmt(n) { if(!n&&n!==0) return '-'; const v=Number(n); if(v>=1e8) return (v/1e8).toFixed(1)+'억 원'; if(v>=1e4) return (v/1e4).toFixed(0)+'만 원'; return v.toLocaleString('ko-KR')+'원'; }
+function fmtAmt(n) {
+  if(!n&&n!==0) return '-';
+  const v=Number(n);
+  if(v>=1e8) {
+    const val=(v/1e8);
+    return val%1===0?val.toLocaleString('ko-KR')+'억 원':(v/1e4).toLocaleString('ko-KR')+'만 원';
+  }
+  if(v>=1e4) {
+    const man=Math.floor(v/1e4);
+    const rem=v%1e4;
+    if(rem===0) return man.toLocaleString('ko-KR')+'만 원';
+    return man.toLocaleString('ko-KR')+'만 '+rem.toLocaleString('ko-KR')+'원';
+  }
+  return v.toLocaleString('ko-KR')+'원';
+}
 function fmtAmtFull(n) { if(!n) return '-'; return Number(n).toLocaleString('ko-KR')+'원'; }
 
 function getStatus(c) {
@@ -1005,7 +1019,7 @@ function renderKPI() {
     {label:'30일 내 만료',value:d30,unit:'건',icon:'fa-triangle-exclamation',bg:'#fef2f2',iconColor:'#dc2626',trend:d30>0?'긴급':'양호',trendDir:d30>0?'down':'neutral',trendLabel:'즉시 조치 필요'},
     {label:'60일 내 만료',value:d60,unit:'건',icon:'fa-clock',bg:'#fffbeb',iconColor:'#d97706',trend:d60>0?'주의':'양호',trendDir:d60>0?'down':'neutral',trendLabel:'확인 필요'},
     {label:'90일 내 만료',value:d90,unit:'건',icon:'fa-hourglass-half',bg:'#fff7ed',iconColor:'#ea580c',trend:'',trendDir:'neutral',trendLabel:'검토 권장'},
-    {label:'총 계약금액',value:amount>=1e8?(amount/1e8).toFixed(1)+'억':Math.round(amount/1e4)+'만',unit:'원',icon:'fa-won-sign',bg:'#f5f3ff',iconColor:'#7c3aed',trend:'',trendDir:'neutral',trendLabel:'전체 합계'},
+    {label:'총 계약금액',value:amount>=1e8?((amount/1e8)%1===0?(amount/1e8).toLocaleString('ko-KR')+'억':(amount/1e8).toFixed(1)+'억'):Math.floor(amount/1e4).toLocaleString('ko-KR')+'만',unit:'원',icon:'fa-won-sign',bg:'#f5f3ff',iconColor:'#7c3aed',trend:'',trendDir:'neutral',trendLabel:'전체 합계'},
   ];
 
   document.getElementById('kpi-grid').innerHTML=kpis.map(k=>`
@@ -1218,7 +1232,7 @@ function renderTable() {
     <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
     <td>${c.company}</td>
     <td>${c.dept}</td>
-    <td style="font-family:'JetBrains Mono',monospace;font-size:12px">${fmtAmt(c.amount)}</td>
+    <td style="font-size:12px">${fmtAmt(c.amount)}</td>
     <td style="font-size:12px">${fmtDate(c.start)}</td>
     <td style="font-size:12px">${fmtDate(c.end)}</td>
     <td>${statusBadgeHTML(c)}</td>
