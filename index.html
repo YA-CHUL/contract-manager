@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v5_7.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v5_9.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -254,14 +254,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">계약관리</div>
-    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
     <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
     </div>
     <div class="nav-section" style="margin-top:8px;">구매관리</div>
-    <div class="nav-item active" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 진행 현황</div>
+    <div class="nav-item" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 진행 현황</div>
     <div class="nav-item" onclick="showPage(&#39;purchases&#39;)">🗂️ 구매 목록</div>
   </nav>
   <div class="sidebar-footer">
@@ -276,21 +276,21 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">구매 진행 현황</div>
-      <div class="topbar-sub" id="page-sub">의료장비 구매 단계별 현황을 한눈에 확인하세요.</div>
+      <div class="topbar-title" id="page-title">대시보드</div>
+      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
       <div class="topbar-date">📅<span id="today-date">2026년 6월 16일 (화)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()">↻</button>
-      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="display: none;">+ 계약 등록</button>
-      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="">+ 구매 등록</button>
+      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="">+ 계약 등록</button>
+      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="display: none;">+ 구매 등록</button>
     </div>
   </div>
 
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard" style="display: none;">
+    <div id="page-dashboard" style="">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -926,7 +926,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ PURCHASE DASHBOARD ══ -->
-    <div id="page-purchase-dashboard" style="">
+    <div id="page-purchase-dashboard" style="display: none;">
   <!-- 필터 -->
   <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
     <select id="pd-hosp" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;">
@@ -2645,8 +2645,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('today-date').textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
   document.querySelectorAll('.modal-overlay').forEach(el=>{
     el.addEventListener('click',e=>{
-      // 계약 등록/수정 폼은 바깥 클릭으로 닫히지 않음 (입력 중 튕김 방지)
-      if(e.target===el && el.id !== 'modal-form') {
+      // 등록/수정 폼은 바깥 클릭으로 닫히지 않음 (입력 중 튕김 방지)
+      if(e.target===el && el.id !== 'modal-form' && el.id !== 'modal-purchase') {
         el.classList.remove('open');
       }
     });
