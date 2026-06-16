@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v5_2.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v5_7.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -253,40 +253,44 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div class="sub">구매팀 · 물류관리팀</div>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-section">메뉴</div>
-    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-section">계약관리</div>
+    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
     <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
     </div>
+    <div class="nav-section" style="margin-top:8px;">구매관리</div>
+    <div class="nav-item active" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 진행 현황</div>
+    <div class="nav-item" onclick="showPage(&#39;purchases&#39;)">🗂️ 구매 목록</div>
   </nav>
   <div class="sidebar-footer">
   <div style="display:flex;align-items:center;gap:5px;margin-bottom:4px;">
     <div id="sync-dot" style="width: 7px; height: 7px; border-radius: 50%; background: rgb(5, 150, 105); flex-shrink: 0;"></div>
     <span id="sync-text" style="font-size:11px;">연결됨</span>
   </div>
-  <div>v2.0 | 물류관리팀</div>
+  <div>v3.0 | 구매팀·물류관리팀</div>
 </div>
 </aside>
 
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">대시보드</div>
-      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
+      <div class="topbar-title" id="page-title">구매 진행 현황</div>
+      <div class="topbar-sub" id="page-sub">의료장비 구매 단계별 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
       <div class="topbar-date">📅<span id="today-date">2026년 6월 16일 (화)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()">↻</button>
-      <button class="btn btn-primary" onclick="openAddModal()">+ 계약 등록</button>
+      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="display: none;">+ 계약 등록</button>
+      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="">+ 구매 등록</button>
     </div>
   </div>
 
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard">
+    <div id="page-dashboard" style="display: none;">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -921,6 +925,186 @@ textarea.form-control{resize:vertical;min-height:68px;}
       </div>
     </div>
 
+    <!-- ══ PURCHASE DASHBOARD ══ -->
+    <div id="page-purchase-dashboard" style="">
+  <!-- 필터 -->
+  <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
+    <select id="pd-hosp" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;">
+      <option value="">전체 병원</option><option>서울병원</option><option>광명병원</option>
+    </select>
+    <select id="pd-year" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 연도</option></select>
+    <select id="pd-manager" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 담당자</option></select>
+  </div>
+
+  <!-- 단계별 KPI 플로우 -->
+  <div class="section-card" style="margin-bottom:16px;">
+    <div class="section-body" style="padding:16px 20px;">
+      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;flex-wrap:wrap;" id="pd-stage-flow">
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">미진행</div>
+      <div style="font-size:22px;font-weight:700;color:#9ca3af;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">구매품의</div>
+      <div style="font-size:22px;font-weight:700;color:#2563eb;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">계약보고</div>
+      <div style="font-size:22px;font-weight:700;color:#7c3aed;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">입고 및 검수</div>
+      <div style="font-size:22px;font-weight:700;color:#0891b2;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">지출결의</div>
+      <div style="font-size:22px;font-weight:700;color:#d97706;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">자산등록</div>
+      <div style="font-size:22px;font-weight:700;color:#059669;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
+    </div>
+    
+  
+    <div style="width:1px;background:var(--border);height:50px;margin:0 8px;flex-shrink:0;"></div>
+    <div style="text-align:center;flex:1.3;background:var(--surface2);border-radius:var(--radius);padding:10px 8px;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">총 구매금액(실행)</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);">-천원</div>
+      <div style="font-size:11px;color:var(--success);margin-top:3px;">절감 -천원 (0%)</div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <!-- 차트 3단 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">🏥 담당부서별 구매 수</div></div>
+      <div class="section-body" id="pd-chart-dept"><div class="empty" style="padding:20px"><p>데이터 없음</p></div></div>
+    </div>
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">₩ 병원별 구매금액</div></div>
+      <div class="section-body" id="pd-chart-hosp">
+    <div style="display:flex;gap:16px;align-items:flex-end;justify-content:center;height:100px;margin-bottom:8px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">-천원</div>
+        <div style="width:50px;height:4px;background:var(--primary);border-radius:4px 4px 0 0;"></div>
+        <div style="font-size:12px;color:var(--text3);">서울</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">-천원</div>
+        <div style="width:50px;height:4px;background:var(--teal);border-radius:4px 4px 0 0;"></div>
+        <div style="font-size:12px;color:var(--text3);">광명</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:var(--text3);">합계 -천원</div>
+  </div>
+    </div>
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-title">⚠️ 진행 지연 현황</div>
+        <span onclick="showPage(&#39;purchases&#39;)" style="font-size:12px;color:var(--accent);cursor:pointer;">더보기</span>
+      </div>
+      <div class="section-body" id="pd-delay"><div class="empty" style="padding:16px"><p style="font-size:13px;">지연 건 없음 ✅</p></div></div>
+    </div>
+  </div>
+
+  <!-- 담당자별 현황 2단 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">👤 담당자별 진행 현황 (건수)</div></div>
+      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table"><div class="empty" style="padding:20px"><p>데이터 없음</p></div></div>
+    </div>
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">💰 담당자별 구매금액</div></div>
+      <div class="section-body" id="pd-chart-manager"><div class="empty" style="padding:20px"><p>데이터 없음</p></div></div>
+    </div>
+  </div>
+
+  <!-- 구매 진행 목록 -->
+  <div class="section-card" style="margin-bottom:16px;">
+    <div class="section-header">
+      <div class="section-title">📋 구매 진행 목록</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="search" id="pd-search" placeholder="🔍 장비명, 부서, 담당자 검색..." oninput="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;outline:none;width:220px;">
+        <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;purchases&#39;)">전체보기</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>No.</th><th>병원</th><th>심의구분</th><th>장비명</th><th>모델명</th>
+          <th>신청부서</th><th>담당자</th><th>신청금액</th><th>실행금액</th>
+          <th>현재단계</th><th>D-Day</th><th>관리</th>
+        </tr></thead>
+        <tbody id="pd-purchase-tbody"></tbody>
+      </table>
+      <div id="pd-purchase-empty" class="empty" style="padding: 24px;">
+        <p style="font-size:13px;">등록된 구매 건이 없습니다.</p>
+      </div>
+    </div>
+    <div class="pagination" id="pd-purchase-pagination"></div>
+  </div>
+</div>
+
+<!-- ══ PURCHASES ══ -->
+
+    <!-- ══ PURCHASES ══ -->
+    <div id="page-purchases" style="display: none;">
+  <div class="section-card" style="width:100%;">
+    <div class="section-header" style="flex-wrap:wrap;gap:10px;">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="section-title">🗂️ 구매 목록</div>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);cursor:pointer;font-weight:500;">
+          <input type="checkbox" id="show-completed" onchange="renderPurchaseTable()" style="cursor:pointer;">
+          종결 건 포함
+        </label>
+      </div>
+      <div class="filter-row">
+        <input type="search" id="p-search" placeholder="🔍 장비명, 부서, 담당자 검색..." oninput="renderPurchaseTable()">
+        <select id="p-hosp" onchange="renderPurchaseTable()">
+          <option value="">전체 병원</option><option>서울병원</option><option>광명병원</option>
+        </select>
+        <select id="p-stage" onchange="renderPurchaseTable()">
+          <option value="">전체 단계</option>
+          <option>미진행</option><option>구매품의</option><option>계약보고</option>
+          <option>입고 및 검수</option><option>지출결의</option><option>자산등록</option>
+        </select>
+        <select id="p-year" onchange="renderPurchaseTable()"><option value="">전체 연도</option></select>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>No.</th><th>병원</th><th>연도</th><th>심의구분</th><th>장비명</th><th>모델명</th>
+          <th>신청부서</th><th>담당자</th><th>신청금액</th><th>실행금액</th><th>현재단계</th><th>D-Day</th><th>관리</th>
+        </tr></thead>
+        <tbody id="purchase-tbody"></tbody>
+      </table>
+      <div id="purchase-empty" class="empty" style="">
+        <i class="fa-solid fa-folder-open"></i><p>등록된 구매 건이 없습니다.</p>
+      </div>
+    </div>
+    <div class="pagination" id="purchase-pagination"></div>
+  </div>
+</div>
+
   </div>
 </main>
 
@@ -1223,92 +1407,6 @@ textarea.form-control{resize:vertical;min-height:68px;}
 </div>
 
 <!-- ══ PURCHASE DASHBOARD ══ -->
-<div id="page-purchase-dashboard" style="display:none">
-  <!-- 병원/연도 필터 -->
-  <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
-    <select id="pd-hosp" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;">
-      <option value="">전체 병원</option><option>서울병원</option><option>광명병원</option>
-    </select>
-    <select id="pd-year" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 연도</option></select>
-    <select id="pd-manager" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 담당자</option></select>
-  </div>
-
-  <!-- 단계별 KPI 플로우 -->
-  <div class="section-card" style="margin-bottom:16px;">
-    <div class="section-body" style="padding:16px 20px;">
-      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;" id="pd-stage-flow"></div>
-    </div>
-  </div>
-
-  <!-- 차트 3단 -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
-    <div class="section-card">
-      <div class="section-header"><div class="section-title">🏥 담당부서별 구매 수</div></div>
-      <div class="section-body" id="pd-chart-dept"></div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-title">₩ 병원별 구매금액</div></div>
-      <div class="section-body" id="pd-chart-hosp"></div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-title">⚠️ 진행 지연 현황</div><a onclick="showPage(&#39;purchases&#39;)" style="font-size:12px;color:var(--accent);cursor:pointer;">더보기</a></div>
-      <div class="section-body" id="pd-delay"></div>
-    </div>
-  </div>
-
-  <!-- 담당자별 현황 2단 -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
-    <div class="section-card">
-      <div class="section-header"><div class="section-title">👤 담당자별 진행 현황 (건수)</div></div>
-      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table"></div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-title">💰 담당자별 구매금액</div></div>
-      <div class="section-body" id="pd-chart-manager"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ PURCHASES ══ -->
-<div id="page-purchases" style="display:none">
-  <div class="section-card">
-    <div class="section-header">
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div class="section-title">🗂️ 구매 목록</div>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);cursor:pointer;font-weight:500;">
-          <input type="checkbox" id="show-completed" onchange="renderPurchaseTable()" style="cursor:pointer;">
-          종결 건 포함
-        </label>
-      </div>
-      <div class="filter-row">
-        <input type="search" id="p-search" placeholder="🔍 장비명, 부서, 담당자 검색..." oninput="renderPurchaseTable()">
-        <select id="p-hosp" onchange="renderPurchaseTable()">
-          <option value="">전체 병원</option><option>서울병원</option><option>광명병원</option>
-        </select>
-        <select id="p-stage" onchange="renderPurchaseTable()">
-          <option value="">전체 단계</option>
-          <option>미진행</option><option>구매품의</option><option>계약보고</option>
-          <option>입고 및 검수</option><option>지출결의</option><option>자산등록</option>
-        </select>
-        <select id="p-year" onchange="renderPurchaseTable()"><option value="">전체 연도</option></select>
-      </div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th>No.</th><th>병원</th><th>연도</th><th>심의구분</th><th>장비명</th><th>모델명</th>
-          <th>신청부서</th><th>담당자</th><th>신청금액</th><th>실행금액</th><th>현재단계</th><th>D-Day</th><th>관리</th>
-        </tr></thead>
-        <tbody id="purchase-tbody"></tbody>
-      </table>
-      <div id="purchase-empty" class="empty" style="display:none">
-        <i class="fa-solid fa-folder-open"></i><p>등록된 구매 건이 없습니다.</p>
-      </div>
-    </div>
-    <div class="pagination" id="purchase-pagination"></div>
-  </div>
-</div>
-
 <div id="toast" class="">데이터 로드 완료 (6건)</div>
 
 <script>
@@ -1713,6 +1811,45 @@ function renderPurchaseDashboard() {
       <div class="chart-track"><div class="chart-fill" style="width:${(m.amt/maxM*100).toFixed(0)}%;background:#7c3aed"></div></div>
       <div class="chart-meta">${fmtAmtK(m.amt)}천원</div>
     </div>`).join('') : '<div class="empty" style="padding:20px"><p>데이터 없음</p></div>';
+
+  // 구매 진행 목록
+  const pdQ = (document.getElementById('pd-search')?.value||'').toLowerCase();
+  const pdList = fp.filter(p=>{
+    if(getPurchaseStage(p)==='자산등록') return false;
+    if(pdQ && !p.device_name?.toLowerCase().includes(pdQ) && !p.request_dept?.toLowerCase().includes(pdQ) && !p.manager?.toLowerCase().includes(pdQ)) return false;
+    return true;
+  }).sort((a,b)=>{
+    const da=getPurchaseDDay(a), db=getPurchaseDDay(b);
+    if(da===null) return 1; if(db===null) return -1;
+    return da-db;
+  });
+
+  const pdTbody = document.getElementById('pd-purchase-tbody');
+  const pdEmpty = document.getElementById('pd-purchase-empty');
+  if(!pdList.length){pdTbody.innerHTML='';pdEmpty.style.display='';return;}
+  pdEmpty.style.display='none';
+  pdTbody.innerHTML = pdList.slice(0,15).map((p,i)=>`<tr>
+    <td style="color:var(--text3);font-size:12px;">${i+1}</td>
+    <td>${hospBadgeHTML(p.hospital)}</td>
+    <td style="font-size:12px;">${p.review_type||'-'}</td>
+    <td class="bold" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${p.device_name||''}">${p.device_name||'-'}</td>
+    <td style="font-size:12px;color:var(--text2);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.model_name||'-'}</td>
+    <td style="font-size:12px;">${p.request_dept||'-'}</td>
+    <td style="font-size:12px;">${p.manager||'-'}</td>
+    <td style="font-size:12px;">${p.request_amount?Number(p.request_amount).toLocaleString('ko-KR'):'-'}</td>
+    <td style="font-size:12px;">${p.actual_amount?Number(p.actual_amount).toLocaleString('ko-KR'):'-'}</td>
+    <td>${stageBadgeHTML(getPurchaseStage(p))}</td>
+    <td style="text-align:center;">${purchaseDDayHTML(p)}</td>
+    <td><button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(${p.id})">수정</button></td>
+  </tr>`).join('');
+
+  const pdPg = document.getElementById('pd-purchase-pagination');
+  if(pdList.length > 15) {
+    pdPg.innerHTML = `<span class="page-info">상위 15건 표시 중 (전체 ${pdList.length}건)</span>
+    <button class="btn btn-secondary btn-sm" onclick="showPage('purchases')" style="margin-left:8px;">전체보기</button>`;
+  } else {
+    pdPg.innerHTML = `<span class="page-info">전체 ${pdList.length}건</span>`;
+  }
 }
 
 // 구매 목록 테이블
