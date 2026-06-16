@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v4_16.html -->
+<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v4_17.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -254,8 +254,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">메뉴</div>
-    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
-    <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
+    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-item active" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
@@ -273,8 +273,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">대시보드</div>
-      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
+      <div class="topbar-title" id="page-title">계약 목록</div>
+      <div class="topbar-sub" id="page-sub">전체 계약을 검색하고 관리하세요.</div>
     </div>
     <div class="topbar-right">
       <div class="topbar-date">📅<span id="today-date">2026년 6월 16일 (화)</span></div>
@@ -286,7 +286,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard" style="">
+    <div id="page-dashboard" style="display: none;">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -299,7 +299,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <span>📋 계약 건수 <strong>6건</strong></span>
     <span>₩ 총 계약금액 <strong>2.4억원</strong></span>
     <span style="color:var(--primary)">서울 0건</span>
-    <span style="color:var(--teal)">광명 0건</span>
+    <span style="color:var(--teal)">광명 6건</span>
   </div>
       </div>
       <div class="kpi-grid" id="kpi-grid">
@@ -376,8 +376,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px;">
-          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
-          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:20%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">1건</div>
         </div>
       </div>
     </div>
@@ -390,8 +390,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px;">
-          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
-          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:100%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">5건</div>
         </div>
       </div>
     </div>
@@ -530,7 +530,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)">⏰</span> 계약 만료 예정 현황</div>
             <div style="display:flex;gap:8px;align-items:center;">
-              <select id="expire-hosp-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()">
+              <select id="expire-hosp-filter" style="padding: 5px 10px; border: 1px solid var(--border2); border-radius: var(--radius); font-size: 12px; font-family: inherit; color: var(--text); outline: none;" onchange="renderExpireTable()">
                 <option value="">전체 병원</option>
                 <option>서울병원</option>
                 <option>광명병원</option>
@@ -555,7 +555,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
                 </tr></thead>
                 <tbody id="expire-tbody"><tr>
     <td><span class="sbadge sbadge-urgent">긴급</span></td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="방사선차폐용품 단가 계약 연장 건">방사선차폐용품 단가 계약 연장 건</td>
     <td>나이스 메디카</td>
     <td>물류관리팀</td>
@@ -567,7 +567,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="소형프린터 및 소형복합기 임대차 계약 연장 건">소형프린터 및 소형복합기 임대차 계약 연장 건</td>
     <td>(주)신도디엔씨</td>
     <td>물류관리팀</td>
@@ -579,7 +579,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641063259_hs3o&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="광명병원장 신규 차량(GV80) 렌트 계약">광명병원장 신규 차량(GV80) 렌트 계약</td>
     <td>(주)롯데렌탈</td>
     <td>총무팀</td>
@@ -591,7 +591,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640281076_8frn&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="가정간호 차량(레이EV) 렌트 계약">가정간호 차량(레이EV) 렌트 계약</td>
     <td>(주)롯데렌탈</td>
     <td>총무팀</td>
@@ -603,7 +603,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640430612_8jpq&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약">의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약</td>
     <td>(주)롯데렌탈</td>
     <td>의료원 구매팀</td>
@@ -615,7 +615,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640590487_4gs1&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
     <td>(주)휴톰</td>
     <td>외과</td>
@@ -627,7 +627,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)">🔔 알림</button></td>
   </tr></tbody>
               </table>
-              <div id="expire-empty" class="empty" style="display:none;padding:24px;">
+              <div id="expire-empty" class="empty" style="padding: 24px; display: none;">
                 ✅
                 <p style="font-size:13px;">해당 조건의 만료 예정 계약이 없습니다.</p>
               </div>
@@ -716,7 +716,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ CONTRACTS ══ -->
-    <div id="page-contracts" style="display: none;">
+    <div id="page-contracts" style="">
       <div class="section-card">
         <div class="section-header">
           <div style="display:flex;align-items:center;gap:16px;">
@@ -760,7 +760,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
             </tr></thead>
             <tbody id="contract-tbody"><tr class="">
     <td style="color:var(--text3);font-size:12px">1</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td><span class="tbadge tbadge-공급계약">공급계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">의료장비</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="방사선차폐용품 단가 계약 연장 건">방사선차폐용품 단가 계약 연장 건</td>
@@ -778,7 +778,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">2</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">일반소모품</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="소형프린터 및 소형복합기 임대차 계약 연장 건">소형프린터 및 소형복합기 임대차 계약 연장 건</td>
@@ -796,7 +796,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">3</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">차량</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="광명병원장 신규 차량(GV80) 렌트 계약">광명병원장 신규 차량(GV80) 렌트 계약</td>
@@ -814,7 +814,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">4</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">차량</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="가정간호 차량(레이EV) 렌트 계약">가정간호 차량(레이EV) 렌트 계약</td>
@@ -832,7 +832,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">5</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">차량</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약">의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약</td>
@@ -850,7 +850,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">6</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">의료장비</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
@@ -868,7 +868,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr></tbody>
           </table>
-          <div id="empty-state" class="empty" style="display: none;">
+          <div id="empty-state" class="empty" style="display:none">
             📂<p>등록된 계약이 없습니다.</p>
           </div>
         </div>
@@ -1102,6 +1102,8 @@ function setHospTab(hosp) {
   document.querySelectorAll('.hosp-tab').forEach(el => {
     el.classList.toggle('active', el.dataset.hosp === hosp);
   });
+  const hospDrop = document.getElementById('expire-hosp-filter');
+  if(hospDrop) hospDrop.style.display = hosp==='all' ? '' : 'none';
   renderDashboard();
 }
 
@@ -1291,6 +1293,12 @@ function typeBadgeHTML(type) {
   return `<span class="tbadge tbadge-${type}">${type}</span>`;
 }
 
+function hospBadgeHTML(hospital) {
+  if(hospital==='서울병원') return `<span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--primary-light);color:var(--primary);">서울</span>`;
+  if(hospital==='광명병원') return `<span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span>`;
+  return `<span style="font-size:11px;color:var(--text3);">-</span>`;
+}
+
 // ── NAVIGATION ────────────────────────────────────────────────
 const pageConfig = {
   dashboard:{title:'대시보드',sub:'계약 현황을 한눈에 확인하세요.'},
@@ -1452,7 +1460,9 @@ function getExpireFiltered() {
   if(sel){const cur=sel.value;sel.innerHTML='<option value="">전체부서</option>'+depts.map(d=>`<option${d===cur?' selected':''}>${d}</option>`).join('');}
 
   const hospFilter = document.getElementById('expire-hosp-filter')?.value||'';
-  const hContracts = hospFilter ? contracts.filter(c=>c.hospital===hospFilter) : contracts;
+  const dashHosp = currentHosp !== 'all' ? currentHosp : '';
+  const activeHospFilter = hospFilter || dashHosp;
+  const hContracts = activeHospFilter ? contracts.filter(c=>c.hospital===activeHospFilter) : contracts;
   return hContracts.filter(c=>{
     if(dept&&c.dept!==dept) return false;
     if(q&&!c.name.toLowerCase().includes(q)&&!c.company.toLowerCase().includes(q)) return false;
@@ -1478,7 +1488,7 @@ function renderExpireTable() {
   empty.style.display='none';
   tbody.innerHTML=paged.map(c=>`<tr>
     <td>${statusBadgeHTML(c)}</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:${c.hospital==='서울병원'?'var(--primary-light)':'var(--teal-bg)'};color:${c.hospital==='서울병원'?'var(--primary)':'var(--teal)'};">${c.hospital||'-'}</span></td>
+    <td>${hospBadgeHTML(c.hospital)}</td>
     <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
     <td>${c.company}</td>
     <td>${c.dept}</td>
@@ -1604,7 +1614,7 @@ function renderTable() {
   empty.style.display='none';
   tbody.innerHTML=paged.map((c,i)=>`<tr class="${getStatus(c)==='closed'?'closed-row':''}">
     <td style="color:var(--text3);font-size:12px">${(currentPage-1)*PAGE_SIZE+i+1}</td>
-    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:${c.hospital==='서울병원'?'var(--primary-light)':'var(--teal-bg)'};color:${c.hospital==='서울병원'?'var(--primary)':'var(--teal)'};">${c.hospital||'-'}</span></td>
+    <td>${hospBadgeHTML(c.hospital)}</td>
     <td>${typeBadgeHTML(c.type)}</td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">${c.target||'-'}</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
