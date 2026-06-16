@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v4_17.html -->
+<!-- saved from url=(0067)file:///C:/Users/Administrator/Downloads/contract_manager_v5_2.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>계약관리 시스템 | 중앙대학교광명병원 물류관리팀</title>
+<title>계약 및 구매관리 시스템 | 중앙대학교의료원</title>
 <link href="./index_files/css2" rel="stylesheet">
 
 <style>
@@ -248,14 +248,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
 
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <div class="hosp">중앙대학교광명병원</div>
-    <div class="title">계약관리 시스템</div>
-    <div class="sub">물류관리팀</div>
+    <div class="hosp">중앙대학교의료원</div>
+    <div class="title">계약 및 구매관리</div>
+    <div class="sub">구매팀 · 물류관리팀</div>
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">메뉴</div>
-    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
-    <div class="nav-item active" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
+    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
@@ -273,8 +273,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">계약 목록</div>
-      <div class="topbar-sub" id="page-sub">전체 계약을 검색하고 관리하세요.</div>
+      <div class="topbar-title" id="page-title">대시보드</div>
+      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
       <div class="topbar-date">📅<span id="today-date">2026년 6월 16일 (화)</span></div>
@@ -286,7 +286,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard" style="display: none;">
+    <div id="page-dashboard">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -530,7 +530,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)">⏰</span> 계약 만료 예정 현황</div>
             <div style="display:flex;gap:8px;align-items:center;">
-              <select id="expire-hosp-filter" style="padding: 5px 10px; border: 1px solid var(--border2); border-radius: var(--radius); font-size: 12px; font-family: inherit; color: var(--text); outline: none;" onchange="renderExpireTable()">
+              <select id="expire-hosp-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;display:none;" onchange="renderExpireTable()">
                 <option value="">전체 병원</option>
                 <option>서울병원</option>
                 <option>광명병원</option>
@@ -627,7 +627,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)">🔔 알림</button></td>
   </tr></tbody>
               </table>
-              <div id="expire-empty" class="empty" style="padding: 24px; display: none;">
+              <div id="expire-empty" class="empty" style="display:none;padding:24px;">
                 ✅
                 <p style="font-size:13px;">해당 조건의 만료 예정 계약이 없습니다.</p>
               </div>
@@ -716,7 +716,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ CONTRACTS ══ -->
-    <div id="page-contracts" style="">
+    <div id="page-contracts" style="display:none">
       <div class="section-card">
         <div class="section-header">
           <div style="display:flex;align-items:center;gap:16px;">
@@ -877,7 +877,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ ALERTS ══ -->
-    <div id="page-alerts" style="display: none;">
+    <div id="page-alerts" style="display:none">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)">🔔</span> 만료 알림 현황</div>
@@ -923,6 +923,149 @@ textarea.form-control{resize:vertical;min-height:68px;}
 
   </div>
 </main>
+
+<!-- PURCHASE MODAL -->
+<div class="modal-overlay" id="modal-purchase">
+  <div class="modal" style="width:720px">
+    <div class="modal-header">
+      <div class="modal-title" id="purchase-modal-title">구매 등록</div>
+      <button class="modal-close" onclick="closeModal(&#39;modal-purchase&#39;)">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-section">기본 정보</div>
+        <div class="form-group">
+          <label class="form-label">병원 <span class="req">*</span></label>
+          <select class="form-control" id="p-f-hospital">
+            <option value="">선택</option><option>서울병원</option><option>광명병원</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">심의구분 <span class="req">*</span></label>
+          <select class="form-control" id="p-f-review-type">
+            <option value="">선택</option><option>정규</option><option>응급</option><option>해당없음</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">연도</label>
+          <input class="form-control" id="p-f-year" type="number" placeholder="예: 2025">
+        </div>
+        <div class="form-group">
+          <label class="form-label">월</label>
+          <input class="form-control" id="p-f-month" type="number" placeholder="예: 3" min="1" max="12">
+        </div>
+        <div class="form-group">
+          <label class="form-label">심의일 (심의가 있는 경우)</label>
+          <input class="form-control" id="p-f-review-date" type="date">
+        </div>
+        <div class="form-group">
+          <label class="form-label">청구일 (심의 없는 경우)</label>
+          <input class="form-control" id="p-f-claim-date" type="date">
+        </div>
+
+        <div class="form-section">담당 정보</div>
+        <div class="form-group">
+          <label class="form-label">기관 담당자</label>
+          <input class="form-control" id="p-f-org-manager" placeholder="예: 신청외과 담당자">
+        </div>
+        <div class="form-group">
+          <label class="form-label">구매팀 담당자 <span class="req">*</span></label>
+          <input class="form-control" id="p-f-manager" placeholder="예: 신승운">
+        </div>
+
+        <div class="form-section">장비 정보</div>
+        <div class="form-group">
+          <label class="form-label">장비명 <span class="req">*</span></label>
+          <input class="form-control" id="p-f-device-name" placeholder="예: 비디오연성방광요도경">
+        </div>
+        <div class="form-group">
+          <label class="form-label">모델명</label>
+          <input class="form-control" id="p-f-model-name" placeholder="예: VISERA ELITE II">
+        </div>
+        <div class="form-group">
+          <label class="form-label">신청부서 <span class="req">*</span></label>
+          <input class="form-control" id="p-f-request-dept" placeholder="예: 비뇨의학과">
+        </div>
+        <div class="form-group">
+          <label class="form-label">구매방식</label>
+          <select class="form-control" id="p-f-purchase-method">
+            <option value="">선택</option><option>구매</option><option>임차</option><option>리스</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">구분</label>
+          <input class="form-control" id="p-f-category" placeholder="예: 신규, 교체">
+        </div>
+        <div class="form-group">
+          <label class="form-label">수량</label>
+          <input class="form-control" id="p-f-quantity" type="number" placeholder="1" min="1">
+        </div>
+
+        <div class="form-section">금액 정보</div>
+        <div class="form-group">
+          <label class="form-label">신청금액 (천원)</label>
+          <input class="form-control" id="p-f-request-amount" type="number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">산정예산 (천원)</label>
+          <input class="form-control" id="p-f-estimated-amount" type="number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">실행금액 (천원)</label>
+          <input class="form-control" id="p-f-actual-amount" type="number">
+        </div>
+        <div class="form-group">
+          <label class="form-label">대금구분</label>
+          <input class="form-control" id="p-f-payment-type" placeholder="예: 현금, 할부">
+        </div>
+
+        <div class="form-section">진행 단계</div>
+        <div class="form-group">
+          <label class="form-label">품의연월 → 구매품의</label>
+          <input class="form-control" id="p-f-uiui-date" type="month">
+        </div>
+        <div class="form-group">
+          <label class="form-label">계약보고 → 계약보고</label>
+          <input class="form-control" id="p-f-contract-date" type="month">
+        </div>
+        <div class="form-group">
+          <label class="form-label">입고연월 → 입고 및 검수</label>
+          <input class="form-control" id="p-f-delivery-date" type="month">
+        </div>
+        <div class="form-group">
+          <label class="form-label">지급월 → 지출결의</label>
+          <input class="form-control" id="p-f-payment-date" type="month">
+        </div>
+        <div class="form-group">
+          <label class="form-label">자산코드 → 자산등록(종결)</label>
+          <input class="form-control" id="p-f-asset-code" placeholder="예: E64010016">
+        </div>
+        <div class="form-group">
+          <label class="form-label">지급월</label>
+          <input class="form-control" id="p-f-payment-month" type="month">
+        </div>
+
+        <div class="form-section">문서번호</div>
+        <div class="form-group">
+          <label class="form-label">장비신청</label>
+          <input class="form-control" id="p-f-doc-request" placeholder="문서번호">
+        </div>
+        <div class="form-group">
+          <label class="form-label">구입품의</label>
+          <input class="form-control" id="p-f-doc-purchase" placeholder="문서번호">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">계약품의</label>
+          <input class="form-control" id="p-f-doc-contract" placeholder="문서번호">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal(&#39;modal-purchase&#39;)">취소</button>
+      <button class="btn btn-primary" id="purchase-save-btn" onclick="savePurchase()">💾 저장</button>
+    </div>
+  </div>
+</div>
 
 <!-- FORM MODAL -->
 <div class="modal-overlay" id="modal-form">
@@ -1076,6 +1219,93 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <button class="btn btn-secondary" id="mail-copy-messenger-btn">💬 메신저 내용 복사</button>
       <button class="btn btn-primary" id="mail-copy-btn">📋 메일 내용 복사</button>
     </div>
+  </div>
+</div>
+
+<!-- ══ PURCHASE DASHBOARD ══ -->
+<div id="page-purchase-dashboard" style="display:none">
+  <!-- 병원/연도 필터 -->
+  <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
+    <select id="pd-hosp" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;">
+      <option value="">전체 병원</option><option>서울병원</option><option>광명병원</option>
+    </select>
+    <select id="pd-year" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 연도</option></select>
+    <select id="pd-manager" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 담당자</option></select>
+  </div>
+
+  <!-- 단계별 KPI 플로우 -->
+  <div class="section-card" style="margin-bottom:16px;">
+    <div class="section-body" style="padding:16px 20px;">
+      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;" id="pd-stage-flow"></div>
+    </div>
+  </div>
+
+  <!-- 차트 3단 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">🏥 담당부서별 구매 수</div></div>
+      <div class="section-body" id="pd-chart-dept"></div>
+    </div>
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">₩ 병원별 구매금액</div></div>
+      <div class="section-body" id="pd-chart-hosp"></div>
+    </div>
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">⚠️ 진행 지연 현황</div><a onclick="showPage(&#39;purchases&#39;)" style="font-size:12px;color:var(--accent);cursor:pointer;">더보기</a></div>
+      <div class="section-body" id="pd-delay"></div>
+    </div>
+  </div>
+
+  <!-- 담당자별 현황 2단 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">👤 담당자별 진행 현황 (건수)</div></div>
+      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table"></div>
+    </div>
+    <div class="section-card">
+      <div class="section-header"><div class="section-title">💰 담당자별 구매금액</div></div>
+      <div class="section-body" id="pd-chart-manager"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PURCHASES ══ -->
+<div id="page-purchases" style="display:none">
+  <div class="section-card">
+    <div class="section-header">
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="section-title">🗂️ 구매 목록</div>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);cursor:pointer;font-weight:500;">
+          <input type="checkbox" id="show-completed" onchange="renderPurchaseTable()" style="cursor:pointer;">
+          종결 건 포함
+        </label>
+      </div>
+      <div class="filter-row">
+        <input type="search" id="p-search" placeholder="🔍 장비명, 부서, 담당자 검색..." oninput="renderPurchaseTable()">
+        <select id="p-hosp" onchange="renderPurchaseTable()">
+          <option value="">전체 병원</option><option>서울병원</option><option>광명병원</option>
+        </select>
+        <select id="p-stage" onchange="renderPurchaseTable()">
+          <option value="">전체 단계</option>
+          <option>미진행</option><option>구매품의</option><option>계약보고</option>
+          <option>입고 및 검수</option><option>지출결의</option><option>자산등록</option>
+        </select>
+        <select id="p-year" onchange="renderPurchaseTable()"><option value="">전체 연도</option></select>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>No.</th><th>병원</th><th>연도</th><th>심의구분</th><th>장비명</th><th>모델명</th>
+          <th>신청부서</th><th>담당자</th><th>신청금액</th><th>실행금액</th><th>현재단계</th><th>D-Day</th><th>관리</th>
+        </tr></thead>
+        <tbody id="purchase-tbody"></tbody>
+      </table>
+      <div id="purchase-empty" class="empty" style="display:none">
+        <i class="fa-solid fa-folder-open"></i><p>등록된 구매 건이 없습니다.</p>
+      </div>
+    </div>
+    <div class="pagination" id="purchase-pagination"></div>
   </div>
 </div>
 
@@ -1241,6 +1471,396 @@ function setSyncUI(state) {
   txt.textContent = state==='ok'?'연결됨':state==='error'?'연결 오류':'동기화 중...';
 }
 
+
+
+// ══════════════════════════════════════════════
+// 구매관리 모듈
+// ══════════════════════════════════════════════
+
+let purchases = [];
+let purchasePage = 1;
+let editingPurchaseId = null;
+const P_PAGE_SIZE = 15;
+
+const STAGES = ['미진행','구매품의','계약보고','입고 및 검수','지출결의','자산등록'];
+const STAGE_COLORS = {
+  '미진행':'#9ca3af', '구매품의':'#2563eb', '계약보고':'#7c3aed',
+  '입고 및 검수':'#0891b2', '지출결의':'#d97706', '자산등록':'#059669'
+};
+const STAGE_BG = {
+  '미진행':'#f3f4f6', '구매품의':'#eff6ff', '계약보고':'#f5f3ff',
+  '입고 및 검수':'#ecfeff', '지출결의':'#fffbeb', '자산등록':'#ecfdf5'
+};
+
+// Supabase 구매 API
+const P_SB = `${SUPABASE_URL}/rest/v1/purchases`;
+
+function getPurchaseStage(p) {
+  if(p.asset_code) return '자산등록';
+  if(p.payment_date) return '지출결의';
+  if(p.delivery_date) return '입고 및 검수';
+  if(p.contract_date) return '계약보고';
+  if(p.uiui_date) return '구매품의';
+  return '미진행';
+}
+
+function getPurchaseDDay(p) {
+  const base = p.review_date || p.claim_date;
+  if(!base) return null;
+  return Math.ceil((new Date(base) - today()) / 86400000);
+}
+
+function stageBadgeHTML(stage) {
+  const color = STAGE_COLORS[stage] || '#9ca3af';
+  const bg = STAGE_BG[stage] || '#f3f4f6';
+  return `<span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:${bg};color:${color};">${stage}</span>`;
+}
+
+function purchaseDDayHTML(p) {
+  const d = getPurchaseDDay(p);
+  if(d === null) return '-';
+  if(d < 0) return `<span style="font-weight:600;color:#dc2626;">D+${Math.abs(d)}</span>`;
+  if(d <= 30) return `<span style="font-weight:600;color:#d97706;">D-${d}</span>`;
+  return `<span style="font-weight:600;color:#059669;">D-${d}</span>`;
+}
+
+function fmtAmtK(n) {
+  if(!n && n!==0) return '-';
+  const v = Number(n);
+  if(v === 0) return '-';
+  if(v >= 100000) return (v/100000).toFixed(1) + '억';
+  if(v >= 10000) return Math.round(v/10000) + '만';
+  return v.toLocaleString('ko-KR');
+}
+
+// 구매 데이터 로드
+const P_HEADERS_GET = {
+  'apikey': SUPABASE_KEY,
+  'Authorization': `Bearer ${SUPABASE_KEY}`,
+};
+async function loadPurchases() {
+  try {
+    const res = await fetch(`${P_SB}?order=created_at.asc`, { headers: P_HEADERS_GET });
+    if(!res.ok) throw new Error('구매 로드 실패: ' + res.status);
+    const rows = await res.json();
+    purchases = rows;
+    // 연도 필터 옵션 업데이트
+    const years = [...new Set(purchases.map(p=>p.year).filter(Boolean))].sort((a,b)=>b-a);
+    ['pd-year','p-year'].forEach(id=>{
+      const sel = document.getElementById(id);
+      if(sel) {
+        const cur = sel.value;
+        sel.innerHTML = '<option value="">전체 연도</option>' + years.map(y=>`<option${y==cur?' selected':''}>${y}</option>`).join('');
+      }
+    });
+    // 담당자 필터
+    const managers = [...new Set(purchases.map(p=>p.manager).filter(Boolean))].sort();
+    const mSel = document.getElementById('pd-manager');
+    if(mSel) {
+      const cur = mSel.value;
+      mSel.innerHTML = '<option value="">전체 담당자</option>' + managers.map(m=>`<option${m===cur?' selected':''}>${m}</option>`).join('');
+    }
+  } catch(e) {
+    console.error('구매 로드 오류:', e);
+  }
+}
+
+function getPurchaseFiltered(forDashboard=false) {
+  const hosp = forDashboard ? (document.getElementById('pd-hosp')?.value||'') : (document.getElementById('p-hosp')?.value||'');
+  const year = forDashboard ? (document.getElementById('pd-year')?.value||'') : (document.getElementById('p-year')?.value||'');
+  const manager = forDashboard ? (document.getElementById('pd-manager')?.value||'') : '';
+  const stage = document.getElementById('p-stage')?.value||'';
+  const q = (document.getElementById('p-search')?.value||'').toLowerCase();
+  const showCompleted = document.getElementById('show-completed')?.checked||false;
+
+  return purchases.filter(p=>{
+    const st = getPurchaseStage(p);
+    if(!forDashboard && !showCompleted && st==='자산등록') return false;
+    if(hosp && p.hospital!==hosp) return false;
+    if(year && String(p.year)!==String(year)) return false;
+    if(manager && p.manager!==manager) return false;
+    if(stage && st!==stage) return false;
+    if(q && !p.device_name?.toLowerCase().includes(q) && !p.request_dept?.toLowerCase().includes(q) && !p.manager?.toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+
+// 구매 대시보드 렌더링
+function renderPurchaseDashboard() {
+  const fp = getPurchaseFiltered(true);
+  const total = fp.length;
+
+  // 단계별 KPI 플로우
+  const stageCounts = {};
+  STAGES.forEach(s => stageCounts[s] = fp.filter(p=>getPurchaseStage(p)===s).length);
+  const totalAmt = fp.reduce((s,p)=>s+(Number(p.actual_amount)||0),0);
+  const reqAmt = fp.reduce((s,p)=>s+(Number(p.request_amount)||0),0);
+  const saving = reqAmt - totalAmt;
+  const savingPct = reqAmt > 0 ? (saving/reqAmt*100).toFixed(1) : 0;
+
+  document.getElementById('pd-stage-flow').innerHTML = STAGES.map((s,i)=>`
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">${s}</div>
+      <div style="font-size:22px;font-weight:700;color:${STAGE_COLORS[s]};">${stageCounts[s]}건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(${total>0?(stageCounts[s]/total*100).toFixed(1):0}%)</div>
+    </div>
+    ${i<STAGES.length-1?'<div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>':''}
+  `).join('') + `
+    <div style="width:1px;background:var(--border);height:50px;margin:0 8px;flex-shrink:0;"></div>
+    <div style="text-align:center;flex:1.3;background:var(--surface2);border-radius:var(--radius);padding:10px 8px;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">총 구매금액(실행)</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);">${fmtAmtK(totalAmt)}천원</div>
+      <div style="font-size:11px;color:var(--success);margin-top:3px;">절감 ${fmtAmtK(saving)}천원 (${savingPct}%)</div>
+    </div>
+  `;
+
+  // 담당부서별 차트
+  const dm={};
+  fp.forEach(p=>{if(p.request_dept)dm[p.request_dept]=(dm[p.request_dept]||0)+1;});
+  const de=Object.entries(dm).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const maxD=Math.max(...de.map(e=>e[1]),1);
+  document.getElementById('pd-chart-dept').innerHTML = de.length ? de.map(([d,cnt])=>`
+    <div class="chart-item">
+      <div class="chart-label">${d}</div>
+      <div class="chart-track"><div class="chart-fill" style="width:${(cnt/maxD*100).toFixed(0)}%;background:#2563eb"></div></div>
+      <div class="chart-meta">${cnt}건</div>
+    </div>`).join('') + `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${total}건</div>`
+    : '<div class="empty" style="padding:20px"><p>데이터 없음</p></div>';
+
+  // 병원별 구매금액
+  const seoulAmt = fp.filter(p=>p.hospital==='서울병원').reduce((s,p)=>s+(Number(p.actual_amount)||0),0);
+  const gmAmt = fp.filter(p=>p.hospital==='광명병원').reduce((s,p)=>s+(Number(p.actual_amount)||0),0);
+  const maxH = Math.max(seoulAmt, gmAmt, 1);
+  document.getElementById('pd-chart-hosp').innerHTML = `
+    <div style="display:flex;gap:16px;align-items:flex-end;justify-content:center;height:100px;margin-bottom:8px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(seoulAmt)}천원</div>
+        <div style="width:50px;height:${Math.max((seoulAmt/maxH*80),4).toFixed(0)}px;background:var(--primary);border-radius:4px 4px 0 0;"></div>
+        <div style="font-size:12px;color:var(--text3);">서울</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(gmAmt)}천원</div>
+        <div style="width:50px;height:${Math.max((gmAmt/maxH*80),4).toFixed(0)}px;background:var(--teal);border-radius:4px 4px 0 0;"></div>
+        <div style="font-size:12px;color:var(--text3);">광명</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:var(--text3);">합계 ${fmtAmtK(totalAmt)}천원</div>
+  `;
+
+  // 진행 지연 현황
+  const delayed = fp.filter(p=>{
+    const d=getPurchaseDDay(p);
+    const st=getPurchaseStage(p);
+    return d!==null && d<0 && st!=='자산등록';
+  }).sort((a,b)=>getPurchaseDDay(a)-getPurchaseDDay(b)).slice(0,5);
+  document.getElementById('pd-delay').innerHTML = delayed.length ? delayed.map(p=>{
+    const d=getPurchaseDDay(p);
+    const severity = Math.abs(d)>30?'var(--danger)':'var(--warning)';
+    const bg = Math.abs(d)>30?'var(--danger-bg)':'var(--warning-bg)';
+    return `<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:6px 10px;background:${bg};border-radius:var(--radius);margin-bottom:6px;">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:130px;">${p.device_name||'-'}</span>
+      <span style="font-weight:700;color:${severity};flex-shrink:0;margin-left:8px;">D+${Math.abs(d)}</span>
+    </div>`;
+  }).join('') : '<div class="empty" style="padding:16px"><p style="font-size:13px;">지연 건 없음 ✅</p></div>';
+
+  // 담당자별 진행 현황 테이블
+  const managers = [...new Set(fp.map(p=>p.manager).filter(Boolean))].sort();
+  if(managers.length) {
+    const totals = {};
+    STAGES.forEach(s=>totals[s]=0);
+    let grandTotal=0;
+    const rows = managers.map(m=>{
+      const mp = fp.filter(p=>p.manager===m);
+      const counts = {};
+      STAGES.forEach(s=>counts[s]=mp.filter(p=>getPurchaseStage(p)===s).length);
+      const tot = mp.length;
+      grandTotal+=tot;
+      STAGES.forEach(s=>totals[s]+=counts[s]);
+      return `<tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;font-weight:500;">${m}</td>
+        ${STAGES.map(s=>`<td style="padding:8px 12px;text-align:center;color:${counts[s]>0?STAGE_COLORS[s]:'var(--text3)'};">${counts[s]||'-'}</td>`).join('')}
+        <td style="padding:8px 12px;text-align:center;font-weight:700;">${tot}</td>
+      </tr>`;
+    }).join('');
+    document.getElementById('pd-manager-table').innerHTML = `
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead><tr style="background:var(--surface2);">
+          <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;">담당자</th>
+          ${STAGES.map(s=>`<th style="padding:8px 12px;text-align:center;color:${STAGE_COLORS[s]};font-size:11px;">${s}</th>`).join('')}
+          <th style="padding:8px 12px;text-align:center;color:var(--text3);font-size:11px;">합계</th>
+        </tr></thead>
+        <tbody>${rows}
+          <tr style="background:var(--surface2);font-weight:700;">
+            <td style="padding:8px 12px;">합계</td>
+            ${STAGES.map(s=>`<td style="padding:8px 12px;text-align:center;">${totals[s]||'-'}</td>`).join('')}
+            <td style="padding:8px 12px;text-align:center;">${grandTotal}</td>
+          </tr>
+        </tbody>
+      </table>`;
+  } else {
+    document.getElementById('pd-manager-table').innerHTML = '<div class="empty" style="padding:20px"><p>데이터 없음</p></div>';
+  }
+
+  // 담당자별 구매금액 차트
+  const mAmts = managers.map(m=>({
+    name:m,
+    amt:fp.filter(p=>p.manager===m).reduce((s,p)=>s+(Number(p.actual_amount)||0),0)
+  })).sort((a,b)=>b.amt-a.amt).slice(0,6);
+  const maxM = Math.max(...mAmts.map(m=>m.amt),1);
+  document.getElementById('pd-chart-manager').innerHTML = mAmts.length ? mAmts.map(m=>`
+    <div class="chart-item">
+      <div class="chart-label">${m.name}</div>
+      <div class="chart-track"><div class="chart-fill" style="width:${(m.amt/maxM*100).toFixed(0)}%;background:#7c3aed"></div></div>
+      <div class="chart-meta">${fmtAmtK(m.amt)}천원</div>
+    </div>`).join('') : '<div class="empty" style="padding:20px"><p>데이터 없음</p></div>';
+}
+
+// 구매 목록 테이블
+function renderPurchaseTable() {
+  // 연도 필터 옵션
+  const years=[...new Set(purchases.map(p=>p.year).filter(Boolean))].sort((a,b)=>b-a);
+  const ySel=document.getElementById('p-year');
+  if(ySel){const cur=ySel.value;ySel.innerHTML='<option value="">전체 연도</option>'+years.map(y=>`<option${y==cur?' selected':''}>${y}</option>`).join('');}
+
+  const fp=getPurchaseFiltered();
+  const totalPages=Math.max(1,Math.ceil(fp.length/P_PAGE_SIZE));
+  if(purchasePage>totalPages) purchasePage=totalPages;
+  const paged=fp.slice((purchasePage-1)*P_PAGE_SIZE, purchasePage*P_PAGE_SIZE);
+
+  const tbody=document.getElementById('purchase-tbody');
+  const empty=document.getElementById('purchase-empty');
+  if(!paged.length){tbody.innerHTML='';empty.style.display='';return;}
+  empty.style.display='none';
+
+  tbody.innerHTML=paged.map((p,i)=>`<tr style="opacity:${getPurchaseStage(p)==='자산등록'?0.5:1}">
+    <td style="color:var(--text3);font-size:12px;">${(purchasePage-1)*P_PAGE_SIZE+i+1}</td>
+    <td>${hospBadgeHTML(p.hospital)}</td>
+    <td style="font-size:12px;color:var(--text3);">${p.year||'-'}</td>
+    <td style="font-size:12px;">${p.review_type||'-'}</td>
+    <td class="bold" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${p.device_name||''}">${p.device_name||'-'}</td>
+    <td style="font-size:12px;color:var(--text2);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.model_name||'-'}</td>
+    <td style="font-size:12px;">${p.request_dept||'-'}</td>
+    <td style="font-size:12px;">${p.manager||'-'}</td>
+    <td style="font-size:12px;font-family:'JetBrains Mono',monospace;">${p.request_amount?Number(p.request_amount).toLocaleString('ko-KR'):'-'}</td>
+    <td style="font-size:12px;font-family:'JetBrains Mono',monospace;">${p.actual_amount?Number(p.actual_amount).toLocaleString('ko-KR'):'-'}</td>
+    <td>${stageBadgeHTML(getPurchaseStage(p))}</td>
+    <td style="text-align:center;">${purchaseDDayHTML(p)}</td>
+    <td><div class="action-btns">
+      <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal('${p.id}')">수정</button>
+      <button class="btn btn-secondary btn-sm" onclick="deletePurchase(${p.id})" style="color:var(--danger)">삭제</button>
+    </div></td>
+  </tr>`).join('');
+
+  // 페이지네이션
+  const pg=document.getElementById('purchase-pagination');
+  if(totalPages<=1){pg.innerHTML='';return;}
+  let html=`<span class="page-info">${fp.length}건 중 ${(purchasePage-1)*P_PAGE_SIZE+1}~${Math.min(purchasePage*P_PAGE_SIZE,fp.length)}</span>`;
+  html+=`<button class="page-btn" onclick="goPurchasePage(${purchasePage-1})" ${purchasePage===1?'disabled':''}>‹</button>`;
+  for(let pp=Math.max(1,purchasePage-2);pp<=Math.min(totalPages,purchasePage+2);pp++)
+    html+=`<button class="page-btn${pp===purchasePage?' active':''}" onclick="goPurchasePage(${pp})">${pp}</button>`;
+  html+=`<button class="page-btn" onclick="goPurchasePage(${purchasePage+1})" ${purchasePage===totalPages?'disabled':''}>›</button>`;
+  pg.innerHTML=html;
+}
+
+function goPurchasePage(p){purchasePage=p;renderPurchaseTable();}
+
+// 구매 등록/수정 모달
+function openPurchaseModal(id=null) {
+  editingPurchaseId = id;
+  const fields = ['hospital','review-type','year','month','review-date','claim-date','org-manager','manager',
+    'device-name','model-name','request-dept','purchase-method','category','quantity',
+    'request-amount','estimated-amount','actual-amount','payment-type',
+    'uiui-date','contract-date','delivery-date','payment-date','asset-code','payment-month',
+    'doc-request','doc-purchase','doc-contract'];
+
+  if(id) {
+    const p=purchases.find(x=>x.id===id); if(!p) return;
+    document.getElementById('purchase-modal-title').textContent='구매 수정';
+    const map={
+      'hospital':p.hospital,'review-type':p.review_type,'year':p.year,'month':p.month,
+      'review-date':p.review_date,'claim-date':p.claim_date,'org-manager':p.org_manager,
+      'manager':p.manager,'device-name':p.device_name,'model-name':p.model_name,
+      'request-dept':p.request_dept,'purchase-method':p.purchase_method,'category':p.category,
+      'quantity':p.quantity,'request-amount':p.request_amount,'estimated-amount':p.estimated_amount,
+      'actual-amount':p.actual_amount,'payment-type':p.payment_type,'uiui-date':p.uiui_date,
+      'contract-date':p.contract_date,'delivery-date':p.delivery_date,'payment-date':p.payment_date,
+      'asset-code':p.asset_code,'payment-month':p.payment_month,
+      'doc-request':p.doc_request,'doc-purchase':p.doc_purchase,'doc-contract':p.doc_contract
+    };
+    fields.forEach(f=>{const el=document.getElementById('p-f-'+f);if(el)el.value=map[f]||'';});
+  } else {
+    document.getElementById('purchase-modal-title').textContent='구매 등록';
+    fields.forEach(f=>{const el=document.getElementById('p-f-'+f);if(el)el.value='';});
+  }
+
+  // 버튼 표시 전환
+  document.getElementById('btn-add-contract').style.display='none';
+  document.getElementById('btn-add-purchase').style.display='';
+  openModal('modal-purchase');
+}
+
+async function savePurchase() {
+  const g=id=>document.getElementById(id)?.value||'';
+  const data={
+    hospital:g('p-f-hospital'), review_type:g('p-f-review-type'),
+    year:Number(g('p-f-year'))||null, month:Number(g('p-f-month'))||null,
+    review_date:g('p-f-review-date')||null, claim_date:g('p-f-claim-date')||null,
+    org_manager:g('p-f-org-manager'), manager:g('p-f-manager'),
+    device_name:g('p-f-device-name'), model_name:g('p-f-model-name'),
+    request_dept:g('p-f-request-dept'), purchase_method:g('p-f-purchase-method'),
+    category:g('p-f-category'), quantity:Number(g('p-f-quantity'))||null,
+    request_amount:Number(g('p-f-request-amount'))||null,
+    estimated_amount:Number(g('p-f-estimated-amount'))||null,
+    actual_amount:Number(g('p-f-actual-amount'))||null,
+    payment_type:g('p-f-payment-type'),
+    uiui_date:g('p-f-uiui-date')||null, contract_date:g('p-f-contract-date')||null,
+    delivery_date:g('p-f-delivery-date')||null, payment_date:g('p-f-payment-date')||null,
+    asset_code:g('p-f-asset-code'), payment_month:g('p-f-payment-month')||null,
+    doc_request:g('p-f-doc-request'), doc_purchase:g('p-f-doc-purchase'), doc_contract:g('p-f-doc-contract')
+  };
+
+  if(!data.hospital||!data.device_name||!data.request_dept) {
+    showToast('필수 항목(병원, 장비명, 신청부서)을 입력하세요.');return;
+  }
+
+  const btn=document.getElementById('purchase-save-btn');
+  btn.disabled=true; btn.innerHTML='⟳ 저장 중...';
+
+  try {
+    if(editingPurchaseId) {
+      const res=await fetch(`${P_SB}?id=eq.${editingPurchaseId}`,{method:'PATCH',headers:HEADERS,body:JSON.stringify(data)});
+      if(!res.ok) throw new Error('수정 실패');
+      const idx=purchases.findIndex(p=>p.id===editingPurchaseId);
+      if(idx>-1) purchases[idx]={...purchases[idx],...data};
+    } else {
+      const res=await fetch(P_SB,{method:'POST',headers:HEADERS,body:JSON.stringify(data)});
+      if(!res.ok) throw new Error('등록 실패');
+      const rows=await res.json();
+      if(rows&&rows[0]) purchases.push(rows[0]);
+    }
+    closeModal('modal-purchase');
+    document.getElementById('btn-add-contract').style.display='';
+    document.getElementById('btn-add-purchase').style.display='none';
+    await loadPurchases();
+    renderPurchaseDashboard();
+    renderPurchaseTable();
+    showToast(editingPurchaseId?'수정되었습니다.':'등록되었습니다.');
+  } catch(e) { showToast('오류: '+e.message); }
+  btn.disabled=false; btn.innerHTML='💾 저장';
+}
+
+async function deletePurchase(id) {
+  if(!confirm('이 구매 건을 삭제하시겠습니까?')) return;
+  try {
+    const res=await fetch(`${P_SB}?id=eq.${id}`,{method:'DELETE',headers:HEADERS});
+    if(!res.ok) throw new Error('삭제 실패');
+    purchases=purchases.filter(p=>p.id!==id);
+    renderPurchaseTable();
+    renderPurchaseDashboard();
+    showToast('삭제되었습니다.');
+  } catch(e) { showToast('오류: '+e.message); }
+}
+
 // ── DATE ──────────────────────────────────────────────────────
 function today() { return new Date(new Date().toDateString()); }
 function daysUntil(s) { if(!s) return null; return Math.ceil((new Date(s)-today())/86400000); }
@@ -1304,19 +1924,33 @@ const pageConfig = {
   dashboard:{title:'대시보드',sub:'계약 현황을 한눈에 확인하세요.'},
   contracts:{title:'계약 목록',sub:'전체 계약을 검색하고 관리하세요.'},
   alerts:{title:'만료 알림',sub:'만료 예정 계약을 확인하고 조치하세요.'},
+  'purchase-dashboard':{title:'구매 진행 현황',sub:'의료장비 구매 단계별 현황을 한눈에 확인하세요.'},
+  purchases:{title:'구매 목록',sub:'전체 구매 건을 검색하고 관리하세요.'},
 };
 
 function showPage(name) {
-  ['dashboard','contracts','alerts'].forEach(p=>{
-    document.getElementById('page-'+p).style.display=p===name?'':'none';
+  ['dashboard','contracts','alerts','purchase-dashboard','purchases'].forEach(p=>{
+    const el=document.getElementById('page-'+p);
+    if(el) el.style.display=p===name?'':'none';
   });
   document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.nav-item')[{dashboard:0,contracts:1,alerts:2}[name]]?.classList.add('active');
-  document.getElementById('page-title').textContent=pageConfig[name].title;
-  document.getElementById('page-sub').textContent=pageConfig[name].sub;
+  const navIdx={dashboard:0,contracts:1,alerts:2,'purchase-dashboard':3,purchases:4};
+  document.querySelectorAll('.nav-item')[navIdx[name]]?.classList.add('active');
+  document.getElementById('page-title').textContent=pageConfig[name]?.title||'';
+  document.getElementById('page-sub').textContent=pageConfig[name]?.sub||'';
+  // 등록 버튼 전환
+  const isContract = ['dashboard','contracts','alerts'].includes(name);
+  const isPurchase = ['purchase-dashboard','purchases'].includes(name);
+  const btnC = document.getElementById('btn-add-contract');
+  const btnP = document.getElementById('btn-add-purchase');
+  if(btnC) btnC.style.display = isContract?'':'none';
+  if(btnP) btnP.style.display = isPurchase?'':'none';
+
   if(name==='dashboard') renderDashboard();
   if(name==='contracts'){currentPage=1;renderTable();}
   if(name==='alerts') renderAlerts();
+  if(name==='purchase-dashboard') renderPurchaseDashboard();
+  if(name==='purchases'){purchasePage=1;renderPurchaseTable();}
 }
 
 // ── DASHBOARD ─────────────────────────────────────────────────
@@ -1881,6 +2515,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
   loadContracts();
+  loadPurchases();
 });
 </script>
 
