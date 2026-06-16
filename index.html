@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v4_13.html -->
+<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v4_16.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -211,6 +211,9 @@ textarea.form-control{resize:vertical;min-height:68px;}
 
 /* ACTION BTNS */
 .action-btns{display:flex;gap:4px;}
+.hosp-tab{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:var(--surface);color:var(--text3);transition:all .15s;font-family:inherit;}
+.hosp-tab:hover{background:var(--surface2);}
+.hosp-tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
 .empty{text-align:center;padding:40px 20px;color:var(--text3);}
 .empty i{font-size:32px;margin-bottom:10px;display:block;}
 
@@ -274,7 +277,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-date">📅<span id="today-date">2026년 6월 5일 (금)</span></div>
+      <div class="topbar-date">📅<span id="today-date">2026년 6월 16일 (화)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()">↻</button>
       <button class="btn btn-primary" onclick="openAddModal()">+ 계약 등록</button>
     </div>
@@ -283,7 +286,22 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard">
+    <div id="page-dashboard" style="">
+      <!-- 병원 선택 탭 -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
+        <div style="display:flex;gap:6px;">
+          <button class="hosp-tab active" data-hosp="all" onclick="setHospTab(&#39;all&#39;)">전체</button>
+          <button class="hosp-tab" data-hosp="서울병원" onclick="setHospTab(&#39;서울병원&#39;)">서울병원</button>
+          <button class="hosp-tab" data-hosp="광명병원" onclick="setHospTab(&#39;광명병원&#39;)">광명병원</button>
+        </div>
+        <div id="hosp-summary" style="margin-left:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px 16px;font-size:12px;display:flex;gap:20px;">
+    <span>📋 계약 건수 <strong>6건</strong></span>
+    <span>₩ 총 계약금액 <strong>2.4억원</strong></span>
+    <span style="color:var(--primary)">서울 0건</span>
+    <span style="color:var(--teal)">광명 0건</span>
+  </div>
+      </div>
       <div class="kpi-grid" id="kpi-grid">
     <div class="kpi-card">
       <div class="kpi-card-header">
@@ -345,36 +363,93 @@ textarea.form-control{resize:vertical;min-height:68px;}
             <div class="section-title"><span class="icon" style="background:#eff6ff;color:var(--accent)">📊</span> 계약 유형별 현황</div>
             <button class="btn btn-secondary btn-sm" onclick="showPage(&#39;contracts&#39;)">전체보기</button>
           </div>
-          <div class="section-body" id="chart-type">
-    <div class="chart-item">
+          <div class="section-body" id="chart-type"><div style="display:flex;gap:12px;margin-bottom:10px;font-size:11px;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--primary);display:inline-block"></span>서울병원</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);display:inline-block"></span>광명병원</span>
+    </div>
+    <div class="chart-item" style="margin-bottom:12px">
       <div class="chart-label">공급계약</div>
-      <div class="chart-track"><div class="chart-fill" style="width:20%;background:#2563eb"></div></div>
-      <div class="chart-meta">1건 (16.7%)</div>
+      <div style="flex:1">
+        
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+      </div>
     </div>
-    <div class="chart-item">
+    <div class="chart-item" style="margin-bottom:12px">
       <div class="chart-label">임차계약</div>
-      <div class="chart-track"><div class="chart-fill" style="width:100%;background:#6d28d9"></div></div>
-      <div class="chart-meta">5건 (83.3%)</div>
+      <div style="flex:1">
+        
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+      </div>
     </div>
-    <div class="chart-item">
+    <div class="chart-item" style="margin-bottom:12px">
       <div class="chart-label">용역계약</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#065f46"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
+      <div style="flex:1">
+        
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+      </div>
     </div>
-    <div class="chart-item">
+    <div class="chart-item" style="margin-bottom:12px">
       <div class="chart-label">유지보수계약</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#b45309"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
+      <div style="flex:1">
+        
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+      </div>
     </div>
-    <div class="chart-item">
+    <div class="chart-item" style="margin-bottom:12px">
       <div class="chart-label">라이선스계약</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#0e7490"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
+      <div style="flex:1">
+        
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+      </div>
     </div>
-    <div class="chart-item">
+    <div class="chart-item" style="margin-bottom:12px">
       <div class="chart-label">기타</div>
-      <div class="chart-track"><div class="chart-fill" style="width:0%;background:#6b7280"></div></div>
-      <div class="chart-meta">0건 (0.0%)</div>
+      <div style="flex:1">
+        
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:0%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">0건</div>
+        </div>
+      </div>
     </div><div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 6건</div></div>
         </div>
         <div class="section-card">
@@ -455,6 +530,11 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <div class="section-header">
             <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)">⏰</span> 계약 만료 예정 현황</div>
             <div style="display:flex;gap:8px;align-items:center;">
+              <select id="expire-hosp-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()">
+                <option value="">전체 병원</option>
+                <option>서울병원</option>
+                <option>광명병원</option>
+              </select>
               <select id="expire-dept-filter" style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderExpireTable()"><option value="">전체부서</option><option>물류관리팀</option><option>외과</option><option>의료원 구매팀</option><option>총무팀</option></select>
               <input type="search" id="expire-search" placeholder="계약명, 업체명 검색..." style="padding:5px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;outline:none;width:180px;" oninput="renderExpireTable()">
             </div>
@@ -470,73 +550,79 @@ textarea.form-control{resize:vertical;min-height:68px;}
             <div class="table-wrap">
               <table>
                 <thead><tr>
-                  <th>상태</th><th>계약명</th><th>업체명</th><th>담당부서</th>
+                  <th>상태</th><th>병원</th><th>계약명</th><th>업체명</th><th>담당부서</th>
                   <th>계약유형</th><th>계약기간</th><th>계약종료일</th><th>D-Day</th><th>계약금액</th><th>조치</th>
                 </tr></thead>
                 <tbody id="expire-tbody"><tr>
     <td><span class="sbadge sbadge-urgent">긴급</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="방사선차폐용품 단가 계약 연장 건">방사선차폐용품 단가 계약 연장 건</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="방사선차폐용품 단가 계약 연장 건">방사선차폐용품 단가 계약 연장 건</td>
     <td>나이스 메디카</td>
     <td>물류관리팀</td>
     <td><span class="tbadge tbadge-공급계약">공급계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.07.01 ~ 2026.06.30</td>
     <td style="font-size:12px">2026.06.30</td>
-    <td><span class="dday dday-urgent">D-26</span></td>
+    <td><span class="dday dday-urgent">D-15</span></td>
     <td style="font-size:12px">-</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="소형프린터 및 소형복합기 임대차 계약 연장 건">소형프린터 및 소형복합기 임대차 계약 연장 건</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="소형프린터 및 소형복합기 임대차 계약 연장 건">소형프린터 및 소형복합기 임대차 계약 연장 건</td>
     <td>(주)신도디엔씨</td>
     <td>물류관리팀</td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.09.01 ~ 2026.09.30</td>
     <td style="font-size:12px">2026.09.30</td>
-    <td><span class="dday dday-ok">D-118</span></td>
+    <td><span class="dday dday-ok">D-107</span></td>
     <td style="font-size:12px">-</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641063259_hs3o&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="광명병원장 신규 차량(GV80) 렌트 계약">광명병원장 신규 차량(GV80) 렌트 계약</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="광명병원장 신규 차량(GV80) 렌트 계약">광명병원장 신규 차량(GV80) 렌트 계약</td>
     <td>(주)롯데렌탈</td>
     <td>총무팀</td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2023.06.19 ~ 2027.06.19</td>
     <td style="font-size:12px">2027.06.19</td>
-    <td><span class="dday dday-ok">D-380</span></td>
+    <td><span class="dday dday-ok">D-369</span></td>
     <td style="font-size:12px">6,119만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640281076_8frn&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="가정간호 차량(레이EV) 렌트 계약">가정간호 차량(레이EV) 렌트 계약</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="가정간호 차량(레이EV) 렌트 계약">가정간호 차량(레이EV) 렌트 계약</td>
     <td>(주)롯데렌탈</td>
     <td>총무팀</td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2023.12.13 ~ 2027.12.13</td>
     <td style="font-size:12px">2027.12.13</td>
-    <td><span class="dday dday-ok">D-557</span></td>
+    <td><span class="dday dday-ok">D-546</span></td>
     <td style="font-size:12px">5,296만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640430612_8jpq&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약">의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약">의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약</td>
     <td>(주)롯데렌탈</td>
     <td>의료원 구매팀</td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.03.28 ~ 2029.03.28</td>
     <td style="font-size:12px">2029.03.28</td>
-    <td><span class="dday dday-ok">D-1028</span></td>
+    <td><span class="dday dday-ok">D-1017</span></td>
     <td style="font-size:12px">9,487만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640590487_4gs1&#39;)">🔔 알림</button></td>
   </tr><tr>
     <td><span class="sbadge sbadge-ok">유효</span></td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
     <td>(주)휴톰</td>
     <td>외과</td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2026.03.01 ~ 2030.02.28</td>
     <td style="font-size:12px">2030.02.28</td>
-    <td><span class="dday dday-ok">D-1365</span></td>
+    <td><span class="dday dday-ok">D-1354</span></td>
     <td style="font-size:12px">3,300만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)">🔔 알림</button></td>
   </tr></tbody>
@@ -630,7 +716,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ CONTRACTS ══ -->
-    <div id="page-contracts" style="display:none">
+    <div id="page-contracts" style="display: none;">
       <div class="section-card">
         <div class="section-header">
           <div style="display:flex;align-items:center;gap:16px;">
@@ -642,6 +728,11 @@ textarea.form-control{resize:vertical;min-height:68px;}
           </div>
           <div class="filter-row">
             <input type="search" id="search-input" placeholder="🔍 업체명, 계약명 검색..." oninput="renderTable()">
+            <select id="filter-hosp" onchange="renderTable()">
+              <option value="">전체 병원</option>
+              <option>서울병원</option>
+              <option>광명병원</option>
+            </select>
             <select id="filter-type" onchange="renderTable()">
               <option value="">전체 유형</option>
               <option>공급계약</option><option>임차계약</option><option>용역계약</option>
@@ -664,11 +755,12 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <div class="table-wrap">
           <table>
             <thead><tr>
-              <th>No.</th><th>계약유형</th><th>계약대상</th><th>계약명</th><th>업체명</th>
+              <th>No.</th><th>병원</th><th>계약유형</th><th>계약대상</th><th>계약명</th><th>업체명</th>
               <th>담당부서</th><th>계약금액</th><th>시작일</th><th>종료일</th><th>상태</th><th>관리</th>
             </tr></thead>
             <tbody id="contract-tbody"><tr class="">
     <td style="color:var(--text3);font-size:12px">1</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
     <td><span class="tbadge tbadge-공급계약">공급계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">의료장비</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="방사선차폐용품 단가 계약 연장 건">방사선차폐용품 단가 계약 연장 건</td>
@@ -686,6 +778,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">2</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">일반소모품</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="소형프린터 및 소형복합기 임대차 계약 연장 건">소형프린터 및 소형복합기 임대차 계약 연장 건</td>
@@ -703,6 +796,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">3</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">차량</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="광명병원장 신규 차량(GV80) 렌트 계약">광명병원장 신규 차량(GV80) 렌트 계약</td>
@@ -720,6 +814,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">4</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">차량</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="가정간호 차량(레이EV) 렌트 계약">가정간호 차량(레이EV) 렌트 계약</td>
@@ -737,6 +832,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">5</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">차량</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약">의무부총장 겸 의료원장 신규 차량(Electrified G80) 렌트 계약</td>
@@ -754,6 +850,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr><tr class="">
     <td style="color:var(--text3);font-size:12px">6</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">-</span></td>
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">의료장비</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="의료영상치료계획소프트웨어 RUS™ 구매·운영">의료영상치료계획소프트웨어 RUS™ 구매·운영</td>
@@ -771,7 +868,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div></td>
   </tr></tbody>
           </table>
-          <div id="empty-state" class="empty" style="display:none">
+          <div id="empty-state" class="empty" style="display: none;">
             📂<p>등록된 계약이 없습니다.</p>
           </div>
         </div>
@@ -780,7 +877,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ ALERTS ══ -->
-    <div id="page-alerts" style="display:none">
+    <div id="page-alerts" style="display: none;">
       <div class="section-card">
         <div class="section-header">
           <div class="section-title"><span class="icon" style="background:var(--danger-bg);color:var(--danger)">🔔</span> 만료 알림 현황</div>
@@ -800,13 +897,20 @@ textarea.form-control{resize:vertical;min-height:68px;}
               <div style="font-size:12px;color:#9a3412;margin-top:3px;">61~90일 만료</div>
             </div>
           </div>
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <select id="alert-hosp-filter" style="padding:6px 10px;border:1px solid var(--border2);border-radius:var(--radius);font-size:12px;font-family:inherit;color:var(--text);outline:none;" onchange="renderAlerts()">
+              <option value="">전체 병원</option>
+              <option>서울병원</option>
+              <option>광명병원</option>
+            </select>
+          </div>
           <div class="alert-list" id="alert-list"><div class="alert-item alert-d30">
       <div style="font-size:16px">🔴</div>
       <div class="alert-info">
         <div class="alert-name">방사선차폐용품 단가 계약 연장 건</div>
         <div class="alert-meta">나이스 메디카 | 물류관리팀 | 종료: 2026.06.30</div>
       </div>
-      <div class="alert-days">D-26</div>
+      <div class="alert-days">D-15</div>
       <button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">✉️ 알림</button>
     </div></div>
           <div id="alert-empty" class="empty" style="display:none;">
@@ -830,6 +934,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div class="modal-body">
       <div class="form-grid">
         <div class="form-section">기본 정보</div>
+        <div class="form-group">
+          <label class="form-label">병원 구분 <span class="req">*</span></label>
+          <select class="form-control" id="f-hospital">
+            <option value="">선택</option>
+            <option>서울병원</option>
+            <option>광명병원</option>
+          </select>
+        </div>
         <div class="form-group">
           <label class="form-label">계약 유형 <span class="req">*</span></label>
           <select class="form-control" id="f-type">
@@ -954,31 +1066,9 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <button class="modal-close" onclick="closeModal(&#39;modal-mail&#39;)">✕</button>
     </div>
     <div class="modal-body">
-      <div class="mail-field"><div class="mail-field-label">수신</div><div id="mail-to" class="form-control" style="background:var(--surface2);min-height:32px;">gmc_mp@cauhs.or.kr</div></div>
-      <div class="mail-field"><div class="mail-field-label">제목</div><div id="mail-subject" class="form-control" style="background:var(--surface2);">[계약 만료 알림] 가정간호 차량(레이EV) 렌트 계약 - 종료일 2027.12.13 (D-557)</div></div>
-      <div class="mail-field"><div class="mail-field-label">본문 미리보기</div><div id="mail-body-preview" class="mail-preview">안녕하세요, 물류관리팀입니다.
-
-아래 계약의 종료일이 임박하여 안내 드립니다.
-
-■ 계약명: 가정간호 차량(레이EV) 렌트 계약
-■ 계약 유형: 임차계약
-■ 업체명: (주)롯데렌탈
-  - 담당자: 조계룡 / -
-■ 담당부서: 총무팀
-■ 계약담당자: 김상철
-■ 계약기간: 2023.12.13 ~ 2027.12.13
-■ 잔여일수: D-557
-■ 계약금액: 52,957,248원
-
-계약 갱신 또는 재입찰 등 후속 조치를 검토해 주시기 바랍니다.
-
-- 계약이 필요한 경우: 그룹웨어 전자결재 '기안용지'를 통해 입찰/계약 요청을 진행해 주시기 바랍니다.
-- 계약이 불필요한 경우: 물류관리팀 계약담당자에게 해당 사실을 안내해 주시기 바랍니다.
-
-관련 문의는 물류관리팀으로 연락 부탁드립니다.
-
-감사합니다.
-중앙대학교광명병원 물류관리팀 드림</div></div>
+      <div class="mail-field"><div class="mail-field-label">수신</div><div id="mail-to" class="form-control" style="background:var(--surface2);min-height:32px;"></div></div>
+      <div class="mail-field"><div class="mail-field-label">제목</div><div id="mail-subject" class="form-control" style="background:var(--surface2);"></div></div>
+      <div class="mail-field"><div class="mail-field-label">본문 미리보기</div><div id="mail-body-preview" class="mail-preview"></div></div>
       <div style="margin-top:8px;font-size:11px;color:var(--text3);">ℹ️ 복사 후 웹 Outlook 또는 메신저에 붙여넣기 하세요.</div>
     </div>
     <div class="modal-footer">
@@ -1005,6 +1095,21 @@ let expirePage = 1;
 const PAGE_SIZE = 12;
 let expireTab = 'all';
 
+let currentHosp = 'all';
+
+function setHospTab(hosp) {
+  currentHosp = hosp;
+  document.querySelectorAll('.hosp-tab').forEach(el => {
+    el.classList.toggle('active', el.dataset.hosp === hosp);
+  });
+  renderDashboard();
+}
+
+function getHospContracts() {
+  if(currentHosp === 'all') return contracts;
+  return contracts.filter(c => c.hospital === currentHosp);
+}
+
 const TYPE_COLORS = {
   '공급계약':'#2563eb','임차계약':'#6d28d9','용역계약':'#065f46',
   '유지보수계약':'#b45309','라이선스계약':'#0e7490','기타':'#6b7280'
@@ -1025,6 +1130,7 @@ const HEADERS = {
 function toDB(c) {
   return {
     contract_id: c.id || '',
+    hospital: c.hospital || '',
     type: c.type || '',
     target: c.target || '',
     dept: c.dept || '',
@@ -1053,6 +1159,7 @@ function fromDB(r) {
     id: r.contract_id || String(r.id),
     dbId: r.id,
     createdAt: r.created_at || '',
+    hospital: r.hospital || '',
     type: r.type || '',
     target: r.target || '',
     dept: r.dept || '',
@@ -1214,12 +1321,24 @@ function renderDashboard() {
 }
 
 function renderKPI() {
-  const total=contracts.length;
-  const active=contracts.filter(c=>['active','d30','d60','d90'].includes(getStatus(c))).length;
-  const d30=contracts.filter(c=>getStatus(c)==='d30'&&!c.closedAt).length;
-  const d60=contracts.filter(c=>getStatus(c)==='d60'&&!c.closedAt).length;
-  const d90=contracts.filter(c=>getStatus(c)==='d90'&&!c.closedAt).length;
-  const amount=contracts.reduce((s,c)=>s+(Number(c.amount)||0),0);
+  const hc=getHospContracts();
+  const total=hc.length;
+  const active=hc.filter(c=>['active','d30','d60','d90'].includes(getStatus(c))).length;
+  const d30=hc.filter(c=>getStatus(c)==='d30'&&!c.closedAt).length;
+  const d60=hc.filter(c=>getStatus(c)==='d60'&&!c.closedAt).length;
+  const d90=hc.filter(c=>getStatus(c)==='d90'&&!c.closedAt).length;
+  const amount=hc.reduce((s,c)=>s+(Number(c.amount)||0),0);
+  // 전체 요약 (항상 전체 기준)
+  const allAmt=contracts.reduce((s,c)=>s+(Number(c.amount)||0),0);
+  const seoulAmt=contracts.filter(c=>c.hospital==='서울병원').reduce((s,c)=>s+(Number(c.amount)||0),0);
+  const gmAmt=contracts.filter(c=>c.hospital==='광명병원').reduce((s,c)=>s+(Number(c.amount)||0),0);
+  const summary=document.getElementById('hosp-summary');
+  if(summary) summary.innerHTML=`
+    <span>📋 계약 건수 <strong>${contracts.length}건</strong></span>
+    <span>₩ 총 계약금액 <strong>${fmtAmt(allAmt)}</strong></span>
+    <span style="color:var(--primary)">서울 ${contracts.filter(c=>c.hospital==='서울병원').length}건</span>
+    <span style="color:var(--teal)">광명 ${contracts.filter(c=>c.hospital==='광명병원').length}건</span>
+  `;
 
   // 전월 대비 (간단히 createdAt 기준 이번달 등록 건수)
   const thisMonth=new Date(); thisMonth.setDate(1); thisMonth.setHours(0,0,0,0);
@@ -1247,23 +1366,47 @@ function renderKPI() {
 }
 
 function renderCharts() {
+  const hc=getHospContracts();
   const types=['공급계약','임차계약','용역계약','유지보수계약','라이선스계약','기타'];
-  const total=Math.max(contracts.length,1);
-  const totalAmt=Math.max(contracts.reduce((s,c)=>s+(Number(c.amount)||0),0),1);
+  const total=Math.max(hc.length,1);
 
-  // type count chart
-  const tc=types.map(t=>contracts.filter(c=>c.type===t).length);
+  // type count chart - 병원별 비교
+  const seoulC=contracts.filter(c=>c.hospital==='서울병원');
+  const gmC=contracts.filter(c=>c.hospital==='광명병원');
+  const tc=types.map(t=>hc.filter(c=>c.type===t).length);
   const maxT=Math.max(...tc,1);
-  document.getElementById('chart-type').innerHTML=types.map((t,i)=>`
-    <div class="chart-item">
+  const showBoth = currentHosp==='all';
+  const seoulTc=types.map(t=>seoulC.filter(c=>c.type===t).length);
+  const gmTc=types.map(t=>gmC.filter(c=>c.type===t).length);
+  const maxBoth=Math.max(...seoulTc,...gmTc,1);
+  document.getElementById('chart-type').innerHTML=
+    (showBoth?`<div style="display:flex;gap:12px;margin-bottom:10px;font-size:11px;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--primary);display:inline-block"></span>서울병원</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);display:inline-block"></span>광명병원</span>
+    </div>`:'')
+    +types.map((t,i)=>`
+    <div class="chart-item" style="margin-bottom:${showBoth?'12px':'9px'}">
       <div class="chart-label">${t}</div>
-      <div class="chart-track"><div class="chart-fill" style="width:${(tc[i]/maxT*100).toFixed(0)}%;background:${TYPE_COLORS[t]}"></div></div>
-      <div class="chart-meta">${tc[i]}건 (${(tc[i]/total*100).toFixed(1)}%)</div>
-    </div>`).join('')+`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${contracts.length}건</div>`;
+      <div style="flex:1">
+        ${showBoth?`
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:${(seoulTc[i]/maxBoth*100).toFixed(0)}%;background:var(--primary)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">${seoulTc[i]}건</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:${(gmTc[i]/maxBoth*100).toFixed(0)}%;background:var(--teal)"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:35px;text-align:right">${gmTc[i]}건</div>
+        </div>`
+        :`<div style="display:flex;align-items:center;gap:6px;">
+          <div class="chart-track" style="flex:1"><div class="chart-fill" style="width:${(tc[i]/maxT*100).toFixed(0)}%;background:${TYPE_COLORS[t]}"></div></div>
+          <div style="font-size:11px;color:var(--text3);width:60px;text-align:right">${tc[i]}건 (${(tc[i]/total*100).toFixed(1)}%)</div>
+        </div>`}
+      </div>
+    </div>`).join('')+`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${hc.length}건</div>`;
 
   // dept chart
   const dm={};
-  contracts.forEach(c=>{if(c.dept)dm[c.dept]=(dm[c.dept]||0)+1;});
+  hc.forEach(c=>{if(c.dept)dm[c.dept]=(dm[c.dept]||0)+1;});
   const de=Object.entries(dm).sort((a,b)=>b[1]-a[1]).slice(0,8);
   const maxD=Math.max(...de.map(e=>e[1]),1);
   document.getElementById('chart-dept').innerHTML=(de.length?de.map(([d,cnt])=>`
@@ -1272,10 +1415,10 @@ function renderCharts() {
       <div class="chart-track"><div class="chart-fill" style="width:${(cnt/maxD*100).toFixed(0)}%;background:#0d9488"></div></div>
       <div class="chart-meta">${cnt}건</div>
     </div>`).join(''):'<div class="empty" style="padding:20px"><p>데이터 없음</p></div>')+
-    `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${contracts.length}건</div>`;
+    `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${hc.length}건</div>`;
 
   // amount chart
-  const ta=types.map(t=>contracts.filter(c=>c.type===t).reduce((s,c)=>s+(Number(c.amount)||0),0));
+  const ta=types.map(t=>hc.filter(c=>c.type===t).reduce((s,c)=>s+(Number(c.amount)||0),0));
   const maxA=Math.max(...ta,1);
   const totalAmtSum=ta.reduce((s,v)=>s+v,0);
   document.getElementById('chart-amount').innerHTML=types.map((t,i)=>`
@@ -1308,7 +1451,9 @@ function getExpireFiltered() {
   const sel=document.getElementById('expire-dept-filter');
   if(sel){const cur=sel.value;sel.innerHTML='<option value="">전체부서</option>'+depts.map(d=>`<option${d===cur?' selected':''}>${d}</option>`).join('');}
 
-  return contracts.filter(c=>{
+  const hospFilter = document.getElementById('expire-hosp-filter')?.value||'';
+  const hContracts = hospFilter ? contracts.filter(c=>c.hospital===hospFilter) : contracts;
+  return hContracts.filter(c=>{
     if(dept&&c.dept!==dept) return false;
     if(q&&!c.name.toLowerCase().includes(q)&&!c.company.toLowerCase().includes(q)) return false;
     const st=getStatus(c);
@@ -1333,7 +1478,8 @@ function renderExpireTable() {
   empty.style.display='none';
   tbody.innerHTML=paged.map(c=>`<tr>
     <td>${statusBadgeHTML(c)}</td>
-    <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:${c.hospital==='서울병원'?'var(--primary-light)':'var(--teal-bg)'};color:${c.hospital==='서울병원'?'var(--primary)':'var(--teal)'};">${c.hospital||'-'}</span></td>
+    <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
     <td>${c.company}</td>
     <td>${c.dept}</td>
     <td>${typeBadgeHTML(c.type)}</td>
@@ -1358,10 +1504,11 @@ function goExpirePage(p){expirePage=p;renderExpireTable();}
 
 // ── ACTION PANEL ──────────────────────────────────────────────
 function renderActionPanel() {
-  const urgent=contracts.filter(c=>getStatus(c)==='d30').length;
+  const hcAction=getHospContracts();
+  const urgent=hcAction.filter(c=>getStatus(c)==='d30').length;
 
-  const noManager=contracts.filter(c=>!c.manager).length;
-  const expiredRecent=contracts.filter(c=>{ const d=daysUntil(c.end); return d!==null&&d<0&&d>=-30; }).length;
+  const noManager=hcAction.filter(c=>!c.manager).length;
+  const expiredRecent=hcAction.filter(c=>{ const d=daysUntil(c.end); return d!==null&&d<0&&d>=-30; }).length;
 
   const items=[
     {icon:'⚠️',iconBg:'#fef2f2',iconColor:'#dc2626',title:'만료 임박 계약 (30일 이내)',sub:'즉시 갱신 또는 조치 필요',cnt:urgent,cntColor:'var(--danger)',tab:'d30'},
@@ -1391,8 +1538,9 @@ function renderActionPanel() {
 
 // ── TOP 10 ────────────────────────────────────────────────────
 function renderTop10() {
+  const hcTop=getHospContracts();
   const cm={};
-  contracts.forEach(c=>{if(c.company)cm[c.company]=(cm[c.company]||0)+(Number(c.amount)||0);});
+  hcTop.forEach(c=>{if(c.company)cm[c.company]=(cm[c.company]||0)+(Number(c.amount)||0);});
   const top=Object.entries(cm).sort((a,b)=>b[1]-a[1]).slice(0,10);
   const rankClass=['r1','r2','r3'];
   document.getElementById('top10-list').innerHTML=top.length?top.map(([co,amt],i)=>`
@@ -1406,6 +1554,7 @@ function renderTop10() {
 // ── CONTRACT TABLE ────────────────────────────────────────────
 function getFiltered() {
   const q=(document.getElementById('search-input')?.value||'').toLowerCase();
+  const fh=document.getElementById('filter-hosp')?.value||'';
   const ft=document.getElementById('filter-type')?.value||'';
   const ftr=document.getElementById('filter-target')?.value||'';
   const fs=document.getElementById('filter-status')?.value||'';
@@ -1414,6 +1563,7 @@ function getFiltered() {
   return contracts.filter(c=>{
     const st=getStatus(c);
     if(!showClosed && st==='closed') return false;
+    if(fh&&c.hospital!==fh) return false;
     if(q&&!c.name.toLowerCase().includes(q)&&!c.company.toLowerCase().includes(q)) return false;
     if(ft&&c.type!==ft) return false;
     if(ftr&&c.target!==ftr) return false;
@@ -1454,6 +1604,7 @@ function renderTable() {
   empty.style.display='none';
   tbody.innerHTML=paged.map((c,i)=>`<tr class="${getStatus(c)==='closed'?'closed-row':''}">
     <td style="color:var(--text3);font-size:12px">${(currentPage-1)*PAGE_SIZE+i+1}</td>
+    <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;font-weight:600;background:${c.hospital==='서울병원'?'var(--primary-light)':'var(--teal-bg)'};color:${c.hospital==='서울병원'?'var(--primary)':'var(--teal)'};">${c.hospital||'-'}</span></td>
     <td>${typeBadgeHTML(c.type)}</td>
     <td><span style="font-size:11px;padding:2px 7px;border-radius:20px;background:#f3f4f6;color:#374151;font-weight:600;">${c.target||'-'}</span></td>
     <td class="bold" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${c.name}">${c.name}</td>
@@ -1485,7 +1636,9 @@ function goPage(p){currentPage=p;renderTable();}
 
 // ── ALERTS ────────────────────────────────────────────────────
 function renderAlerts() {
-  const near=contracts.filter(c=>['d30','d60','d90'].includes(getStatus(c))&&!c.closedAt).sort((a,b)=>daysUntil(a.end)-daysUntil(b.end));
+  const alertHosp=document.getElementById('alert-hosp-filter')?.value||'';
+  const nearBase=alertHosp?contracts.filter(c=>c.hospital===alertHosp):contracts;
+  const near=nearBase.filter(c=>['d30','d60','d90'].includes(getStatus(c))&&!c.closedAt).sort((a,b)=>daysUntil(a.end)-daysUntil(b.end));
   document.getElementById('alert-cnt-30').textContent=near.filter(c=>getStatus(c)==='d30').length;
   document.getElementById('alert-cnt-60').textContent=near.filter(c=>getStatus(c)==='d60').length;
   document.getElementById('alert-cnt-90').textContent=near.filter(c=>getStatus(c)==='d90').length;
@@ -1514,7 +1667,7 @@ function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 
 function clearForm(){
-  ['f-type','f-target','f-dept','f-manager','f-name','f-company','f-contact-name','f-contact-tel','f-contact-email',
+  ['f-hospital','f-type','f-target','f-dept','f-manager','f-name','f-company','f-contact-name','f-contact-tel','f-contact-email',
    'f-amount','f-method','f-start','f-end','f-renew','f-extra','f-docno','f-notify-emails','f-note']
   .forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
 }
@@ -1531,7 +1684,7 @@ function openEditModal(id){
   editingId=id; closeModal('modal-detail');
   document.getElementById('modal-title').textContent='계약 수정';
   document.getElementById('form-save-btn').innerHTML='💾 수정 저장';
-  ['type','target','dept','manager','name','company','contactName','contactTel','contactEmail','amount','method','start','end','renew','extra','docno','notifyEmails','note']
+  ['hospital','type','target','dept','manager','name','company','contactName','contactTel','contactEmail','amount','method','start','end','renew','extra','docno','notifyEmails','note']
   .forEach(k=>{const el=document.getElementById('f-'+k.replace(/([A-Z])/g,'-$1').toLowerCase());if(el)el.value=c[k]||'';});
   openModal('modal-form');
 }
@@ -1539,14 +1692,14 @@ function openEditModal(id){
 async function saveContract(){
   const g=id=>document.getElementById(id)?.value.trim()||'';
   const vals={
-    type:g('f-type'),target:g('f-target'),dept:g('f-dept'),manager:g('f-manager'),name:g('f-name'),
+    hospital:g('f-hospital'),type:g('f-type'),target:g('f-target'),dept:g('f-dept'),manager:g('f-manager'),name:g('f-name'),
     company:g('f-company'),contactName:g('f-contact-name'),contactTel:g('f-contact-tel'),contactEmail:g('f-contact-email'),
     amount:g('f-amount'),method:g('f-method'),
     start:document.getElementById('f-start').value,end:document.getElementById('f-end').value,
     renew:g('f-renew'),extra:g('f-extra'),docno:g('f-docno'),notifyEmails:g('f-notify-emails'),note:g('f-note'),
   };
-  if(!vals.type||!vals.dept||!vals.name||!vals.company||!vals.start||!vals.end){
-    showToast('필수 항목을 모두 입력하세요.');return;
+  if(!vals.hospital||!vals.type||!vals.dept||!vals.name||!vals.company||!vals.start||!vals.end){
+    showToast('필수 항목을 모두 입력하세요. (병원 구분 포함)');return;
   }
   const btn = document.getElementById('form-save-btn');
   btn.disabled = true;
@@ -1613,6 +1766,7 @@ function openDetail(id){
   document.getElementById('detail-body').innerHTML=`
     <div class="detail-grid">
       <div class="detail-section">기본 정보</div>
+      <div><div class="detail-label">병원</div><div class="detail-value">${c.hospital||'-'}</div></div>
       <div><div class="detail-label">계약 유형</div><div class="detail-value">${typeBadgeHTML(c.type)}</div></div>
       <div><div class="detail-label">계약 대상</div><div class="detail-value">${c.target||'-'}</div></div>
       <div><div class="detail-label">담당부서</div><div class="detail-value">${c.dept}</div></div>
