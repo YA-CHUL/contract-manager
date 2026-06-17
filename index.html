@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v5_17.html -->
+<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v5_22.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -934,8 +934,8 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <button class="hosp-tab" data-pd-hosp="서울병원" onclick="setPdHospTab(&#39;서울병원&#39;)">서울병원</button>
       <button class="hosp-tab" data-pd-hosp="광명병원" onclick="setPdHospTab(&#39;광명병원&#39;)">광명병원</button>
     </div>
-    <select id="pd-year" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 연도</option></select>
-    <select id="pd-manager" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 담당자</option></select>
+    <select id="pd-year" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 연도</option><option>2026</option></select>
+    <select id="pd-manager" onchange="renderPurchaseDashboard()" style="padding:6px 12px;border:1px solid var(--border2);border-radius:var(--radius);font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;"><option value="">전체 담당자</option><option>김상철</option></select>
   </div>
 
   <!-- 단계별 KPI 플로우 -->
@@ -1075,37 +1075,37 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <div class="form-section">기본 정보</div>
         <div class="form-group">
           <label class="form-label">병원 <span class="req">*</span></label>
-          <select class="form-control" id="p-f-hospital">
+          <select class="form-control" id="p-f-hospital" tabindex="1">
             <option value="">선택</option><option>서울병원</option><option>광명병원</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label">심의구분 <span class="req">*</span></label>
-          <select class="form-control" id="p-f-review-type">
+          <select class="form-control" id="p-f-review-type" tabindex="2">
             <option value="">선택</option><option>정규</option><option>응급</option><option>해당없음</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label">구매담당자 <span class="req">*</span></label>
-          <input class="form-control" id="p-f-manager">
+          <input class="form-control" id="p-f-manager" tabindex="3">
         </div>
         <div class="form-group">
           <label class="form-label">
-            심의일
-            <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:4px;">선진행 건의 경우 다음 심의일 작성</span>
+            심의일자
+            <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:4px;">선진행 건의 경우 다음 심의일자 작성</span>
           </label>
-          <input class="form-control" id="p-f-review-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+          <input class="form-control" id="p-f-review-date" tabindex="4" type="text" placeholder="YYYY-MM-DD" maxlength="10" data-date-inited="1">
         </div>
         <div class="form-group">
           <label class="form-label">
-            청구일
+            청구일자
             <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:4px;">(신청부서의 신청서 품의 일자)</span>
           </label>
-          <input class="form-control" id="p-f-claim-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+          <input class="form-control" id="p-f-claim-date" tabindex="5" type="text" placeholder="YYYY-MM-DD" maxlength="10" data-date-inited="1">
         </div>
         <div class="form-group">
           <label class="form-label">선진행여부</label>
-          <select class="form-control" id="p-f-pre-proceed">
+          <select class="form-control" id="p-f-pre-proceed" tabindex="6">
             <option value="">선택</option>
             <option value="Y">Y</option>
             <option value="N">N</option>
@@ -1115,97 +1115,97 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <div class="form-section">장비 정보</div>
         <div class="form-group">
           <label class="form-label">장비명 <span class="req">*</span></label>
-          <input class="form-control" id="p-f-device-name" placeholder="예: 비디오연성방광요도경">
+          <input class="form-control" id="p-f-device-name" tabindex="7" placeholder="예: 비디오연성방광요도경">
         </div>
         <div class="form-group">
           <label class="form-label">모델명</label>
-          <input class="form-control" id="p-f-model-name" placeholder="예: VISERA ELITE II">
+          <input class="form-control" id="p-f-model-name" tabindex="8" placeholder="예: VISERA ELITE II">
         </div>
         <div class="form-group">
           <label class="form-label">신청부서 <span class="req">*</span></label>
-          <input class="form-control" id="p-f-request-dept" placeholder="예: 비뇨의학과">
+          <input class="form-control" id="p-f-request-dept" tabindex="9" placeholder="예: 비뇨의학과">
         </div>
         <div class="form-group">
           <label class="form-label">구매방식</label>
-          <select class="form-control" id="p-f-purchase-method">
+          <select class="form-control" id="p-f-purchase-method" tabindex="10">
             <option value="">선택</option><option>구매</option><option>임차</option><option>공동</option><option>구매+임차</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label">구분</label>
-          <select class="form-control" id="p-f-category">
+          <select class="form-control" id="p-f-category" tabindex="11">
             <option value="">선택</option><option>신규</option><option>증설</option><option>폐품</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label">수량</label>
-          <input class="form-control" id="p-f-quantity" type="number" placeholder="1" min="1">
+          <input class="form-control" id="p-f-quantity" tabindex="12" type="number" placeholder="1" min="1">
         </div>
 
         <div class="form-section">금액 정보</div>
         <div class="form-group">
           <label class="form-label">신청금액 (원단위)</label>
-          <input class="form-control" id="p-f-request-amount" type="number">
+          <input class="form-control" id="p-f-request-amount" tabindex="13" type="number">
         </div>
         <div class="form-group">
           <label class="form-label">산정예산 (원단위)</label>
-          <input class="form-control" id="p-f-estimated-amount" type="number">
+          <input class="form-control" id="p-f-estimated-amount" tabindex="14" type="number">
         </div>
         <div class="form-group">
           <label class="form-label">실행금액 (원단위)</label>
-          <input class="form-control" id="p-f-actual-amount" type="number">
+          <input class="form-control" id="p-f-actual-amount" tabindex="15" type="number">
         </div>
         <div class="form-group">
           <label class="form-label">대금구분</label>
-          <select class="form-control" id="p-f-payment-type">
+          <select class="form-control" id="p-f-payment-type" tabindex="16">
             <option value="">선택</option><option>현금</option><option>리스</option>
           </select>
         </div>
 
         <div class="form-group full">
           <label class="form-label">비고</label>
-          <textarea class="form-control" id="p-f-note" placeholder="월 임차료 및 계약 조건 등"></textarea>
+          <textarea class="form-control" id="p-f-note" tabindex="17" placeholder="월 임차료 및 계약 조건 등"></textarea>
         </div>
 
         <div class="form-section">진행 단계</div>
         <div class="form-group">
           <label class="form-label">품의일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(구매품의)</span></label>
-          <input class="form-control" id="p-f-uiui-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+          <input class="form-control" id="p-f-uiui-date" tabindex="18" type="text" placeholder="YYYY-MM-DD" maxlength="10" data-date-inited="1">
         </div>
         <div class="form-group">
           <label class="form-label">계약일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(계약보고)</span></label>
-          <input class="form-control" id="p-f-contract-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+          <input class="form-control" id="p-f-contract-date" tabindex="19" type="text" placeholder="YYYY-MM-DD" maxlength="10" data-date-inited="1">
         </div>
         <div class="form-group">
           <label class="form-label">입고일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(입고 및 검수)</span></label>
-          <input class="form-control" id="p-f-delivery-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+          <input class="form-control" id="p-f-delivery-date" tabindex="20" type="text" placeholder="YYYY-MM-DD" maxlength="10" data-date-inited="1">
         </div>
         <div class="form-group">
           <label class="form-label">지급일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(지출결의)</span></label>
-          <input class="form-control" id="p-f-payment-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+          <input class="form-control" id="p-f-payment-date" tabindex="21" type="text" placeholder="YYYY-MM-DD" maxlength="10" data-date-inited="1">
         </div>
         <div class="form-group">
           <label class="form-label">자산코드 <span style="color:var(--text3);font-size:11px;font-weight:400;">(자산등록)</span></label>
-          <input class="form-control" id="p-f-asset-code" placeholder="예: E64010016">
+          <input class="form-control" id="p-f-asset-code" tabindex="22" placeholder="예: E64010016">
         </div>
 
 
         <div class="form-section">문서번호</div>
         <div class="form-group">
           <label class="form-label">장비신청</label>
-          <input class="form-control" id="p-f-doc-request" placeholder="문서번호">
+          <input class="form-control" id="p-f-doc-request" tabindex="23" placeholder="문서번호">
         </div>
         <div class="form-group">
           <label class="form-label">구입품의</label>
-          <input class="form-control" id="p-f-doc-purchase" placeholder="문서번호">
+          <input class="form-control" id="p-f-doc-purchase" tabindex="24" placeholder="문서번호">
         </div>
         <div class="form-group">
           <label class="form-label">계약품의</label>
-          <input class="form-control" id="p-f-doc-contract" placeholder="문서번호">
+          <input class="form-control" id="p-f-doc-contract" tabindex="25" placeholder="문서번호">
         </div>
         <div class="form-group">
           <label class="form-label">지연사유</label>
-          <input class="form-control" id="p-f-delay-reason" placeholder="지연 사유 입력">
+          <input class="form-control" id="p-f-delay-reason" tabindex="26" placeholder="지연 사유 입력">
         </div>
       </div>
     </div>
@@ -1985,7 +1985,7 @@ async function savePurchase() {
     payment_type:g('p-f-payment-type'),
     uiui_date:g('p-f-uiui-date')||null, contract_date:g('p-f-contract-date')||null,
     delivery_date:g('p-f-delivery-date')||null, payment_date:g('p-f-payment-date')||null,
-    asset_code:g('p-f-asset-code'), payment_month:g('p-f-payment-month')||null,
+    asset_code:g('p-f-asset-code'),
     doc_request:g('p-f-doc-request'), doc_purchase:g('p-f-doc-purchase'), doc_contract:g('p-f-doc-contract'),
     delay_reason:g('p-f-delay-reason'),
     note:g('p-f-note')
@@ -2036,14 +2036,26 @@ async function deletePurchase(id) {
 
 // 날짜 자동 포맷 (8자리 입력 → YYYY-MM-DD)
 function autoDateFormat(input) {
+  // 이미 초기화된 경우 중복 방지
+  if(input.dataset.dateInited) return;
+  input.dataset.dateInited = '1';
+
   input.addEventListener('input', function() {
     let v = this.value.replace(/\D/g, '');
     if(v.length >= 8) {
       v = v.slice(0,8);
       this.value = v.slice(0,4) + '-' + v.slice(4,6) + '-' + v.slice(6,8);
+      // 8자리 입력 완료 시 다음 탭으로 자동 이동
+      const ti = parseInt(this.tabIndex);
+      if(ti) {
+        const next = document.querySelector(`[tabindex="${ti+1}"]`);
+        if(next) { setTimeout(()=>next.focus(), 10); }
+      }
     }
   });
+
   input.addEventListener('keydown', function(e) {
+    if(e.key === 'Tab') return; // 탭키는 항상 허용
     if(e.key === 'Backspace') return;
     let v = this.value.replace(/\D/g, '');
     if(v.length >= 8) e.preventDefault();
@@ -2055,9 +2067,11 @@ function initDateInputs() {
    'p-f-delivery-date','p-f-payment-date'].forEach(id => {
     const el = document.getElementById(id);
     if(el) {
+      const ti = el.tabIndex; // tabindex 저장
       el.type = 'text';
       el.placeholder = 'YYYY-MM-DD';
       el.maxLength = 10;
+      if(ti) el.tabIndex = ti; // tabindex 복원
       autoDateFormat(el);
     }
   });
