@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v5_10.html -->
+<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v5_17.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -249,19 +249,19 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="hosp">중앙대학교의료원</div>
-    <div class="title">계약 및 구매관리</div>
+    <div class="title">계약·구매 관리 시스템</div>
     <div class="sub">구매팀 · 물류관리팀</div>
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">계약관리</div>
-    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
     <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
     </div>
     <div class="nav-section" style="margin-top:8px;">구매관리</div>
-    <div class="nav-item active" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 진행 현황</div>
+    <div class="nav-item" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 현황</div>
     <div class="nav-item" onclick="showPage(&#39;purchases&#39;)">🗂️ 구매 목록</div>
   </nav>
   <div class="sidebar-footer">
@@ -269,28 +269,28 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div id="sync-dot" style="width: 7px; height: 7px; border-radius: 50%; background: rgb(5, 150, 105); flex-shrink: 0;"></div>
     <span id="sync-text" style="font-size:11px;">연결됨</span>
   </div>
-  <div>v3.0 | 메이드인상철킴</div>
+  <div>v3.0 | 메이드 인 상철킴</div>
 </div>
 </aside>
 
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">구매 진행 현황</div>
-      <div class="topbar-sub" id="page-sub">의료장비 구매 단계별 현황을 한눈에 확인하세요.</div>
+      <div class="topbar-title" id="page-title">대시보드</div>
+      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
       <div class="topbar-date">📅<span id="today-date">2026년 6월 17일 (수)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()">↻</button>
-      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="display: none;">+ 계약 등록</button>
-      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="">+ 구매 등록</button>
+      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()">+ 계약 등록</button>
+      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="display:none">+ 구매 등록</button>
     </div>
   </div>
 
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard" style="display: none;">
+    <div id="page-dashboard">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -926,7 +926,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ PURCHASE DASHBOARD ══ -->
-    <div id="page-purchase-dashboard" style="">
+    <div id="page-purchase-dashboard" style="display:none">
   <!-- 필터 -->
   <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
     <div style="display:flex;gap:6px;">
@@ -941,56 +941,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <!-- 단계별 KPI 플로우 -->
   <div class="section-card" style="margin-bottom:16px;">
     <div class="section-body" style="padding:16px 20px;">
-      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;flex-wrap:wrap;" id="pd-stage-flow">
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">미진행</div>
-      <div style="font-size:22px;font-weight:700;color:#9ca3af;">0건</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
-    </div>
-    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
-  
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">구매품의</div>
-      <div style="font-size:22px;font-weight:700;color:#2563eb;">0건</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
-    </div>
-    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
-  
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">계약보고</div>
-      <div style="font-size:22px;font-weight:700;color:#7c3aed;">0건</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
-    </div>
-    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
-  
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">입고 및 검수</div>
-      <div style="font-size:22px;font-weight:700;color:#0891b2;">0건</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
-    </div>
-    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
-  
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">지출결의</div>
-      <div style="font-size:22px;font-weight:700;color:#d97706;">0건</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
-    </div>
-    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
-  
-    <div style="text-align:center;flex:1;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">자산등록</div>
-      <div style="font-size:22px;font-weight:700;color:#059669;">0건</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0%)</div>
-    </div>
-    
-  
-    <div style="width:1px;background:var(--border);height:50px;margin:0 8px;flex-shrink:0;"></div>
-    <div style="text-align:center;flex:1.3;background:var(--surface2);border-radius:var(--radius);padding:10px 8px;">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">총 구매금액(실행)</div>
-      <div style="font-size:18px;font-weight:700;color:var(--text);">0천원</div>
-      <div style="font-size:11px;color:var(--success);margin-top:3px;">절감 0천원 (0%)</div>
-    </div>
-  </div>
+      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;flex-wrap:wrap;" id="pd-stage-flow"></div>
     </div>
   </div>
 
@@ -998,32 +949,18 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
     <div class="section-card">
       <div class="section-header"><div class="section-title">🏥 담당부서별 구매 수</div></div>
-      <div class="section-body" id="pd-chart-dept"><div class="empty" style="padding:20px"><p>데이터 없음</p></div></div>
+      <div class="section-body" id="pd-chart-dept"></div>
     </div>
     <div class="section-card">
       <div class="section-header"><div class="section-title">₩ 병원별 구매금액</div></div>
-      <div class="section-body" id="pd-chart-hosp">
-    <div style="display:flex;gap:16px;align-items:flex-end;justify-content:center;height:100px;margin-bottom:8px;">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="font-size:12px;color:var(--text2);font-weight:600;">-천원</div>
-        <div style="width:50px;height:4px;background:var(--primary);border-radius:4px 4px 0 0;"></div>
-        <div style="font-size:12px;color:var(--text3);">서울</div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="font-size:12px;color:var(--text2);font-weight:600;">-천원</div>
-        <div style="width:50px;height:4px;background:var(--teal);border-radius:4px 4px 0 0;"></div>
-        <div style="font-size:12px;color:var(--text3);">광명</div>
-      </div>
-    </div>
-    <div style="text-align:center;font-size:12px;color:var(--text3);">합계 -천원</div>
-  </div>
+      <div class="section-body" id="pd-chart-hosp"></div>
     </div>
     <div class="section-card">
       <div class="section-header">
         <div class="section-title">⚠️ 진행 지연 현황 (90일 초과)</div>
         <span onclick="showPage(&#39;purchases&#39;)" style="font-size:12px;color:var(--accent);cursor:pointer;">더보기</span>
       </div>
-      <div class="section-body" id="pd-delay"><div class="empty" style="padding:16px"><p style="font-size:13px;">90일 초과 지연 건 없음 ✅</p></div></div>
+      <div class="section-body" id="pd-delay"></div>
     </div>
   </div>
 
@@ -1031,11 +968,11 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
     <div class="section-card">
       <div class="section-header"><div class="section-title">👤 담당자별 진행 현황 (건수)</div></div>
-      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table"><div class="empty" style="padding:20px"><p>데이터 없음</p></div></div>
+      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table"></div>
     </div>
     <div class="section-card">
       <div class="section-header"><div class="section-title">💰 담당자별 구매금액</div></div>
-      <div class="section-body" id="pd-chart-manager"><div class="empty" style="padding:20px"><p>데이터 없음</p></div></div>
+      <div class="section-body" id="pd-chart-manager"></div>
     </div>
   </div>
 
@@ -1051,13 +988,13 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th>No.</th><th>병원</th><th>심의연</th><th>심의월</th><th>심의구분</th><th>장비명</th><th>모델명</th>
-          <th>신청부서</th><th>담당자</th><th>신청금액(천원)</th><th>실행금액(천원)</th>
-          <th>현재단계</th><th>경과일</th>
+          <th style="text-align:center;">No.</th><th style="text-align:center;">병원</th><th colspan="3" style="text-align:center;">심의구분</th><th style="text-align:center;">장비명</th><th style="text-align:center;">모델명</th>
+          <th style="text-align:center;">신청부서</th><th style="text-align:center;">담당자</th><th style="text-align:center;">신청금액(천원)</th><th style="text-align:center;">실행금액(천원)</th>
+          <th style="text-align:center;">현재단계</th><th style="text-align:center;">경과일</th><th style="text-align:center;">지연사유</th>
         </tr></thead>
         <tbody id="pd-purchase-tbody"></tbody>
       </table>
-      <div id="pd-purchase-empty" class="empty" style="padding: 24px;">
+      <div id="pd-purchase-empty" class="empty" style="display:none;padding:24px;">
         <p style="font-size:13px;">등록된 구매 건이 없습니다.</p>
       </div>
     </div>
@@ -1068,15 +1005,20 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <!-- ══ PURCHASES ══ -->
 
     <!-- ══ PURCHASES ══ -->
-    <div id="page-purchases" style="display: none;">
+    <div id="page-purchases" style="display:none">
   <div class="section-card" style="width:100%;">
     <div class="section-header" style="flex-wrap:wrap;gap:10px;">
       <div style="display:flex;align-items:center;gap:16px;">
         <div class="section-title">🗂️ 구매 목록</div>
         <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text3);cursor:pointer;font-weight:500;">
-          <input type="checkbox" id="show-completed" onchange="renderPurchaseTable()" style="cursor:pointer;">
-          종결 건 포함
+          <input type="checkbox" id="show-pre-proceed" onchange="renderPurchaseTable()" style="cursor:pointer;">
+          선진행 건 확인
         </label>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="downloadPurchaseExcel()">📥 엑셀 다운로드</button>
+        <button class="btn btn-secondary btn-sm" onclick="document.getElementById(&#39;excel-upload-input&#39;).click()">📤 엑셀 업로드</button>
+        <input type="file" id="excel-upload-input" accept=".xlsx,.xls" style="display:none;" onchange="uploadPurchaseExcel(this)">
       </div>
       <div class="filter-row">
         <input type="search" id="p-search" placeholder="🔍 장비명, 부서, 담당자 검색..." oninput="renderPurchaseTable()">
@@ -1088,20 +1030,29 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <option>미진행</option><option>구매품의</option><option>계약보고</option>
           <option>입고 및 검수</option><option>지출결의</option><option>자산등록</option>
         </select>
-        <select id="p-year" onchange="renderPurchaseTable()"><option value="">전체 연도</option></select>
+        <select id="p-filter-year" onchange="renderPurchaseTable()">
+          <option value="">전체 연도</option>
+        </select>
+        <select id="p-filter-month" onchange="renderPurchaseTable()">
+          <option value="">전체 월</option>
+          <option value="1">1월</option><option value="2">2월</option><option value="3">3월</option>
+          <option value="4">4월</option><option value="5">5월</option><option value="6">6월</option>
+          <option value="7">7월</option><option value="8">8월</option><option value="9">9월</option>
+          <option value="10">10월</option><option value="11">11월</option><option value="12">12월</option>
+        </select>
       </div>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th>No.</th><th>병원</th><th>심의연</th><th>심의월</th><th>심의구분</th><th>방식</th><th>구분</th>
-          <th>담당자</th><th>장비명 / 모델명</th><th>신청부서</th><th>수량</th>
-          <th>신청금액(천원)</th><th>산정예산(천원)</th><th>실행금액(천원)</th>
-          <th>조정율(신청)</th><th>조정율(산정)</th><th>현재단계</th><th>경과일</th><th>관리</th>
+          <th style="text-align:center;">No.</th><th style="text-align:center;">병원</th><th colspan="3" style="text-align:center;">심의구분</th><th style="text-align:center;">구매방식</th>
+          <th style="text-align:center;">담당자</th><th style="min-width:220px;text-align:center;">장비명 / 모델명</th><th style="text-align:center;">구매구분</th><th style="text-align:center;">신청부서</th><th style="text-align:center;">수량</th>
+          <th style="max-width:80px;text-align:center;">신청금액(천원)</th><th style="max-width:80px;text-align:center;">산정예산(천원)</th><th style="max-width:80px;text-align:center;">실행금액(천원)</th>
+          <th style="max-width:60px;text-align:center;">조정율(신청)</th><th style="max-width:60px;text-align:center;">조정율(산정)</th><th style="text-align:center;">대금구분</th><th style="text-align:center;">현재단계</th><th style="text-align:center;">경과일</th><th style="text-align:center;">관리</th>
         </tr></thead>
         <tbody id="purchase-tbody"></tbody>
       </table>
-      <div id="purchase-empty" class="empty" style="">
+      <div id="purchase-empty" class="empty" style="display:none">
         <i class="fa-solid fa-folder-open"></i><p>등록된 구매 건이 없습니다.</p>
       </div>
     </div>
@@ -1136,21 +1087,29 @@ textarea.form-control{resize:vertical;min-height:68px;}
         </div>
         <div class="form-group">
           <label class="form-label">구매담당자 <span class="req">*</span></label>
-          <input class="form-control" id="p-f-manager" placeholder="예: 신승운">
+          <input class="form-control" id="p-f-manager">
         </div>
         <div class="form-group">
           <label class="form-label">
             심의일
             <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:4px;">선진행 건의 경우 다음 심의일 작성</span>
           </label>
-          <input class="form-control" id="p-f-review-date" type="date">
+          <input class="form-control" id="p-f-review-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
         </div>
         <div class="form-group">
           <label class="form-label">
             청구일
             <span style="font-size:11px;color:var(--text3);font-weight:400;margin-left:4px;">(신청부서의 신청서 품의 일자)</span>
           </label>
-          <input class="form-control" id="p-f-claim-date" type="date">
+          <input class="form-control" id="p-f-claim-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label class="form-label">선진행여부</label>
+          <select class="form-control" id="p-f-pre-proceed">
+            <option value="">선택</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+          </select>
         </div>
 
         <div class="form-section">장비 정보</div>
@@ -1185,15 +1144,15 @@ textarea.form-control{resize:vertical;min-height:68px;}
 
         <div class="form-section">금액 정보</div>
         <div class="form-group">
-          <label class="form-label">신청금액 (천원)</label>
+          <label class="form-label">신청금액 (원단위)</label>
           <input class="form-control" id="p-f-request-amount" type="number">
         </div>
         <div class="form-group">
-          <label class="form-label">산정예산 (천원)</label>
+          <label class="form-label">산정예산 (원단위)</label>
           <input class="form-control" id="p-f-estimated-amount" type="number">
         </div>
         <div class="form-group">
-          <label class="form-label">실행금액 (천원)</label>
+          <label class="form-label">실행금액 (원단위)</label>
           <input class="form-control" id="p-f-actual-amount" type="number">
         </div>
         <div class="form-group">
@@ -1210,29 +1169,26 @@ textarea.form-control{resize:vertical;min-height:68px;}
 
         <div class="form-section">진행 단계</div>
         <div class="form-group">
-          <label class="form-label">품의연월 <span style="color:var(--text3);font-size:11px;font-weight:400;">(구매품의)</span></label>
-          <input class="form-control" id="p-f-uiui-date" type="month">
+          <label class="form-label">품의일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(구매품의)</span></label>
+          <input class="form-control" id="p-f-uiui-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
         </div>
         <div class="form-group">
-          <label class="form-label">계약연월 <span style="color:var(--text3);font-size:11px;font-weight:400;">(계약보고)</span></label>
-          <input class="form-control" id="p-f-contract-date" type="month">
+          <label class="form-label">계약일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(계약보고)</span></label>
+          <input class="form-control" id="p-f-contract-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
         </div>
         <div class="form-group">
-          <label class="form-label">입고연월 <span style="color:var(--text3);font-size:11px;font-weight:400;">(입고 및 검수)</span></label>
-          <input class="form-control" id="p-f-delivery-date" type="month">
+          <label class="form-label">입고일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(입고 및 검수)</span></label>
+          <input class="form-control" id="p-f-delivery-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
         </div>
         <div class="form-group">
-          <label class="form-label">지급월 <span style="color:var(--text3);font-size:11px;font-weight:400;">(지출결의)</span></label>
-          <input class="form-control" id="p-f-payment-date" type="month">
+          <label class="form-label">지급일자 <span style="color:var(--text3);font-size:11px;font-weight:400;">(지출결의)</span></label>
+          <input class="form-control" id="p-f-payment-date" type="text" placeholder="YYYY-MM-DD" maxlength="10">
         </div>
         <div class="form-group">
           <label class="form-label">자산코드 <span style="color:var(--text3);font-size:11px;font-weight:400;">(자산등록)</span></label>
           <input class="form-control" id="p-f-asset-code" placeholder="예: E64010016">
         </div>
-        <div class="form-group">
-          <label class="form-label">지급월</label>
-          <input class="form-control" id="p-f-payment-month" type="month">
-        </div>
+
 
         <div class="form-section">문서번호</div>
         <div class="form-group">
@@ -1243,9 +1199,13 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <label class="form-label">구입품의</label>
           <input class="form-control" id="p-f-doc-purchase" placeholder="문서번호">
         </div>
-        <div class="form-group full">
+        <div class="form-group">
           <label class="form-label">계약품의</label>
           <input class="form-control" id="p-f-doc-contract" placeholder="문서번호">
+        </div>
+        <div class="form-group">
+          <label class="form-label">지연사유</label>
+          <input class="form-control" id="p-f-delay-reason" placeholder="지연 사유 입력">
         </div>
       </div>
     </div>
@@ -1652,9 +1612,9 @@ function fmtAmtK(n) {
   if(!n && n!==0) return '-';
   const v = Number(n);
   if(v === 0) return '-';
-  if(v >= 100000) return (v/100000).toFixed(1) + '억';
-  if(v >= 10000) return Math.round(v/10000) + '만';
-  return v.toLocaleString('ko-KR');
+  // 원 단위 입력 → 천원 단위로 변환
+  const thou = Math.round(v / 1000);
+  return thou.toLocaleString('ko-KR') + '천원';
 }
 
 // 구매 데이터 로드
@@ -1691,17 +1651,21 @@ async function loadPurchases() {
 
 function getPurchaseFiltered(forDashboard=false) {
   const hosp = forDashboard ? (currentPdHosp !== 'all' ? currentPdHosp : '') : (document.getElementById('p-hosp')?.value||'');
-  const year = forDashboard ? (document.getElementById('pd-year')?.value||'') : (document.getElementById('p-year')?.value||'');
+  const year = forDashboard ? (document.getElementById('pd-year')?.value||'') : '';
+  const filterYear = forDashboard ? '' : (document.getElementById('p-filter-year')?.value||'');
+  const filterMonth = forDashboard ? '' : (document.getElementById('p-filter-month')?.value||'');
   const manager = forDashboard ? (document.getElementById('pd-manager')?.value||'') : '';
   const stage = document.getElementById('p-stage')?.value||'';
   const q = (document.getElementById('p-search')?.value||'').toLowerCase();
-  const showCompleted = document.getElementById('show-completed')?.checked||false;
+  const showPreProceed = document.getElementById('show-pre-proceed')?.checked||false;
 
   return purchases.filter(p=>{
     const st = getPurchaseStage(p);
-    if(!forDashboard && !showCompleted && st==='자산등록') return false;
+    if(!forDashboard && showPreProceed && p.pre_proceed !== 'Y') return false;
     if(hosp && p.hospital!==hosp) return false;
     if(year && String(p.year)!==String(year)) return false;
+    if(filterYear && String(getPurchaseYear(p))!==String(filterYear)) return false;
+    if(filterMonth && String(getPurchaseMonth(p))!==String(filterMonth)) return false;
     if(manager && p.manager!==manager) return false;
     if(stage && st!==stage) return false;
     if(q && !p.device_name?.toLowerCase().includes(q) && !p.request_dept?.toLowerCase().includes(q) && !p.manager?.toLowerCase().includes(q)) return false;
@@ -1733,8 +1697,8 @@ function renderPurchaseDashboard() {
     <div style="width:1px;background:var(--border);height:50px;margin:0 8px;flex-shrink:0;"></div>
     <div style="text-align:center;flex:1.3;background:var(--surface2);border-radius:var(--radius);padding:10px 8px;">
       <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">총 구매금액(실행)</div>
-      <div style="font-size:18px;font-weight:700;color:var(--text);">${Number(totalAmt).toLocaleString('ko-KR')}천원</div>
-      <div style="font-size:11px;color:var(--success);margin-top:3px;">절감 ${Number(saving).toLocaleString('ko-KR')}천원 (${savingPct}%)</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);">${fmtAmtK(totalAmt)}</div>
+      <div style="font-size:11px;color:var(--success);margin-top:3px;">절감 ${fmtAmtK(saving)} (${savingPct}%)</div>
     </div>
   `;
 
@@ -1758,17 +1722,17 @@ function renderPurchaseDashboard() {
   document.getElementById('pd-chart-hosp').innerHTML = `
     <div style="display:flex;gap:16px;align-items:flex-end;justify-content:center;height:100px;margin-bottom:8px;">
       <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(seoulAmt)}천원</div>
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(seoulAmt)}</div>
         <div style="width:50px;height:${Math.max((seoulAmt/maxH*80),4).toFixed(0)}px;background:var(--primary);border-radius:4px 4px 0 0;"></div>
         <div style="font-size:12px;color:var(--text3);">서울</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(gmAmt)}천원</div>
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(gmAmt)}</div>
         <div style="width:50px;height:${Math.max((gmAmt/maxH*80),4).toFixed(0)}px;background:var(--teal);border-radius:4px 4px 0 0;"></div>
         <div style="font-size:12px;color:var(--text3);">광명</div>
       </div>
     </div>
-    <div style="text-align:center;font-size:12px;color:var(--text3);">합계 ${fmtAmtK(totalAmt)}천원</div>
+    <div style="text-align:center;font-size:12px;color:var(--text3);">합계 ${fmtAmtK(totalAmt)}</div>
   `;
 
   // 진행 지연 현황 (90일 초과만)
@@ -1836,7 +1800,7 @@ function renderPurchaseDashboard() {
     <div class="chart-item">
       <div class="chart-label">${m.name}</div>
       <div class="chart-track"><div class="chart-fill" style="width:${(m.amt/maxM*100).toFixed(0)}%;background:#7c3aed"></div></div>
-      <div class="chart-meta">${fmtAmtK(m.amt)}천원</div>
+      <div class="chart-meta">${fmtAmtK(m.amt)}</div>
     </div>`).join('') : '<div class="empty" style="padding:20px"><p>데이터 없음</p></div>';
 
   // 구매 진행 목록
@@ -1860,18 +1824,19 @@ function renderPurchaseDashboard() {
     const elapsed = dd!==null&&dd<0?`<span style="font-weight:600;color:var(--danger);">D+${Math.abs(dd)}</span>`:(dd!==null?`<span style="font-weight:600;color:var(--success);">D-${dd}</span>`:'-');
     return `<tr>
       <td style="color:var(--text3);font-size:12px;">${i+1}</td>
-      <td>${hospBadgeHTML(p.hospital)}</td>
-      <td style="font-size:12px;text-align:center;">${getPurchaseYear(p)}</td>
-      <td style="font-size:12px;text-align:center;">${getPurchaseMonth(p)}</td>
-      <td style="font-size:12px;">${p.review_type||'-'}</td>
-      <td class="bold" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${p.device_name||''}">${p.device_name||'-'}</td>
-      <td style="font-size:12px;color:var(--text2);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.model_name||'-'}</td>
-      <td style="font-size:12px;">${p.request_dept||'-'}</td>
-      <td style="font-size:12px;">${p.manager||'-'}</td>
-      <td style="font-size:12px;">${p.request_amount?Number(p.request_amount).toLocaleString('ko-KR'):'-'}</td>
-      <td style="font-size:12px;">${p.actual_amount?Number(p.actual_amount).toLocaleString('ko-KR'):'-'}</td>
-      <td>${stageBadgeHTML(getPurchaseStage(p))}</td>
+      <td style="max-width:40px;">${hospBadgeHTML(p.hospital)}</td>
+      <td style="font-size:12px;text-align:center;max-width:35px;">${getPurchaseYear(p)}</td>
+      <td style="font-size:12px;text-align:center;max-width:20px;">${getPurchaseMonth(p)}</td>
+      <td style="font-size:12px;text-align:center;max-width:40px;">${p.review_type||'-'}</td>
+      <td class="bold" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="${p.device_name||''}">${p.device_name||'-'}</td>
+      <td style="font-size:12px;color:var(--text2);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;">${p.model_name||'-'}</td>
+      <td style="font-size:12px;text-align:center;">${p.request_dept||'-'}</td>
+      <td style="font-size:12px;text-align:center;">${p.manager||'-'}</td>
+      <td style="font-size:12px;text-align:right;">${p.request_amount?fmtAmtK(Number(p.request_amount)):'-'}</td>
+      <td style="font-size:12px;text-align:right;">${p.actual_amount?fmtAmtK(Number(p.actual_amount)):'-'}</td>
+      <td style="text-align:center;">${stageBadgeHTML(getPurchaseStage(p))}</td>
       <td style="text-align:center;">${elapsed}</td>
+      <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p.delay_reason||''}</td>
     </tr>`;
   }).join('');
 
@@ -1887,9 +1852,10 @@ function renderPurchaseDashboard() {
 // 구매 목록 테이블
 function renderPurchaseTable() {
   // 연도 필터 옵션
-  const years=[...new Set(purchases.map(p=>p.year).filter(Boolean))].sort((a,b)=>b-a);
-  const ySel=document.getElementById('p-year');
-  if(ySel){const cur=ySel.value;ySel.innerHTML='<option value="">전체 연도</option>'+years.map(y=>`<option${y==cur?' selected':''}>${y}</option>`).join('');}
+  // 연도 옵션 동적 업데이트
+  const allYears=[...new Set(purchases.map(p=>getPurchaseYear(p)).filter(y=>y&&y!=='-'))].sort((a,b)=>b-a);
+  const ySel=document.getElementById('p-filter-year');
+  if(ySel){const cur=ySel.value;ySel.innerHTML='<option value="">전체 연도</option>'+allYears.map(y=>`<option${String(y)===String(cur)?' selected':''}>${y}</option>`).join('');}
 
   const fp=getPurchaseFiltered();
   const totalPages=Math.max(1,Math.ceil(fp.length/P_PAGE_SIZE));
@@ -1916,21 +1882,22 @@ function renderPurchaseTable() {
       <td style="font-size:12px;text-align:center;">${getPurchaseYear(p)}</td>
       <td style="font-size:12px;text-align:center;">${getPurchaseMonth(p)}</td>
       <td style="font-size:12px;">${p.review_type||'-'}</td>
-      <td style="font-size:12px;">${p.purchase_method||'-'}</td>
-      <td style="font-size:12px;">${p.category||'-'}</td>
-      <td style="font-size:12px;">${p.manager||'-'}</td>
-      <td class="bold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${deviceLabel}">${deviceLabel}</td>
-      <td style="font-size:12px;">${p.request_dept||'-'}</td>
+      <td style="font-size:12px;text-align:center;">${p.purchase_method||'-'}</td>
+      <td style="font-size:12px;text-align:center;">${p.manager||'-'}</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="${deviceLabel}">${deviceLabel}</td>
+      <td style="font-size:12px;text-align:center;">${p.category||'-'}</td>
+      <td style="font-size:12px;text-align:center;">${p.request_dept||'-'}</td>
       <td style="font-size:12px;text-align:center;">${p.quantity||'-'}</td>
-      <td style="font-size:12px;">${reqAmt?reqAmt.toLocaleString('ko-KR'):'-'}</td>
-      <td style="font-size:12px;">${estAmt?estAmt.toLocaleString('ko-KR'):'-'}</td>
-      <td style="font-size:12px;">${actAmt?actAmt.toLocaleString('ko-KR'):'-'}</td>
-      <td style="font-size:12px;text-align:center;color:${adjReq!=='-'&&parseFloat(adjReq)<0?'var(--success)':'var(--danger)'};">${adjReq}</td>
-      <td style="font-size:12px;text-align:center;color:${adjEst!=='-'&&parseFloat(adjEst)<0?'var(--success)':'var(--danger)'};">${adjEst}</td>
-      <td>${stageBadgeHTML(getPurchaseStage(p))}</td>
+      <td style="font-size:12px;text-align:right;">${reqAmt?fmtAmtK(reqAmt):'-'}</td>
+      <td style="font-size:12px;text-align:right;">${estAmt?fmtAmtK(estAmt):'-'}</td>
+      <td style="font-size:12px;text-align:right;">${actAmt?fmtAmtK(actAmt):'-'}</td>
+      <td style="font-size:12px;text-align:right;color:${adjReq!=='-'&&parseFloat(adjReq)<0?'var(--success)':'var(--danger)'};">${adjReq}</td>
+      <td style="font-size:12px;text-align:right;color:${adjEst!=='-'&&parseFloat(adjEst)<0?'var(--success)':'var(--danger)'};">${adjEst}</td>
+      <td style="font-size:12px;text-align:center;">${p.payment_type||'-'}</td>
+      <td style="text-align:center;">${stageBadgeHTML(getPurchaseStage(p))}</td>
       <td style="text-align:center;">${elapsed}</td>
       <td><div class="action-btns">
-        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal('${p.id}')">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(${p.id})">수정</button>
         <button class="btn btn-secondary btn-sm" onclick="deletePurchase(${p.id})" style="color:var(--danger)">삭제</button>
       </div></td>
     </tr>`;
@@ -1949,10 +1916,19 @@ function renderPurchaseTable() {
 
 function goPurchasePage(p){purchasePage=p;renderPurchaseTable();}
 
+function downloadPurchaseExcel() {
+  showToast('엑셀 다운로드 기능은 곧 추가됩니다!');
+}
+
+function uploadPurchaseExcel(input) {
+  showToast('엑셀 업로드 기능은 곧 추가됩니다!');
+  input.value = '';
+}
+
 // 구매 등록/수정 모달
 function openPurchaseModal(id=null) {
   editingPurchaseId = id;
-  const fields = ['hospital','review-type','review-date','claim-date','manager',
+  const fields = ['hospital','review-type','review-date','claim-date','pre-proceed','manager',
     'device-name','model-name','request-dept','purchase-method','category','quantity',
     'request-amount','estimated-amount','actual-amount','payment-type',
     'uiui-date','contract-date','delivery-date','payment-date','asset-code','payment-month',
@@ -1963,14 +1939,14 @@ function openPurchaseModal(id=null) {
     document.getElementById('purchase-modal-title').textContent='구매 수정';
     const map={
       'hospital':p.hospital,'review-type':p.review_type,
-      'review-date':p.review_date,'claim-date':p.claim_date,
+      'review-date':p.review_date,'claim-date':p.claim_date,'pre-proceed':p.pre_proceed,
       'manager':p.manager,'device-name':p.device_name,'model-name':p.model_name,
       'request-dept':p.request_dept,'purchase-method':p.purchase_method,'category':p.category,
       'quantity':p.quantity,'request-amount':p.request_amount,'estimated-amount':p.estimated_amount,
       'actual-amount':p.actual_amount,'payment-type':p.payment_type,'uiui-date':p.uiui_date,
       'contract-date':p.contract_date,'delivery-date':p.delivery_date,'payment-date':p.payment_date,
       'asset-code':p.asset_code,'payment-month':p.payment_month,
-      'doc-request':p.doc_request,'doc-purchase':p.doc_purchase,'doc-contract':p.doc_contract,
+      'doc-request':p.doc_request,'doc-purchase':p.doc_purchase,'doc-contract':p.doc_contract,'delay-reason':p.delay_reason,
       'note':p.note
     };
     fields.forEach(f=>{const el=document.getElementById('p-f-'+f);if(el)el.value=map[f]||'';});
@@ -1982,6 +1958,8 @@ function openPurchaseModal(id=null) {
   // 버튼 표시 전환
   document.getElementById('btn-add-contract').style.display='none';
   document.getElementById('btn-add-purchase').style.display='';
+  // 날짜 입력 초기화
+  setTimeout(initDateInputs, 50);
   openModal('modal-purchase');
 }
 
@@ -1996,6 +1974,7 @@ async function savePurchase() {
     hospital:g('p-f-hospital'), review_type:g('p-f-review-type'),
     year:autoYear, month:autoMonth,
     review_date:reviewDate, claim_date:claimDate,
+    pre_proceed:g('p-f-pre-proceed'),
     org_manager:'', manager:g('p-f-manager'),
     device_name:g('p-f-device-name'), model_name:g('p-f-model-name'),
     request_dept:g('p-f-request-dept'), purchase_method:g('p-f-purchase-method'),
@@ -2008,6 +1987,7 @@ async function savePurchase() {
     delivery_date:g('p-f-delivery-date')||null, payment_date:g('p-f-payment-date')||null,
     asset_code:g('p-f-asset-code'), payment_month:g('p-f-payment-month')||null,
     doc_request:g('p-f-doc-request'), doc_purchase:g('p-f-doc-purchase'), doc_contract:g('p-f-doc-contract'),
+    delay_reason:g('p-f-delay-reason'),
     note:g('p-f-note')
   };
 
@@ -2051,6 +2031,36 @@ async function deletePurchase(id) {
     renderPurchaseDashboard();
     showToast('삭제되었습니다.');
   } catch(e) { showToast('오류: '+e.message); }
+}
+
+
+// 날짜 자동 포맷 (8자리 입력 → YYYY-MM-DD)
+function autoDateFormat(input) {
+  input.addEventListener('input', function() {
+    let v = this.value.replace(/\D/g, '');
+    if(v.length >= 8) {
+      v = v.slice(0,8);
+      this.value = v.slice(0,4) + '-' + v.slice(4,6) + '-' + v.slice(6,8);
+    }
+  });
+  input.addEventListener('keydown', function(e) {
+    if(e.key === 'Backspace') return;
+    let v = this.value.replace(/\D/g, '');
+    if(v.length >= 8) e.preventDefault();
+  });
+}
+
+function initDateInputs() {
+  ['p-f-review-date','p-f-claim-date','p-f-uiui-date','p-f-contract-date',
+   'p-f-delivery-date','p-f-payment-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) {
+      el.type = 'text';
+      el.placeholder = 'YYYY-MM-DD';
+      el.maxLength = 10;
+      autoDateFormat(el);
+    }
+  });
 }
 
 // ── DATE ──────────────────────────────────────────────────────
@@ -2116,7 +2126,7 @@ const pageConfig = {
   dashboard:{title:'대시보드',sub:'계약 현황을 한눈에 확인하세요.'},
   contracts:{title:'계약 목록',sub:'전체 계약을 검색하고 관리하세요.'},
   alerts:{title:'만료 알림',sub:'만료 예정 계약을 확인하고 조치하세요.'},
-  'purchase-dashboard':{title:'구매 진행 현황',sub:'의료장비 구매 단계별 현황을 한눈에 확인하세요.'},
+  'purchase-dashboard':{title:'구매 현황',sub:'의료장비 구매 단계별 현황을 한눈에 확인하세요.'},
   purchases:{title:'구매 목록',sub:'전체 구매 건을 검색하고 관리하세요.'},
 };
 
@@ -2708,6 +2718,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   loadContracts();
   loadPurchases();
+  initDateInputs();
 });
 </script>
 
