@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v5_22.html -->
+<!-- saved from url=(0068)file:///C:/Users/Administrator/Downloads/contract_manager_v5_26.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -214,6 +214,11 @@ textarea.form-control{resize:vertical;min-height:68px;}
 .hosp-tab{padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:var(--surface);color:var(--text3);transition:all .15s;font-family:inherit;}
 .hosp-tab:hover{background:var(--surface2);}
 .hosp-tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.count-pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle;}
+.count-pill-yellow{background:#fef3c7;color:#92400e;}
+.count-pill-red{background:#fee2e2;color:#991b1b;}
+.incoming-item{font-size:12px;padding:9px 11px;background:#fffbeb;border:1px solid #fde68a;border-radius:var(--radius);margin-bottom:7px;}
+.delay-item{font-size:12px;padding:9px 11px;background:#fef2f2;border:1px solid #fecaca;border-radius:var(--radius);margin-bottom:7px;}
 .empty{text-align:center;padding:40px 20px;color:var(--text3);}
 .empty i{font-size:32px;margin-bottom:10px;display:block;}
 
@@ -254,14 +259,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">계약관리</div>
-    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
     <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
     </div>
     <div class="nav-section" style="margin-top:8px;">구매관리</div>
-    <div class="nav-item" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 현황</div>
+    <div class="nav-item active" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 현황</div>
     <div class="nav-item" onclick="showPage(&#39;purchases&#39;)">🗂️ 구매 목록</div>
   </nav>
   <div class="sidebar-footer">
@@ -276,21 +281,21 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">대시보드</div>
-      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
+      <div class="topbar-title" id="page-title">구매 현황</div>
+      <div class="topbar-sub" id="page-sub">의료장비 구매 단계별 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-date">📅<span id="today-date">2026년 6월 17일 (수)</span></div>
+      <div class="topbar-date">📅<span id="today-date">2026년 6월 19일 (금)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()">↻</button>
-      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()">+ 계약 등록</button>
-      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="display:none">+ 구매 등록</button>
+      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="display: none;">+ 계약 등록</button>
+      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="">+ 구매 등록</button>
     </div>
   </div>
 
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard">
+    <div id="page-dashboard" style="display: none;">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -566,7 +571,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-공급계약">공급계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.07.01 ~ 2026.06.30</td>
     <td style="font-size:12px">2026.06.30</td>
-    <td><span class="dday dday-urgent">D-14</span></td>
+    <td><span class="dday dday-urgent">D-12</span></td>
     <td style="font-size:12px">-</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -578,7 +583,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.09.01 ~ 2026.09.30</td>
     <td style="font-size:12px">2026.09.30</td>
-    <td><span class="dday dday-ok">D-106</span></td>
+    <td><span class="dday dday-ok">D-104</span></td>
     <td style="font-size:12px">-</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641063259_hs3o&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -590,7 +595,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2023.06.19 ~ 2027.06.19</td>
     <td style="font-size:12px">2027.06.19</td>
-    <td><span class="dday dday-ok">D-368</span></td>
+    <td><span class="dday dday-ok">D-366</span></td>
     <td style="font-size:12px">6,119만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640281076_8frn&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -602,7 +607,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2023.12.13 ~ 2027.12.13</td>
     <td style="font-size:12px">2027.12.13</td>
-    <td><span class="dday dday-ok">D-545</span></td>
+    <td><span class="dday dday-ok">D-543</span></td>
     <td style="font-size:12px">5,296만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640430612_8jpq&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -614,7 +619,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.03.28 ~ 2029.03.28</td>
     <td style="font-size:12px">2029.03.28</td>
-    <td><span class="dday dday-ok">D-1016</span></td>
+    <td><span class="dday dday-ok">D-1014</span></td>
     <td style="font-size:12px">9,487만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640590487_4gs1&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -626,7 +631,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2026.03.01 ~ 2030.02.28</td>
     <td style="font-size:12px">2030.02.28</td>
-    <td><span class="dday dday-ok">D-1353</span></td>
+    <td><span class="dday dday-ok">D-1351</span></td>
     <td style="font-size:12px">3,300만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)">🔔 알림</button></td>
   </tr></tbody>
@@ -914,7 +919,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <div class="alert-name">방사선차폐용품 단가 계약 연장 건</div>
         <div class="alert-meta">나이스 메디카 | 물류관리팀 | 종료: 2026.06.30</div>
       </div>
-      <div class="alert-days">D-14</div>
+      <div class="alert-days">D-12</div>
       <button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">✉️ 알림</button>
     </div></div>
           <div id="alert-empty" class="empty" style="display:none;">
@@ -926,7 +931,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ PURCHASE DASHBOARD ══ -->
-    <div id="page-purchase-dashboard" style="display:none">
+    <div id="page-purchase-dashboard" style="">
   <!-- 필터 -->
   <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
     <div style="display:flex;gap:6px;">
@@ -941,26 +946,104 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <!-- 단계별 KPI 플로우 -->
   <div class="section-card" style="margin-bottom:16px;">
     <div class="section-body" style="padding:16px 20px;">
-      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;flex-wrap:wrap;" id="pd-stage-flow"></div>
+      <div style="display:flex;align-items:center;gap:4px;justify-content:space-between;flex-wrap:wrap;" id="pd-stage-flow">
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">미진행</div>
+      <div style="font-size:22px;font-weight:700;color:#9ca3af;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0.0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">구매품의</div>
+      <div style="font-size:22px;font-weight:700;color:#2563eb;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0.0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">계약보고</div>
+      <div style="font-size:22px;font-weight:700;color:#7c3aed;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0.0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">입고 및 검수</div>
+      <div style="font-size:22px;font-weight:700;color:#0891b2;">1건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(100.0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">지출결의</div>
+      <div style="font-size:22px;font-weight:700;color:#d97706;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0.0%)</div>
+    </div>
+    <div style="color:var(--text3);font-size:18px;flex-shrink:0;">›</div>
+  
+    <div style="text-align:center;flex:1;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:6px;">자산등록</div>
+      <div style="font-size:22px;font-weight:700;color:#059669;">0건</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">(0.0%)</div>
+    </div>
+    
+  
+    <div style="width:1px;background:var(--border);height:50px;margin:0 8px;flex-shrink:0;"></div>
+    <div style="text-align:center;flex:1.3;background:var(--surface2);border-radius:var(--radius);padding:10px 8px;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">총 구매금액(실행)</div>
+      <div style="font-size:18px;font-weight:700;color:var(--text);">40,000천원</div>
+      <div style="font-size:11px;color:var(--success);margin-top:3px;">절감 26,000천원 (39.4%)</div>
+    </div>
+  </div>
     </div>
   </div>
 
   <!-- 차트 3단 -->
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
     <div class="section-card">
-      <div class="section-header"><div class="section-title">🏥 담당부서별 구매 수</div></div>
-      <div class="section-body" id="pd-chart-dept"></div>
-    </div>
-    <div class="section-card">
-      <div class="section-header"><div class="section-title">₩ 병원별 구매금액</div></div>
-      <div class="section-body" id="pd-chart-hosp"></div>
-    </div>
-    <div class="section-card">
       <div class="section-header">
-        <div class="section-title">⚠️ 진행 지연 현황 (90일 초과)</div>
+        <div class="section-title">📊 병원별 구매금액 (연도별)</div>
+      </div>
+      <div class="section-body" id="pd-chart-hosp" style="overflow-x:auto;"><div class="empty" style="padding:30px"><p>지급 완료된 데이터가 없습니다.</p></div></div>
+    </div>
+    <div class="section-card" style="border-left:4px solid #f59e0b;">
+      <div class="section-header">
+        <div class="section-title">
+          🚚 입고 예정 현황
+          <span id="pd-incoming-count" class="count-pill count-pill-yellow">1건</span>
+        </div>
         <span onclick="showPage(&#39;purchases&#39;)" style="font-size:12px;color:var(--accent);cursor:pointer;">더보기</span>
       </div>
-      <div class="section-body" id="pd-delay"></div>
+      <div class="section-body" id="pd-incoming"><div class="incoming-item" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#92400e;">
+        <strong>범용전기수술기 / Duet V</strong>
+        <span style="color:#d6b370;margin:0 7px;">·</span>
+        <span style="background:#fde68a;color:#92400e;font-weight:700;padding:1px 7px;border-radius:10px;">김상철</span>
+        <span style="color:#d6b370;margin:0 7px;">·</span>
+        <span style="background:#fef3c7;color:#b45309;font-weight:700;padding:1px 7px;border-radius:10px;">2026.08.01 예정</span>
+      </span>
+      <span style="font-weight:700;color:#d97706;flex-shrink:0;">D-44</span>
+    </div></div>
+    </div>
+    <div class="section-card" style="border-left:4px solid #dc2626;">
+      <div class="section-header">
+        <div class="section-title">
+          🔥 진행 지연 현황 (90일 초과)
+          <span id="pd-delay-count" class="count-pill count-pill-red">1건</span>
+        </div>
+        <span onclick="showPage(&#39;purchases&#39;)" style="font-size:12px;color:var(--accent);cursor:pointer;">더보기</span>
+      </div>
+      <div class="section-body" id="pd-delay"><div class="delay-item" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#991b1b;">
+        <strong>범용전기수술기 / Duet V</strong>
+        <span style="color:#e0a3a3;margin:0 7px;">·</span>
+        <span style="color:#b91c1c;">피부과</span>
+        <span style="color:#e0a3a3;margin:0 7px;">·</span>
+        <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">김상철</span>
+      </span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+140</span>
+    </div></div>
     </div>
   </div>
 
@@ -968,11 +1051,34 @@ textarea.form-control{resize:vertical;min-height:68px;}
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;">
     <div class="section-card">
       <div class="section-header"><div class="section-title">👤 담당자별 진행 현황 (건수)</div></div>
-      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table"></div>
+      <div class="section-body" style="padding:0;overflow-x:auto;" id="pd-manager-table">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead><tr style="background:var(--surface2);">
+          <th style="padding:8px 12px;text-align:left;color:var(--text3);font-size:11px;">담당자</th>
+          <th style="padding:8px 12px;text-align:center;color:#9ca3af;font-size:11px;">미진행</th><th style="padding:8px 12px;text-align:center;color:#2563eb;font-size:11px;">구매품의</th><th style="padding:8px 12px;text-align:center;color:#7c3aed;font-size:11px;">계약보고</th><th style="padding:8px 12px;text-align:center;color:#0891b2;font-size:11px;">입고 및 검수</th><th style="padding:8px 12px;text-align:center;color:#d97706;font-size:11px;">지출결의</th><th style="padding:8px 12px;text-align:center;color:#059669;font-size:11px;">자산등록</th>
+          <th style="padding:8px 12px;text-align:center;color:var(--text3);font-size:11px;">합계</th>
+        </tr></thead>
+        <tbody><tr style="border-bottom:1px solid var(--border);">
+        <td style="padding:8px 12px;font-weight:500;">김상철</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--text3);">-</td><td style="padding:8px 12px;text-align:center;color:var(--text3);">-</td><td style="padding:8px 12px;text-align:center;color:var(--text3);">-</td><td style="padding:8px 12px;text-align:center;color:#0891b2;">1</td><td style="padding:8px 12px;text-align:center;color:var(--text3);">-</td><td style="padding:8px 12px;text-align:center;color:var(--text3);">-</td>
+        <td style="padding:8px 12px;text-align:center;font-weight:700;">1</td>
+      </tr>
+          <tr style="background:var(--surface2);font-weight:700;">
+            <td style="padding:8px 12px;">합계</td>
+            <td style="padding:8px 12px;text-align:center;">-</td><td style="padding:8px 12px;text-align:center;">-</td><td style="padding:8px 12px;text-align:center;">-</td><td style="padding:8px 12px;text-align:center;">1</td><td style="padding:8px 12px;text-align:center;">-</td><td style="padding:8px 12px;text-align:center;">-</td>
+            <td style="padding:8px 12px;text-align:center;">1</td>
+          </tr>
+        </tbody>
+      </table></div>
     </div>
     <div class="section-card">
       <div class="section-header"><div class="section-title">💰 담당자별 구매금액</div></div>
-      <div class="section-body" id="pd-chart-manager"></div>
+      <div class="section-body" id="pd-chart-manager">
+    <div class="chart-item">
+      <div class="chart-label">김상철</div>
+      <div class="chart-track"><div class="chart-fill" style="width:100%;background:#7c3aed"></div></div>
+      <div class="chart-meta">40,000천원</div>
+    </div></div>
     </div>
   </div>
 
@@ -992,13 +1098,28 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <th style="text-align:center;">신청부서</th><th style="text-align:center;">담당자</th><th style="text-align:center;">신청금액(천원)</th><th style="text-align:center;">실행금액(천원)</th>
           <th style="text-align:center;">현재단계</th><th style="text-align:center;">경과일</th><th style="text-align:center;">지연사유</th>
         </tr></thead>
-        <tbody id="pd-purchase-tbody"></tbody>
+        <tbody id="pd-purchase-tbody"><tr>
+      <td style="color:var(--text3);font-size:12px;">1</td>
+      <td style="max-width:40px;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;max-width:35px;">2026</td>
+      <td style="font-size:12px;text-align:center;max-width:20px;">1</td>
+      <td style="font-size:12px;text-align:center;max-width:40px;">정규</td>
+      <td class="bold" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="범용전기수술기">범용전기수술기</td>
+      <td style="font-size:12px;color:var(--text2);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;">Duet V</td>
+      <td style="font-size:12px;text-align:center;">피부과</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td style="font-size:12px;text-align:right;">66,000천원</td>
+      <td style="font-size:12px;text-align:right;">40,000천원</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+140</span></td>
+      <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
+    </tr></tbody>
       </table>
       <div id="pd-purchase-empty" class="empty" style="display:none;padding:24px;">
         <p style="font-size:13px;">등록된 구매 건이 없습니다.</p>
       </div>
     </div>
-    <div class="pagination" id="pd-purchase-pagination"></div>
+    <div class="pagination" id="pd-purchase-pagination"><span class="page-info">전체 1건</span></div>
   </div>
 </div>
 
@@ -1702,38 +1823,90 @@ function renderPurchaseDashboard() {
     </div>
   `;
 
-  // 담당부서별 차트
-  const dm={};
-  fp.forEach(p=>{if(p.request_dept)dm[p.request_dept]=(dm[p.request_dept]||0)+1;});
-  const de=Object.entries(dm).sort((a,b)=>b[1]-a[1]).slice(0,6);
-  const maxD=Math.max(...de.map(e=>e[1]),1);
-  document.getElementById('pd-chart-dept').innerHTML = de.length ? de.map(([d,cnt])=>`
-    <div class="chart-item">
-      <div class="chart-label">${d}</div>
-      <div class="chart-track"><div class="chart-fill" style="width:${(cnt/maxD*100).toFixed(0)}%;background:#2563eb"></div></div>
-      <div class="chart-meta">${cnt}건</div>
-    </div>`).join('') + `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);">합계 ${total}건</div>`
-    : '<div class="empty" style="padding:20px"><p>데이터 없음</p></div>';
+  // 병원별 구매금액 - 연도별 꺾은선 그래프 (서울/광명) - 지급일자가 작성된 건만, 지급일자 기준 연도로 집계
+  const paidPurchases = purchases.filter(p => p.payment_date);
+  function paidYear(p) { return p.payment_date ? new Date(p.payment_date).getFullYear() : null; }
+  const hospYears = [...new Set(paidPurchases.map(paidYear).filter(Boolean))].sort((a,b)=>a-b);
+  if(hospYears.length === 0) {
+    document.getElementById('pd-chart-hosp').innerHTML = '<div class="empty" style="padding:30px"><p>지급 완료된 데이터가 없습니다.</p></div>';
+  } else {
+    const seoulByYear = hospYears.map(y => paidPurchases.filter(p=>p.hospital==='서울병원' && paidYear(p)===y).reduce((s,p)=>s+(Number(p.actual_amount)||0),0));
+    const gmByYear = hospYears.map(y => paidPurchases.filter(p=>p.hospital==='광명병원' && paidYear(p)===y).reduce((s,p)=>s+(Number(p.actual_amount)||0),0));
+    const maxVal = Math.max(...seoulByYear, ...gmByYear, 1);
 
-  // 병원별 구매금액
-  const seoulAmt = fp.filter(p=>p.hospital==='서울병원').reduce((s,p)=>s+(Number(p.actual_amount)||0),0);
-  const gmAmt = fp.filter(p=>p.hospital==='광명병원').reduce((s,p)=>s+(Number(p.actual_amount)||0),0);
-  const maxH = Math.max(seoulAmt, gmAmt, 1);
-  document.getElementById('pd-chart-hosp').innerHTML = `
-    <div style="display:flex;gap:16px;align-items:flex-end;justify-content:center;height:100px;margin-bottom:8px;">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(seoulAmt)}</div>
-        <div style="width:50px;height:${Math.max((seoulAmt/maxH*80),4).toFixed(0)}px;background:var(--primary);border-radius:4px 4px 0 0;"></div>
-        <div style="font-size:12px;color:var(--text3);">서울</div>
+    const W = 360, H = 160, padL = 50, padR = 16, padT = 16, padB = 28;
+    const plotW = W - padL - padR;
+    const plotH = H - padT - padB;
+    const stepX = hospYears.length > 1 ? plotW / (hospYears.length - 1) : 0;
+
+    function pointsFor(arr) {
+      return arr.map((v,i) => {
+        const x = padL + (hospYears.length > 1 ? i * stepX : plotW/2);
+        const y = padT + plotH - (v / maxVal * plotH);
+        return {x, y, v};
+      });
+    }
+    const seoulPts = pointsFor(seoulByYear);
+    const gmPts = pointsFor(gmByYear);
+
+    function lineSvg(pts, color) {
+      const path = pts.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ');
+      const dots = pts.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="${color}" stroke="#fff" stroke-width="1.5"/>`).join('');
+      return `<path d="${path}" fill="none" stroke="${color}" stroke-width="2.5"/>` + dots;
+    }
+
+    const yGrid = [0,0.25,0.5,0.75,1].map(r => {
+      const y = padT + plotH - r*plotH;
+      const val = maxVal*r;
+      return `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--border)" stroke-width="1"/>
+        <text x="${padL-8}" y="${y+3}" font-size="9" fill="var(--text3)" text-anchor="end">${fmtAmtK(val).replace('천원','')}</text>`;
+    }).join('');
+
+    const xLabels = hospYears.map((y,i) => {
+      const x = padL + (hospYears.length > 1 ? i * stepX : plotW/2);
+      return `<text x="${x}" y="${H-8}" font-size="10" fill="var(--text3)" text-anchor="middle">${y}</text>`;
+    }).join('');
+
+    document.getElementById('pd-chart-hosp').innerHTML = `
+      <div style="display:flex;gap:12px;margin-bottom:6px;font-size:11px;">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--primary);display:inline-block"></span>서울병원</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:var(--teal);display:inline-block"></span>광명병원</span>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-        <div style="font-size:12px;color:var(--text2);font-weight:600;">${fmtAmtK(gmAmt)}</div>
-        <div style="width:50px;height:${Math.max((gmAmt/maxH*80),4).toFixed(0)}px;background:var(--teal);border-radius:4px 4px 0 0;"></div>
-        <div style="font-size:12px;color:var(--text3);">광명</div>
-      </div>
-    </div>
-    <div style="text-align:center;font-size:12px;color:var(--text3);">합계 ${fmtAmtK(totalAmt)}</div>
-  `;
+      <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:${H}px;">
+        ${yGrid}
+        ${lineSvg(seoulPts, 'var(--primary)')}
+        ${lineSvg(gmPts, 'var(--teal)')}
+        ${xLabels}
+      </svg>
+      <div style="text-align:center;font-size:11px;color:var(--text3);margin-top:4px;">단위: 천원</div>
+    `;
+  }
+
+  // 입고 예정 현황 (Today 기준 미래 입고예정만, delivery_date 입력되어 있으면서 미래인 것)
+  // delivery_date는 month input(YYYY-MM) 이므로 별도 필드가 없다면 review_date/claim_date 기반 추정 입고예정일 사용
+  const incoming = fp.filter(p=>{
+    if(!p.delivery_date) return false;
+    const dd = new Date(p.delivery_date + (p.delivery_date.length===7?'-01':''));
+    return dd >= today();
+  }).sort((a,b)=>new Date(a.delivery_date)-new Date(b.delivery_date)).slice(0,5);
+
+  const incomingCountEl = document.getElementById('pd-incoming-count');
+  if(incomingCountEl) incomingCountEl.textContent = incoming.length ? `${incoming.length}건` : '';
+  document.getElementById('pd-incoming').innerHTML = incoming.length ? incoming.map(p=>{
+    const dd = new Date(p.delivery_date + (p.delivery_date.length===7?'-01':''));
+    const dDay = Math.ceil((dd - today())/86400000);
+    const deviceLabel = `${p.device_name||'-'}${p.model_name?' / '+p.model_name:''}`;
+    return `<div class="incoming-item" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#92400e;">
+        <strong>${deviceLabel}</strong>
+        <span style="color:#d6b370;margin:0 7px;">·</span>
+        <span style="background:#fde68a;color:#92400e;font-weight:700;padding:1px 7px;border-radius:10px;">${p.manager||'-'}</span>
+        <span style="color:#d6b370;margin:0 7px;">·</span>
+        <span style="background:#fef3c7;color:#b45309;font-weight:700;padding:1px 7px;border-radius:10px;">${fmtDate(p.delivery_date)} 예정</span>
+      </span>
+      <span style="font-weight:700;color:#d97706;flex-shrink:0;">D-${dDay}</span>
+    </div>`;
+  }).join('') : '<div class="empty" style="padding:16px"><p style="font-size:13px;">입고 예정 건 없음</p></div>';
 
   // 진행 지연 현황 (90일 초과만)
   const delayed = fp.filter(p=>{
@@ -1741,14 +1914,20 @@ function renderPurchaseDashboard() {
     const st=getPurchaseStage(p);
     return d!==null && d<0 && Math.abs(d)>90 && st!=='자산등록';
   }).sort((a,b)=>getPurchaseDDay(a)-getPurchaseDDay(b)).slice(0,5);
+  const delayCountEl = document.getElementById('pd-delay-count');
+  if(delayCountEl) delayCountEl.textContent = delayed.length ? `${delayed.length}건` : '';
   document.getElementById('pd-delay').innerHTML = delayed.length ? delayed.map(p=>{
     const d=getPurchaseDDay(p);
-    return `<div style="font-size:12px;padding:8px 10px;background:var(--danger-bg);border-radius:var(--radius);margin-bottom:6px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
-        <span style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px;">${p.device_name||'-'}</span>
-        <span style="font-weight:700;color:var(--danger);flex-shrink:0;margin-left:8px;">D+${Math.abs(d)}</span>
-      </div>
-      <div style="color:var(--text3);font-size:11px;">${p.model_name||''} ${p.model_name&&p.request_dept?'·':''} ${p.request_dept||''} ${p.manager?'/ '+p.manager:''}</div>
+    const deviceLabel2 = `${p.device_name||'-'}${p.model_name?' / '+p.model_name:''}`;
+    return `<div class="delay-item" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#991b1b;">
+        <strong>${deviceLabel2}</strong>
+        <span style="color:#e0a3a3;margin:0 7px;">·</span>
+        <span style="color:#b91c1c;">${p.request_dept||'-'}</span>
+        <span style="color:#e0a3a3;margin:0 7px;">·</span>
+        <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">${p.manager||'-'}</span>
+      </span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+${Math.abs(d)}</span>
     </div>`;
   }).join('') : '<div class="empty" style="padding:16px"><p style="font-size:13px;">90일 초과 지연 건 없음 ✅</p></div>';
 
