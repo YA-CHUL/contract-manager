@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0054)file:///C:/Users/Administrator/Downloads/index_17.html -->
+<!-- saved from url=(0053)file:///C:/Users/Administrator/Downloads/index_1.html -->
 <html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -263,14 +263,14 @@ textarea.form-control{resize:vertical;min-height:68px;}
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">계약관리</div>
-    <div class="nav-item" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
+    <div class="nav-item active" onclick="showPage(&#39;dashboard&#39;)">📊 대시보드</div>
     <div class="nav-item" onclick="showPage(&#39;contracts&#39;)">📋 계약 목록</div>
     <div class="nav-item" onclick="showPage(&#39;alerts&#39;)">
       🔔 만료 알림
       <span id="alert-badge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:20px;padding:1px 7px;font-size:10px;font-weight:700;">1</span>
     </div>
     <div class="nav-section" style="margin-top:8px;">구매관리</div>
-    <div class="nav-item active" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 현황</div>
+    <div class="nav-item" onclick="showPage(&#39;purchase-dashboard&#39;)">📦 구매 현황</div>
     <div class="nav-item" onclick="showPage(&#39;purchases&#39;)">🗂️ 구매 목록</div>
   </nav>
   <div class="sidebar-footer">
@@ -285,21 +285,21 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <main class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <div class="topbar-title" id="page-title">구매 현황</div>
-      <div class="topbar-sub" id="page-sub">의료장비 구매 단계별 현황을 한눈에 확인하세요.</div>
+      <div class="topbar-title" id="page-title">대시보드</div>
+      <div class="topbar-sub" id="page-sub">계약 현황을 한눈에 확인하세요.</div>
     </div>
     <div class="topbar-right">
-      <div class="topbar-date">📅<span id="today-date">2026년 6월 22일 (월)</span></div>
+      <div class="topbar-date">📅<span id="today-date">2026년 6월 23일 (화)</span></div>
       <button class="btn btn-secondary btn-sm" onclick="loadContracts()">↻</button>
-      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="display: none;">+ 계약 등록</button>
-      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="">+ 구매 등록</button>
+      <button class="btn btn-primary" id="btn-add-contract" onclick="openAddModal()" style="">+ 계약 등록</button>
+      <button class="btn btn-primary" id="btn-add-purchase" onclick="openPurchaseModal()" style="display: none;">+ 구매 등록</button>
     </div>
   </div>
 
   <div class="content">
 
     <!-- ══ DASHBOARD ══ -->
-    <div id="page-dashboard" style="display: none;">
+    <div id="page-dashboard" style="">
       <!-- 병원 선택 탭 -->
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
         <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text2);margin-right:4px;">병원 선택</div>
@@ -575,7 +575,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-공급계약">공급계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.07.01 ~ 2026.06.30</td>
     <td style="font-size:12px">2026.06.30</td>
-    <td><span class="dday dday-urgent">D-8</span></td>
+    <td><span class="dday dday-urgent">D-7</span></td>
     <td style="font-size:12px">-</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -587,7 +587,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.09.01 ~ 2026.09.30</td>
     <td style="font-size:12px">2026.09.30</td>
-    <td><span class="dday dday-ok">D-100</span></td>
+    <td><span class="dday dday-ok">D-99</span></td>
     <td style="font-size:12px">-</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641063259_hs3o&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -599,7 +599,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2023.06.19 ~ 2027.06.19</td>
     <td style="font-size:12px">2027.06.19</td>
-    <td><span class="dday dday-ok">D-362</span></td>
+    <td><span class="dday dday-ok">D-361</span></td>
     <td style="font-size:12px">6,119만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640281076_8frn&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -611,7 +611,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2023.12.13 ~ 2027.12.13</td>
     <td style="font-size:12px">2027.12.13</td>
-    <td><span class="dday dday-ok">D-539</span></td>
+    <td><span class="dday dday-ok">D-538</span></td>
     <td style="font-size:12px">5,296만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640430612_8jpq&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -623,7 +623,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2025.03.28 ~ 2029.03.28</td>
     <td style="font-size:12px">2029.03.28</td>
-    <td><span class="dday dday-ok">D-1010</span></td>
+    <td><span class="dday dday-ok">D-1009</span></td>
     <td style="font-size:12px">9,487만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780640590487_4gs1&#39;)">🔔 알림</button></td>
   </tr><tr>
@@ -635,7 +635,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     <td><span class="tbadge tbadge-임차계약">임차계약</span></td>
     <td style="font-size:12px;color:var(--text3)">2026.03.01 ~ 2030.02.28</td>
     <td style="font-size:12px">2030.02.28</td>
-    <td><span class="dday dday-ok">D-1347</span></td>
+    <td><span class="dday dday-ok">D-1346</span></td>
     <td style="font-size:12px">3,300만원</td>
     <td><button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780635314390_feq4&#39;)">🔔 알림</button></td>
   </tr></tbody>
@@ -923,7 +923,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <div class="alert-name">방사선차폐용품 단가 계약 연장 건</div>
         <div class="alert-meta">나이스 메디카 | 물류관리팀 | 종료: 2026.06.30</div>
       </div>
-      <div class="alert-days">D-8</div>
+      <div class="alert-days">D-7</div>
       <button class="btn btn-secondary btn-sm" onclick="openMailModal(&#39;c_1780641593244_uxn9&#39;)">✉️ 알림</button>
     </div></div>
           <div id="alert-empty" class="empty" style="display:none;">
@@ -935,7 +935,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
     </div>
 
     <!-- ══ PURCHASE DASHBOARD ══ -->
-    <div id="page-purchase-dashboard" style="">
+    <div id="page-purchase-dashboard" style="display: none;">
   <!-- 필터 -->
   <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">
     <div style="display:flex;gap:6px;">
@@ -1050,7 +1050,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <span style="background:#fef3c7;color:#b45309;font-weight:700;padding:1px 7px;border-radius:10px;">2026.06.23 예정</span>
       </span>
       <span style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
-        <span style="font-weight:700;color:#d97706;">D-1</span>
+        <span style="font-weight:700;color:#d97706;">D-0</span>
         <span onclick="event.stopPropagation();copyIncomingNotice(25)" title="알림 복사" style="cursor:pointer;font-size:13px;line-height:1;">🔔</span>
       </span>
     </div></div>
@@ -1076,7 +1076,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <span style="color:#e0a3a3;margin:0 7px;">·</span>
         <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">의료원</span>
       </span>
-      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+145</span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+146</span>
     </div><div class="delay-item" onclick="openPurchaseModal(8)" style="display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;">
       <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#991b1b;">
         <strong>조직절취작업대</strong>
@@ -1085,7 +1085,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <span style="color:#e0a3a3;margin:0 7px;">·</span>
         <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">의료원</span>
       </span>
-      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+145</span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+146</span>
     </div><div class="delay-item" onclick="openPurchaseModal(9)" style="display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;">
       <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#991b1b;">
         <strong>선형초음파내시경</strong>
@@ -1094,7 +1094,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <span style="color:#e0a3a3;margin:0 7px;">·</span>
         <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">의료원</span>
       </span>
-      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+145</span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+146</span>
     </div><div class="delay-item" onclick="openPurchaseModal(10)" style="display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;">
       <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#991b1b;">
         <strong>결장경(CF-HQ290I)</strong>
@@ -1103,7 +1103,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <span style="color:#e0a3a3;margin:0 7px;">·</span>
         <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">의료원</span>
       </span>
-      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+145</span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+146</span>
     </div><div class="delay-item" onclick="openPurchaseModal(11)" style="display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;">
       <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;color:#991b1b;">
         <strong>결장경(CF-HQ290L)</strong>
@@ -1112,7 +1112,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
         <span style="color:#e0a3a3;margin:0 7px;">·</span>
         <span style="background:#fecaca;color:#991b1b;font-weight:700;padding:1px 7px;border-radius:10px;">의료원</span>
       </span>
-      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+145</span>
+      <span style="font-weight:800;font-size:14px;color:var(--danger);flex-shrink:0;">D+146</span>
     </div></div>
     </div>
   </div>
@@ -1185,7 +1185,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">504,814천원</td>
       <td style="font-size:12px;text-align:right;">372,664천원</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#eff6ff;color:#2563eb;">구매품의</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+213</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+214</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">2</td>
@@ -1200,7 +1200,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">185,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">3</td>
@@ -1215,7 +1215,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">95,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">4</td>
@@ -1230,7 +1230,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">140,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">5</td>
@@ -1245,7 +1245,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">63,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">6</td>
@@ -1260,7 +1260,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">63,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">7</td>
@@ -1275,7 +1275,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">92,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">8</td>
@@ -1290,7 +1290,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">37,000천원</td>
       <td style="font-size:12px;text-align:right;">25,000천원</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">9</td>
@@ -1305,7 +1305,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">38,290천원</td>
       <td style="font-size:12px;text-align:right;">36,000천원</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">10</td>
@@ -1320,7 +1320,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">34,860천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">11</td>
@@ -1335,7 +1335,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">9,400천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">12</td>
@@ -1350,7 +1350,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">19,800천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">13</td>
@@ -1365,7 +1365,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">12,000천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">14</td>
@@ -1380,7 +1380,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">5,600천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr><tr>
       <td style="color:var(--text3);font-size:12px;">15</td>
@@ -1395,7 +1395,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
       <td style="font-size:12px;text-align:right;">387,430천원</td>
       <td style="font-size:12px;text-align:right;">-</td>
       <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
-      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
       <td style="font-size:12px;color:var(--text3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></td>
     </tr></tbody>
       </table>
@@ -1414,7 +1414,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
 <!-- ══ PURCHASES ══ -->
 
     <!-- ══ PURCHASES ══ -->
-    <div id="page-purchases" style="display:none">
+    <div id="page-purchases" style="display: none;">
   <div class="section-card" style="width:100%;">
     <div class="section-header" style="flex-wrap:wrap;gap:10px;">
       <div style="display:flex;align-items:center;gap:16px;">
@@ -1443,9 +1443,7 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <option>미진행</option><option>구매품의</option><option>계약보고</option>
           <option>입고 및 검수</option><option>지출결의</option><option>자산등록</option>
         </select>
-        <select id="p-filter-year" onchange="renderPurchaseTable()">
-          <option value="">전체 연도</option>
-        </select>
+        <select id="p-filter-year" onchange="renderPurchaseTable()"><option value="">전체 연도</option><option>2026</option><option>2025</option></select>
         <select id="p-filter-month" onchange="renderPurchaseTable()">
           <option value="">전체 월</option>
           <option value="1">1월</option><option value="2">2월</option><option value="3">3월</option>
@@ -1463,13 +1461,493 @@ textarea.form-control{resize:vertical;min-height:68px;}
           <th style="max-width:80px;text-align:center;">신청금액(천원)</th><th style="max-width:80px;text-align:center;">산정예산(천원)</th><th style="max-width:80px;text-align:center;">실행금액(천원)</th>
           <th style="max-width:60px;text-align:center;">조정율(신청)</th><th style="max-width:60px;text-align:center;">조정율(산정)</th><th style="text-align:center;">대금구분</th><th style="text-align:center;">현재단계</th><th style="text-align:center;">경과일</th><th style="text-align:center;">관리</th>
         </tr></thead>
-        <tbody id="purchase-tbody"></tbody>
+        <tbody id="purchase-tbody"><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">1</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2025</td>
+      <td style="font-size:12px;text-align:center;">11</td>
+      <td style="font-size:12px;">응급</td>
+      <td style="font-size:12px;text-align:center;">임차</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="환자감시용소프트웨어 / thynC">환자감시용소프트웨어 / thynC</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">순환기내과</td>
+      <td style="font-size:12px;text-align:center;">48</td>
+      <td style="font-size:12px;text-align:right;">504,814천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;">372,664천원</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-26.2%</td>
+      <td style="font-size:12px;text-align:right;color:var(--danger);">-</td>
+      <td style="font-size:12px;text-align:center;">현금</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#eff6ff;color:#2563eb;">구매품의</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+214</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(33)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(33)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">2</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="차세대염기서열분석장치">차세대염기서열분석장치</td>
+      <td style="font-size:12px;text-align:center;">신규</td>
+      <td style="font-size:12px;text-align:center;">병리과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">185,000천원</td>
+      <td style="font-size:12px;text-align:right;">162,800천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(7)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(7)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">3</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="조직절취작업대">조직절취작업대</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">병리과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">95,000천원</td>
+      <td style="font-size:12px;text-align:right;">83,600천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(8)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(8)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">4</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="선형초음파내시경">선형초음파내시경</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">소화기내과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">140,000천원</td>
+      <td style="font-size:12px;text-align:right;">123,200천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(9)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(9)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">5</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="결장경(CF-HQ290I)">결장경(CF-HQ290I)</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">소화기내과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">63,000천원</td>
+      <td style="font-size:12px;text-align:right;">55,440천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(10)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(10)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">6</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="결장경(CF-HQ290L)">결장경(CF-HQ290L)</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">소화기내과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">63,000천원</td>
+      <td style="font-size:12px;text-align:right;">55,440천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(11)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(11)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">7</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="초음파시스템">초음파시스템</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">호흡기알레르기내과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">92,000천원</td>
+      <td style="font-size:12px;text-align:right;">80,960천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(12)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(12)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">8</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">의료원</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="관상동맥내쇄석술장비 / IVL Generator 825DX">관상동맥내쇄석술장비 / IVL Generator 825DX</td>
+      <td style="font-size:12px;text-align:center;">신규</td>
+      <td style="font-size:12px;text-align:center;">순환기내과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">37,000천원</td>
+      <td style="font-size:12px;text-align:right;">32,560천원</td>
+      <td style="font-size:12px;text-align:right;">25,000천원</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-32.4%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-23.2%</td>
+      <td style="font-size:12px;text-align:center;">현금</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(13)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(13)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">9</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="수동식의료용개창기구 / Bookwalter Retractor Set">수동식의료용개창기구 / Bookwalter Retractor Set</td>
+      <td style="font-size:12px;text-align:center;">신규</td>
+      <td style="font-size:12px;text-align:center;">산부인과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">38,290천원</td>
+      <td style="font-size:12px;text-align:right;">33,695천원</td>
+      <td style="font-size:12px;text-align:right;">36,000천원</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-6.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--danger);">6.8%</td>
+      <td style="font-size:12px;text-align:center;">현금</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(14)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(14)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">10</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="비디오연성비인두경">비디오연성비인두경</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">이비인후과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">34,860천원</td>
+      <td style="font-size:12px;text-align:right;">30,677천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(15)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(15)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">11</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="경성부비강경">경성부비강경</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">이비인후과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">9,400천원</td>
+      <td style="font-size:12px;text-align:right;">8,272천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(16)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(16)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">12</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="동공계 / NPi-300">동공계 / NPi-300</td>
+      <td style="font-size:12px;text-align:center;">신규</td>
+      <td style="font-size:12px;text-align:center;">신경외과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">19,800천원</td>
+      <td style="font-size:12px;text-align:right;">17,424천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(17)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(17)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">13</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="전동식환자리프트">전동식환자리프트</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">병동간호팀</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">12,000천원</td>
+      <td style="font-size:12px;text-align:right;">10,560천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(18)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(18)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">14</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="혈압감시기 / CART BP pro">혈압감시기 / CART BP pro</td>
+      <td style="font-size:12px;text-align:center;">신규</td>
+      <td style="font-size:12px;text-align:center;">순환기내과</td>
+      <td style="font-size:12px;text-align:center;">8</td>
+      <td style="font-size:12px;text-align:right;">5,600천원</td>
+      <td style="font-size:12px;text-align:right;">4,928천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(19)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(19)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">15</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="관절내시경시스템(조건부)">관절내시경시스템(조건부)</td>
+      <td style="font-size:12px;text-align:center;">폐품</td>
+      <td style="font-size:12px;text-align:center;">정형외과</td>
+      <td style="font-size:12px;text-align:center;">2</td>
+      <td style="font-size:12px;text-align:right;">387,430천원</td>
+      <td style="font-size:12px;text-align:right;">340,938천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(20)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(20)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">16</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="환자감시장치(조건부)">환자감시장치(조건부)</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">병동간호팀</td>
+      <td style="font-size:12px;text-align:center;">3</td>
+      <td style="font-size:12px;text-align:right;">12,000천원</td>
+      <td style="font-size:12px;text-align:right;">10,560천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(22)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(22)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">17</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="MR8 Midas Rex Eletric Drill(조건부)">MR8 Midas Rex Eletric Drill(조건부)</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">신경외과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">14,400천원</td>
+      <td style="font-size:12px;text-align:right;">12,672천원</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-100.0%</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(23)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(23)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">18</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">임차</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="혈액가스분석장치 / RAPIDPoint 500e">혈액가스분석장치 / RAPIDPoint 500e</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">진단검사의학과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--danger);">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--danger);">-</td>
+      <td style="font-size:12px;text-align:center;">현금</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(25)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(25)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">19</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">임차</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="환자감시용소프트웨어(조건부)">환자감시용소프트웨어(조건부)</td>
+      <td style="font-size:12px;text-align:center;">증설</td>
+      <td style="font-size:12px;text-align:center;">신경과</td>
+      <td style="font-size:12px;text-align:center;">40</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--danger);">-</td>
+      <td style="font-size:12px;text-align:right;color:var(--danger);">-</td>
+      <td style="font-size:12px;text-align:center;">-</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#f3f4f6;color:#9ca3af;">미진행</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+146</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(26)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(26)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr><tr style="opacity:1">
+      <td style="color:var(--text3);font-size:12px;">20</td>
+      <td><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:var(--teal-bg);color:var(--teal);">광명</span></td>
+      <td style="font-size:12px;text-align:center;">2026</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;">정규</td>
+      <td style="font-size:12px;text-align:center;">구매</td>
+      <td style="font-size:12px;text-align:center;">김상철</td>
+      <td class="bold" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;" title="범용전기수술기 / Duet V">범용전기수술기 / Duet V</td>
+      <td style="font-size:12px;text-align:center;">신규</td>
+      <td style="font-size:12px;text-align:center;">피부과</td>
+      <td style="font-size:12px;text-align:center;">1</td>
+      <td style="font-size:12px;text-align:right;">66,000천원</td>
+      <td style="font-size:12px;text-align:right;">58,080천원</td>
+      <td style="font-size:12px;text-align:right;">40,000천원</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-39.4%</td>
+      <td style="font-size:12px;text-align:right;color:var(--success);">-31.1%</td>
+      <td style="font-size:12px;text-align:center;">현금</td>
+      <td style="text-align:center;"><span style="font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;background:#ecfeff;color:#0891b2;">입고 및 검수</span></td>
+      <td style="text-align:center;"><span style="font-weight:600;color:var(--danger);">D+145</span></td>
+      <td><div class="action-btns">
+        <button class="btn btn-secondary btn-sm" onclick="openPurchaseModal(1)">수정</button>
+        <button class="btn btn-secondary btn-sm" onclick="deletePurchase(1)" style="color:var(--danger)">삭제</button>
+      </div></td>
+    </tr></tbody>
       </table>
       <div id="purchase-empty" class="empty" style="display:none">
         <i class="fa-solid fa-folder-open"></i><p>등록된 구매 건이 없습니다.</p>
       </div>
     </div>
-    <div class="pagination" id="purchase-pagination"></div>
+    <div class="pagination" id="purchase-pagination"><span class="page-info">27건 중 1~20</span><button class="page-btn" onclick="goPurchasePage(0)" disabled="">‹</button><button class="page-btn active" onclick="goPurchasePage(1)">1</button><button class="page-btn" onclick="goPurchasePage(2)">2</button><button class="page-btn" onclick="goPurchasePage(2)">›</button></div>
   </div>
 </div>
 
@@ -2087,6 +2565,11 @@ async function loadPurchases() {
     if(mSel) {
       const cur = mSel.value;
       mSel.innerHTML = '<option value="">전체 담당자</option>' + managers.map(m=>`<option${m===cur?' selected':''}>${m}</option>`).join('');
+    }
+    // 모달이 열려있으면 렌더링 스킵 (입력 중 튕김 방지)
+    const isModalOpen = document.querySelector('.modal-overlay.open');
+    if (!isModalOpen) {
+      renderPurchaseDashboard(); renderPurchaseTable();
     }
   } catch(e) {
     console.error('구매 로드 오류:', e);
